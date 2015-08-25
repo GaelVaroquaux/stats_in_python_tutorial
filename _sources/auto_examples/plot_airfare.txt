@@ -25,6 +25,14 @@ only as a function of the trip endpoints.
 
       .. image:: images/plot_airfare_2.png
 
+    *
+
+      .. image:: images/plot_airfare_3.png
+
+    *
+
+      .. image:: images/plot_airfare_4.png
+
 
 
 
@@ -33,6 +41,6 @@ only as a function of the trip endpoints.
 .. literalinclude:: plot_airfare.py
     :lines: 11-
 
-**Total running time of the example:**  13.58 seconds
-( 0 minutes  13.58 seconds)
+**Total running time of the example:**  11.97 seconds
+( 0 minutes  11.97 seconds)
     
