@@ -21,9 +21,9 @@ Statistics in Python
 .. sidebar:: Download 
     
 
-    * `HTML and example files <https://github.com/cogmaster-stats/python-cogstats/zipball/master>`_
+    * `HTML and example files <https://github.com/GaelVaroquaux/stats_in_python_tutorial/zipball/master>`_
     
-    * `Source code (github) <https://github.com/cogmaster-stats/python-cogstats>`_
+    * `Source code (github) <https://github.com/GaelVaroquaux/stats_in_python_tutorial>`_
 
 .. topic:: Materials for the "Statistics in Python" euroscipy 2015 tutorial.
 

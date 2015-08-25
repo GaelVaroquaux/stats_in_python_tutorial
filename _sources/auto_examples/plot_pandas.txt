@@ -45,6 +45,6 @@ matplotlib behind the scene).
 .. literalinclude:: plot_pandas.py
     :lines: 11-
 
-**Total running time of the example:**  1.72 seconds
-( 0 minutes  1.72 seconds)
+**Total running time of the example:**  1.08 seconds
+( 0 minutes  1.08 seconds)
     

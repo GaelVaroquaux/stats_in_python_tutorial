@@ -32,7 +32,7 @@ Ilustrate an analysis on a real dataset:
   Model:                            OLS   Adj. R-squared:                  0.468
   Method:                 Least Squares   F-statistic:                     44.63
   Date:                Tue, 25 Aug 2015   Prob (F-statistic):           1.58e-20
-  Time:                        13:26:28   Log-Likelihood:                -38.185
+  Time:                        13:39:43   Log-Likelihood:                -38.185
   No. Observations:                 150   AIC:                             84.37
   Df Residuals:                     146   BIC:                             96.41
   Df Model:                           3                                         
@@ -59,6 +59,6 @@ Ilustrate an analysis on a real dataset:
 .. literalinclude:: plot_iris_analysis.py
     :lines: 13-
 
-**Total running time of the example:**  1.10 seconds
-( 0 minutes  1.10 seconds)
+**Total running time of the example:**  0.85 seconds
+( 0 minutes  0.85 seconds)
     

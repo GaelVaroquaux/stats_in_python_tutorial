@@ -21,6 +21,6 @@ Do a boxplot on numerical data.
 .. literalinclude:: plot_basic_statistics.py
     :lines: 7-
 
-**Total running time of the example:**  2.33 seconds
-( 0 minutes  2.33 seconds)
+**Total running time of the example:**  2.37 seconds
+( 0 minutes  2.37 seconds)
     

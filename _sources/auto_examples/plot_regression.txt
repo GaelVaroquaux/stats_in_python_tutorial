@@ -27,7 +27,7 @@ p-values.
   Model:                            OLS   Adj. R-squared:                  0.794
   Method:                 Least Squares   F-statistic:                     74.03
   Date:                Tue, 25 Aug 2015   Prob (F-statistic):           8.56e-08
-  Time:                        13:26:28   Log-Likelihood:                -57.988
+  Time:                        13:39:44   Log-Likelihood:                -57.988
   No. Observations:                  20   AIC:                             120.0
   Df Residuals:                      18   BIC:                             122.0
   Df Model:                           1                                         
