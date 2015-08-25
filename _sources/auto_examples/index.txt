@@ -1,0 +1,192 @@
+
+
+
+.. raw:: html
+
+
+    <style type="text/css">
+
+    div#sidebarbutton {
+        display: none;
+    }
+
+    </style>
+
+
+Examples
+========
+
+.. _examples-index:
+
+
+
+Code examples
+----------------------------
+
+Code examples for the statistics in Python tutorial.
+
+
+
+
+
+
+.. raw:: html
+
+
+    <div class="thumbnailContainer" tooltip="Do a boxplot on numerical data. ">
+
+.. figure:: ./images/thumb/plot_basic_statistics.png
+   :target: ./plot_basic_statistics.html
+
+   :ref:`example_plot_basic_statistics.py`
+
+
+.. raw:: html
+
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   ./plot_basic_statistics
+
+
+
+.. raw:: html
+
+
+    <div class="thumbnailContainer" tooltip="This example loads from a CSV file data with mixed numerical and categorical entries, and plots...">
+
+.. figure:: ./images/thumb/plot_pandas.png
+   :target: ./plot_pandas.html
+
+   :ref:`example_plot_pandas.py`
+
+
+.. raw:: html
+
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   ./plot_pandas
+
+
+
+.. raw:: html
+
+
+    <div class="thumbnailContainer" tooltip="Ilustrate an analysis on a real dataset:">
+
+.. figure:: ./images/thumb/plot_iris_analysis.png
+   :target: ./plot_iris_analysis.html
+
+   :ref:`example_plot_iris_analysis.py`
+
+
+.. raw:: html
+
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   ./plot_iris_analysis
+
+
+
+.. raw:: html
+
+
+    <div class="thumbnailContainer" tooltip="Fit a simple linear regression using 'statsmodels', compute corresponding p-values. ">
+
+.. figure:: ./images/thumb/plot_regression.png
+   :target: ./plot_regression.html
+
+   :ref:`example_plot_regression.py`
+
+
+.. raw:: html
+
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   ./plot_regression
+
+
+
+.. raw:: html
+
+
+    <div class="thumbnailContainer" tooltip="Calculate using 'statsmodels' just the best fit, or all the corresponding statistical parameter...">
+
+.. figure:: ./images/thumb/plot_regression_3d.png
+   :target: ./plot_regression_3d.html
+
+   :ref:`example_plot_regression_3d.py`
+
+
+.. raw:: html
+
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   ./plot_regression_3d
+
+
+.. raw:: html
+
+    <div style="clear: both"></div>
+    
+
+
+Solutions to the exercises of the course
+----------------------------------------
+
+
+
+
+
+
+.. raw:: html
+
+
+    <div class="thumbnailContainer" tooltip="Going back to the brain size + IQ data, test if the VIQ of male and female are different after ...">
+
+.. figure:: solutions/images/thumb/plot_brain_size.png
+   :target: ./solutions/plot_brain_size.html
+
+   :ref:`example_solutions_plot_brain_size.py`
+
+
+.. raw:: html
+
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   solutions/plot_brain_size
+
+
+.. raw:: html
+
+    <div style="clear: both"></div>
+    

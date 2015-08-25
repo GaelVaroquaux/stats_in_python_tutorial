@@ -1,0 +1,246 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>2.1.3. Analysis of Iris petal and sepal sizes &mdash; Statistics in Python</title>
+    
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2015',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/copybutton.js"></script>
+    <link rel="top" title="Statistics in Python" href="../index.html" />
+    <link rel="up" title="2. Examples" href="index.html" />
+    <link rel="next" title="2.1.4. Simple Regression" href="plot_regression.html" />
+    <link rel="prev" title="2.1.2. Plotting quantities from a CSV file" href="plot_pandas.html" /> 
+  </head>
+  <body>
+   <!-- Use the header to add javascript -->
+    
+    <script type="text/javascript">
+    // Function to collapse the tip divs
+    function collapse_tip_div(obj){
+	// Update the representation on the tip div based on whether it
+	// has the 'collapsed' css class or not: we only want to
+	// collapse divs that are not already collapsed
+	if($(obj).hasClass("collapsed")) {
+	} else {
+	    $(obj).find("p.summary").remove();
+	    var content = $(obj).text();
+	    var html = $(obj).html();
+
+	    if(content.length > 40) {
+		if ($.browser.msie) {
+		    // We start at '3' to avoid 'tip', as IE
+		    // does not count whitespace
+		    var content = content.substr(3, 50);
+		} else {
+		    // We start at '5' to avoid 'tip '
+		    var content = content.substr(5, 50);
+		}
+	    }
+	    $(obj).html('<p class="summary"><img src="../_static/plus.png">' + content + '...</p>' + html);
+	}
+    }
+    </script>
+
+    <script type="text/javascript">
+    $(function () {
+	$(".tip")
+	    .click(function(event){
+		$(this).toggleClass("collapsed");
+		// Change state of the global button
+		$('div.related li.transparent').removeClass('transparent')
+		$(this).find("p.summary").remove();
+		if($(this).hasClass("collapsed")) {
+		    var content = $(this).text();
+		    var html = $(this).html();
+    
+		    if(content.length > 40) {
+			if ($.browser.msie) {
+			    // We start at '3' to avoid 'tip', as IE
+			    // does not count whitespace
+			    var content = content.substr(3, 50);
+			} else {
+			    // We start at '5' to avoid 'tip '
+			    var content = content.substr(5, 50);
+			}
+		    }
+		    $(this).html('<p class="summary"><img src="../_static/plus.png">' + content + '...</p>' + html);
+		}
+		if (event.target.tagName.toLowerCase() != "a") {
+                   return true; //Makes links clickable
+		}
+	});
+    });
+    </script>
+
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="plot_regression.html" title="2.1.4. Simple Regression"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="plot_pandas.html" title="2.1.2. Plotting quantities from a CSV file"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Statistics in Python</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">2. Examples</a> &raquo;</li>
+     
+    <!-- Insert a menu in the navigation bar -->
+    <li class="left">
+	<!-- On click toggle the 'tip' on or off-->
+	<a onclick="$('.tip').each(function (index, obj) {
+			    collapse_tip_div(obj);
+		    });
+		    $('.tip').addClass('collapsed');
+		    $('.left').addClass('transparent');">
+	<img src="../_static/minus.png"
+         alt="Collapse to compact view" style="padding: 1ex;"/>
+	<span class="hiddenlink">Collapse document to compact view</span>
+    </a></li>
+
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body">
+            
+  <div class="section" id="analysis-of-iris-petal-and-sepal-sizes">
+<span id="example-plot-iris-analysis-py"></span><h1>2.1.3. Analysis of Iris petal and sepal sizes<a class="headerlink" href="#analysis-of-iris-petal-and-sepal-sizes" title="Permalink to this headline">¶</a></h1>
+<p>Ilustrate an analysis on a real dataset:</p>
+<ul class="simple">
+<li>Visualizing the data to formulate intuitions</li>
+<li>Fitting of a linear model</li>
+<li>Hypothesis test of the effect of a categorical variable in the presence
+of a continuous confound</li>
+</ul>
+<img alt="../_images/plot_iris_analysis_1.png" class="align-center" src="../_images/plot_iris_analysis_1.png" />
+<p><strong>Script output</strong>:</p>
+<div class="max-height highlight-python"><div class="highlight"><pre>  OLS Regression Results
+<div class="newline"></div>==============================================================================
+<div class="newline"></div>Dep. Variable:            sepal_width   R-squared:                       0.478
+<div class="newline"></div>Model:                            OLS   Adj. R-squared:                  0.468
+<div class="newline"></div>Method:                 Least Squares   F-statistic:                     44.63
+<div class="newline"></div>Date:                Tue, 25 Aug 2015   Prob (F-statistic):           1.58e-20
+<div class="newline"></div>Time:                        13:26:28   Log-Likelihood:                -38.185
+<div class="newline"></div>No. Observations:                 150   AIC:                             84.37
+<div class="newline"></div>Df Residuals:                     146   BIC:                             96.41
+<div class="newline"></div>Df Model:                           3
+<div class="newline"></div>======================================================================================
+<div class="newline"></div>                         coef    std err          t      P&gt;|t|      [95.0% Conf. Int.]
+<div class="newline"></div>--------------------------------------------------------------------------------------
+<div class="newline"></div>Intercept              2.9813      0.099     29.989      0.000         2.785     3.178
+<div class="newline"></div>name[T.versicolor]    -1.4821      0.181     -8.190      0.000        -1.840    -1.124
+<div class="newline"></div>name[T.virginica]     -1.6635      0.256     -6.502      0.000        -2.169    -1.158
+<div class="newline"></div>petal_length           0.2983      0.061      4.920      0.000         0.178     0.418
+<div class="newline"></div>==============================================================================
+<div class="newline"></div>Omnibus:                        2.868   Durbin-Watson:                   1.753
+<div class="newline"></div>Prob(Omnibus):                  0.238   Jarque-Bera (JB):                2.885
+<div class="newline"></div>Skew:                          -0.082   Prob(JB):                        0.236
+<div class="newline"></div>Kurtosis:                       3.659   Cond. No.                         54.0
+<div class="newline"></div>==============================================================================
+<div class="newline"></div>Testing the difference between effect of versicolor and virginica
+<div class="newline"></div>&lt;F test: F=array([[ 3.24533535]]), p=[[ 0.07369059]], df_denom=146, df_num=1&gt;
+<div class="newline"></div></pre></div>
+</div>
+<p><strong>Python source code:</strong> <a class="reference download internal" href="../_downloads/plot_iris_analysis.py"><tt class="xref download docutils literal"><span class="pre">plot_iris_analysis.py</span></tt></a></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="kn">import</span> <span class="nn">pandas</span>
+<div class="newline"></div><span class="kn">from</span> <span class="nn">pandas.tools</span> <span class="kn">import</span> <span class="n">plotting</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="kn">from</span> <span class="nn">statsmodels.formula.api</span> <span class="kn">import</span> <span class="n">ols</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="c"># Load the data</span>
+<div class="newline"></div><span class="n">data</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">&#39;iris.csv&#39;</span><span class="p">)</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="c">##############################################################################</span>
+<div class="newline"></div><span class="c"># Plot a scatter matrix</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="c"># Express the names as categories</span>
+<div class="newline"></div><span class="n">categories</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">Categorical</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">])</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="c"># The parameter &#39;c&#39; is passed to plt.scatter and will control the color</span>
+<div class="newline"></div><span class="n">plotting</span><span class="o">.</span><span class="n">scatter_matrix</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">categories</span><span class="o">.</span><span class="n">labels</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s">&#39;o&#39;</span><span class="p">)</span>
+<div class="newline"></div>
+<div class="newline"></div><a href="http://matplotlib.org/api/figure_api.html#matplotlib.figure.Figure"><span class="n">fig</span></a> <span class="o">=</span> <a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.gcf"><span class="n">plt</span><span class="o">.</span><span class="n">gcf</span></a><span class="p">()</span>
+<div class="newline"></div><a href="http://matplotlib.org/api/figure_api.html#matplotlib.figure.Figure"><span class="n">fig</span></a><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s">&quot;blue: setosa, green: versicolor, red: virginica&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="c">##############################################################################</span>
+<div class="newline"></div><span class="c"># Statistical analysis</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="c"># Let us try to explain the sepal length as a function of the petal</span>
+<div class="newline"></div><span class="c"># width and the category of iris</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="n">model</span> <span class="o">=</span> <span class="n">ols</span><span class="p">(</span><span class="s">&#39;sepal_width ~ name + petal_length&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<div class="newline"></div><span class="k">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="c"># Now formulate a &quot;contrast&quot;, to test if the offset for versicolor and</span>
+<div class="newline"></div><span class="c"># virginica are identical</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="k">print</span><span class="p">(</span><span class="s">&#39;Testing the difference between effect of versicolor and virginica&#39;</span><span class="p">)</span>
+<div class="newline"></div><span class="k">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">f_test</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]))</span>
+<div class="newline"></div><a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.show"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
+<div class="newline"></div></pre></div>
+</div>
+<p><strong>Total running time of the example:</strong>  1.10 seconds
+( 0 minutes  1.10 seconds)</p>
+<p><div style="clear: both"></div></p>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="plot_regression.html" title="2.1.4. Simple Regression"
+             >next</a></li>
+        <li class="right" >
+          <a href="plot_pandas.html" title="2.1.2. Plotting quantities from a CSV file"
+             >previous</a> |</li>
+        <li><a href="../index.html">Statistics in Python</a> &raquo;</li>
+          <li><a href="index.html" >2. Examples</a> &raquo;</li>
+     
+    <!-- Insert a menu in the navigation bar -->
+    <li class="left">
+	<!-- On click toggle the 'tip' on or off-->
+	<a onclick="$('.tip').each(function (index, obj) {
+			    collapse_tip_div(obj);
+		    });
+		    $('.tip').addClass('collapsed');
+		    $('.left').addClass('transparent');">
+	<img src="../_static/minus.png"
+         alt="Collapse to compact view" style="padding: 1ex;"/>
+	<span class="hiddenlink">Collapse document to compact view</span>
+    </a></li>
+
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012,2013,2014,2015.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>2. Examples &mdash; Statistics in Python</title>
+    
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2015',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/copybutton.js"></script>
+    <link rel="top" title="Statistics in Python" href="../index.html" />
+    <link rel="next" title="2.1.1. Basic plotting example" href="plot_basic_statistics.html" />
+    <link rel="prev" title="1. Basic statistics" href="../basic_statistics.html" /> 
+  </head>
+  <body>
+   <!-- Use the header to add javascript -->
+    
+    <script type="text/javascript">
+    // Function to collapse the tip divs
+    function collapse_tip_div(obj){
+	// Update the representation on the tip div based on whether it
+	// has the 'collapsed' css class or not: we only want to
+	// collapse divs that are not already collapsed
+	if($(obj).hasClass("collapsed")) {
+	} else {
+	    $(obj).find("p.summary").remove();
+	    var content = $(obj).text();
+	    var html = $(obj).html();
+
+	    if(content.length > 40) {
+		if ($.browser.msie) {
+		    // We start at '3' to avoid 'tip', as IE
+		    // does not count whitespace
+		    var content = content.substr(3, 50);
+		} else {
+		    // We start at '5' to avoid 'tip '
+		    var content = content.substr(5, 50);
+		}
+	    }
+	    $(obj).html('<p class="summary"><img src="../_static/plus.png">' + content + '...</p>' + html);
+	}
+    }
+    </script>
+
+    <script type="text/javascript">
+    $(function () {
+	$(".tip")
+	    .click(function(event){
+		$(this).toggleClass("collapsed");
+		// Change state of the global button
+		$('div.related li.transparent').removeClass('transparent')
+		$(this).find("p.summary").remove();
+		if($(this).hasClass("collapsed")) {
+		    var content = $(this).text();
+		    var html = $(this).html();
+    
+		    if(content.length > 40) {
+			if ($.browser.msie) {
+			    // We start at '3' to avoid 'tip', as IE
+			    // does not count whitespace
+			    var content = content.substr(3, 50);
+			} else {
+			    // We start at '5' to avoid 'tip '
+			    var content = content.substr(5, 50);
+			}
+		    }
+		    $(this).html('<p class="summary"><img src="../_static/plus.png">' + content + '...</p>' + html);
+		}
+		if (event.target.tagName.toLowerCase() != "a") {
+                   return true; //Makes links clickable
+		}
+	});
+    });
+    </script>
+
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="plot_basic_statistics.html" title="2.1.1. Basic plotting example"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="../basic_statistics.html" title="1. Basic statistics"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Statistics in Python</a> &raquo;</li>
+     
+    <!-- Insert a menu in the navigation bar -->
+    <li class="left">
+	<!-- On click toggle the 'tip' on or off-->
+	<a onclick="$('.tip').each(function (index, obj) {
+			    collapse_tip_div(obj);
+		    });
+		    $('.tip').addClass('collapsed');
+		    $('.left').addClass('transparent');">
+	<img src="../_static/minus.png"
+         alt="Collapse to compact view" style="padding: 1ex;"/>
+	<span class="hiddenlink">Collapse document to compact view</span>
+    </a></li>
+
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body">
+            
+  <style type="text/css">
+
+div#sidebarbutton {
+    display: none;
+}
+
+</style><div class="section" id="examples">
+<h1>2. Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="code-examples">
+<span id="examples-index"></span><h2>2.1. Code examples<a class="headerlink" href="#code-examples" title="Permalink to this headline">¶</a></h2>
+<p>Code examples for the statistics in Python tutorial.</p>
+<div class="thumbnailContainer" tooltip="Do a boxplot on numerical data. "><div class="figure">
+<a class="reference external image-reference" href="./plot_basic_statistics.html"><img alt="../_images/plot_basic_statistics.png" src="../_images/plot_basic_statistics.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_basic_statistics.html#example-plot-basic-statistics-py"><em>Basic plotting example</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="This example loads from a CSV file data with mixed numerical and categorical entries, and plots..."><div class="figure">
+<a class="reference external image-reference" href="./plot_pandas.html"><img alt="../_images/plot_pandas.png" src="../_images/plot_pandas.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_pandas.html#example-plot-pandas-py"><em>Plotting quantities from a CSV file</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="Ilustrate an analysis on a real dataset:"><div class="figure">
+<a class="reference external image-reference" href="./plot_iris_analysis.html"><img alt="../_images/plot_iris_analysis.png" src="../_images/plot_iris_analysis.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_iris_analysis.html#example-plot-iris-analysis-py"><em>Analysis of Iris petal and sepal sizes</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="Fit a simple linear regression using 'statsmodels', compute corresponding p-values. "><div class="figure">
+<a class="reference external image-reference" href="./plot_regression.html"><img alt="../_images/plot_regression.png" src="../_images/plot_regression.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_regression.html#example-plot-regression-py"><em>Simple Regression</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="thumbnailContainer" tooltip="Calculate using 'statsmodels' just the best fit, or all the corresponding statistical parameter..."><div class="figure">
+<a class="reference external image-reference" href="./plot_regression_3d.html"><img alt="../_images/plot_regression_3d.png" src="../_images/plot_regression_3d.png" /></a>
+<p class="caption"><a class="reference internal" href="plot_regression_3d.html#example-plot-regression-3d-py"><em>Multiple Regression</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div style="clear: both"></div></div>
+<div class="section" id="solutions-to-the-exercises-of-the-course">
+<h2>2.2. Solutions to the exercises of the course<a class="headerlink" href="#solutions-to-the-exercises-of-the-course" title="Permalink to this headline">¶</a></h2>
+<div class="thumbnailContainer" tooltip="Going back to the brain size + IQ data, test if the VIQ of male and female are different after ..."><div class="figure">
+<a class="reference external image-reference" href="./solutions/plot_brain_size.html"><img alt="../_images/plot_brain_size.png" src="../_images/plot_brain_size.png" /></a>
+<p class="caption"><a class="reference internal" href="solutions/plot_brain_size.html#example-solutions-plot-brain-size-py"><em>Relating Gender and IQ</em></a></p>
+</div>
+</div><div class="toctree-wrapper compound">
+</div>
+<div style="clear: both"></div><p><div style="clear: both"></div></p>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="plot_basic_statistics.html" title="2.1.1. Basic plotting example"
+             >next</a></li>
+        <li class="right" >
+          <a href="../basic_statistics.html" title="1. Basic statistics"
+             >previous</a> |</li>
+        <li><a href="../index.html">Statistics in Python</a> &raquo;</li>
+     
+    <!-- Insert a menu in the navigation bar -->
+    <li class="left">
+	<!-- On click toggle the 'tip' on or off-->
+	<a onclick="$('.tip').each(function (index, obj) {
+			    collapse_tip_div(obj);
+		    });
+		    $('.tip').addClass('collapsed');
+		    $('.left').addClass('transparent');">
+	<img src="../_static/minus.png"
+         alt="Collapse to compact view" style="padding: 1ex;"/>
+	<span class="hiddenlink">Collapse document to compact view</span>
+    </a></li>
+
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012,2013,2014,2015.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

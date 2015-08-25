@@ -1,0 +1,240 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>2.2.1. Relating Gender and IQ &mdash; Statistics in Python</title>
+    
+    <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2015',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/copybutton.js"></script>
+    <link rel="top" title="Statistics in Python" href="../../index.html" />
+    <link rel="up" title="2. Examples" href="../index.html" />
+    <link rel="prev" title="2.1.5. Multiple Regression" href="../plot_regression_3d.html" /> 
+  </head>
+  <body>
+   <!-- Use the header to add javascript -->
+    
+    <script type="text/javascript">
+    // Function to collapse the tip divs
+    function collapse_tip_div(obj){
+	// Update the representation on the tip div based on whether it
+	// has the 'collapsed' css class or not: we only want to
+	// collapse divs that are not already collapsed
+	if($(obj).hasClass("collapsed")) {
+	} else {
+	    $(obj).find("p.summary").remove();
+	    var content = $(obj).text();
+	    var html = $(obj).html();
+
+	    if(content.length > 40) {
+		if ($.browser.msie) {
+		    // We start at '3' to avoid 'tip', as IE
+		    // does not count whitespace
+		    var content = content.substr(3, 50);
+		} else {
+		    // We start at '5' to avoid 'tip '
+		    var content = content.substr(5, 50);
+		}
+	    }
+	    $(obj).html('<p class="summary"><img src="../../_static/plus.png">' + content + '...</p>' + html);
+	}
+    }
+    </script>
+
+    <script type="text/javascript">
+    $(function () {
+	$(".tip")
+	    .click(function(event){
+		$(this).toggleClass("collapsed");
+		// Change state of the global button
+		$('div.related li.transparent').removeClass('transparent')
+		$(this).find("p.summary").remove();
+		if($(this).hasClass("collapsed")) {
+		    var content = $(this).text();
+		    var html = $(this).html();
+    
+		    if(content.length > 40) {
+			if ($.browser.msie) {
+			    // We start at '3' to avoid 'tip', as IE
+			    // does not count whitespace
+			    var content = content.substr(3, 50);
+			} else {
+			    // We start at '5' to avoid 'tip '
+			    var content = content.substr(5, 50);
+			}
+		    }
+		    $(this).html('<p class="summary"><img src="../../_static/plus.png">' + content + '...</p>' + html);
+		}
+		if (event.target.tagName.toLowerCase() != "a") {
+                   return true; //Makes links clickable
+		}
+	});
+    });
+    </script>
+
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../plot_regression_3d.html" title="2.1.5. Multiple Regression"
+             accesskey="P">previous</a></li>
+        <li><a href="../../index.html">Statistics in Python</a> &raquo;</li>
+          <li><a href="../index.html" accesskey="U">2. Examples</a> &raquo;</li>
+     
+    <!-- Insert a menu in the navigation bar -->
+    <li class="left">
+	<!-- On click toggle the 'tip' on or off-->
+	<a onclick="$('.tip').each(function (index, obj) {
+			    collapse_tip_div(obj);
+		    });
+		    $('.tip').addClass('collapsed');
+		    $('.left').addClass('transparent');">
+	<img src="../../_static/minus.png"
+         alt="Collapse to compact view" style="padding: 1ex;"/>
+	<span class="hiddenlink">Collapse document to compact view</span>
+    </a></li>
+
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body">
+            
+  <div class="section" id="relating-gender-and-iq">
+<span id="example-solutions-plot-brain-size-py"></span><h1>2.2.1. Relating Gender and IQ<a class="headerlink" href="#relating-gender-and-iq" title="Permalink to this headline">¶</a></h1>
+<p>Going back to the brain size + IQ data, test if the VIQ of male and
+female are different after removing the effect of brain size, height and
+weight.</p>
+<img alt="../../_images/plot_brain_size_1.png" class="align-center" src="../../_images/plot_brain_size_1.png" />
+<p><strong>Script output</strong>:</p>
+<div class="max-height highlight-python"><div class="highlight"><pre>  OLS Regression Results
+<div class="newline"></div>==============================================================================
+<div class="newline"></div>Dep. Variable:                    VIQ   R-squared:                       0.246
+<div class="newline"></div>Model:                            OLS   Adj. R-squared:                  0.181
+<div class="newline"></div>Method:                 Least Squares   F-statistic:                     3.809
+<div class="newline"></div>Date:                Tue, 25 Aug 2015   Prob (F-statistic):             0.0184
+<div class="newline"></div>Time:                        13:26:29   Log-Likelihood:                -172.34
+<div class="newline"></div>No. Observations:                  39   AIC:                             352.7
+<div class="newline"></div>Df Residuals:                      35   BIC:                             359.3
+<div class="newline"></div>Df Model:                           3
+<div class="newline"></div>==================================================================================
+<div class="newline"></div>                     coef    std err          t      P&gt;|t|      [95.0% Conf. Int.]
+<div class="newline"></div>----------------------------------------------------------------------------------
+<div class="newline"></div>Intercept        166.6258     88.824      1.876      0.069       -13.696   346.948
+<div class="newline"></div>Gender[T.Male]     8.8524     10.710      0.827      0.414       -12.890    30.595
+<div class="newline"></div>MRI_Count          0.0002   6.46e-05      2.615      0.013      3.78e-05     0.000
+<div class="newline"></div>Height            -3.0837      1.276     -2.417      0.021        -5.674    -0.494
+<div class="newline"></div>==============================================================================
+<div class="newline"></div>Omnibus:                        7.373   Durbin-Watson:                   2.109
+<div class="newline"></div>Prob(Omnibus):                  0.025   Jarque-Bera (JB):                2.252
+<div class="newline"></div>Skew:                           0.005   Prob(JB):                        0.324
+<div class="newline"></div>Kurtosis:                       1.823   Cond. No.                     2.40e+07
+<div class="newline"></div>==============================================================================
+<div class="newline"></div>
+<div class="newline"></div>Warnings:
+<div class="newline"></div>[1] The condition number is large, 2.4e+07. This might indicate that there are
+<div class="newline"></div>strong multicollinearity or other numerical problems.
+<div class="newline"></div>&lt;F test: F=array([[ 0.68319608]]), p=[[ 0.41408784]], df_denom=35, df_num=1&gt;
+<div class="newline"></div></pre></div>
+</div>
+<p><strong>Python source code:</strong> <a class="reference download internal" href="../../_downloads/plot_brain_size.py"><tt class="xref download docutils literal"><span class="pre">plot_brain_size.py</span></tt></a></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">pandas</span>
+<div class="newline"></div><span class="kn">from</span> <span class="nn">statsmodels.formula.api</span> <span class="kn">import</span> <span class="n">ols</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="n">data</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">&#39;../brain_size.csv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">&#39;;&#39;</span><span class="p">,</span> <span class="n">na_values</span><span class="o">=</span><span class="s">&#39;.&#39;</span><span class="p">)</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="n">model</span> <span class="o">=</span> <span class="n">ols</span><span class="p">(</span><span class="s">&#39;VIQ ~ Gender + MRI_Count + Height&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<div class="newline"></div><span class="k">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="c"># Here, we don&#39;t need to define a contrast, as we are testing a single</span>
+<div class="newline"></div><span class="c"># coefficient of our model, and not a combination of coefficients.</span>
+<div class="newline"></div><span class="c"># However, defining a contrast, which would then be a &#39;unit contrast&#39;,</span>
+<div class="newline"></div><span class="c"># will give us the same results</span>
+<div class="newline"></div><span class="k">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">f_test</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]))</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="c">###############################################################################</span>
+<div class="newline"></div><span class="c"># Here we plot a scatter matrix to get intuitions on our results.</span>
+<div class="newline"></div><span class="c"># This goes beyond what was asked in the exercise</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="c"># This plotting is useful to get an intuitions on the relationships between</span>
+<div class="newline"></div><span class="c"># our different variables</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="kn">from</span> <span class="nn">pandas.tools</span> <span class="kn">import</span> <span class="n">plotting</span>
+<div class="newline"></div><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="c"># Fill in the missing values for Height for plotting</span>
+<div class="newline"></div><span class="n">data</span><span class="p">[</span><span class="s">&#39;Height&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s">&#39;pad&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="c"># The parameter &#39;c&#39; is passed to plt.scatter and will control the color</span>
+<div class="newline"></div><span class="c"># The same holds for parameters &#39;marker&#39;, &#39;alpha&#39; and &#39;cmap&#39;, that</span>
+<div class="newline"></div><span class="c"># control respectively the type of marker used, their transparency and</span>
+<div class="newline"></div><span class="c"># the colormap</span>
+<div class="newline"></div><span class="n">plotting</span><span class="o">.</span><span class="n">scatter_matrix</span><span class="p">(</span><span class="n">data</span><span class="p">[[</span><span class="s">&#39;VIQ&#39;</span><span class="p">,</span> <span class="s">&#39;MRI_Count&#39;</span><span class="p">,</span> <span class="s">&#39;Height&#39;</span><span class="p">]],</span>
+<div class="newline"></div>                        <span class="n">c</span><span class="o">=</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">&#39;Gender&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#39;Female&#39;</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="s">&#39;o&#39;</span><span class="p">,</span>
+<div class="newline"></div>                        <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s">&#39;winter&#39;</span><span class="p">)</span>
+<div class="newline"></div>
+<div class="newline"></div><a href="http://matplotlib.org/api/figure_api.html#matplotlib.figure.Figure"><span class="n">fig</span></a> <span class="o">=</span> <a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.gcf"><span class="n">plt</span><span class="o">.</span><span class="n">gcf</span></a><span class="p">()</span>
+<div class="newline"></div><a href="http://matplotlib.org/api/figure_api.html#matplotlib.figure.Figure"><span class="n">fig</span></a><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s">&quot;blue: male, green: female&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
+<div class="newline"></div>
+<div class="newline"></div><a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.show"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
+<div class="newline"></div></pre></div>
+</div>
+<p><strong>Total running time of the example:</strong>  0.43 seconds
+( 0 minutes  0.43 seconds)</p>
+<p><div style="clear: both"></div></p>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../plot_regression_3d.html" title="2.1.5. Multiple Regression"
+             >previous</a></li>
+        <li><a href="../../index.html">Statistics in Python</a> &raquo;</li>
+          <li><a href="../index.html" >2. Examples</a> &raquo;</li>
+     
+    <!-- Insert a menu in the navigation bar -->
+    <li class="left">
+	<!-- On click toggle the 'tip' on or off-->
+	<a onclick="$('.tip').each(function (index, obj) {
+			    collapse_tip_div(obj);
+		    });
+		    $('.tip').addClass('collapsed');
+		    $('.left').addClass('transparent');">
+	<img src="../../_static/minus.png"
+         alt="Collapse to compact view" style="padding: 1ex;"/>
+	<span class="hiddenlink">Collapse document to compact view</span>
+    </a></li>
+
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012,2013,2014,2015.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>
