@@ -96,7 +96,7 @@ install: html
 	cp -r ../html/* . && \
 	git add * && \
 	git commit -a -m 'Make install' && \
-	git push origin
+	git push origin gh-pages
 
 epub:
 	$(SPHINXBUILD) -b epub $(ALLSPHINXOPTS) _build/epub
