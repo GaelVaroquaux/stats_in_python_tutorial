@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>2.1.3. Exploring diabetes hospital readmission &mdash; Statistics in Python</title>
+    
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2015',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/copybutton.js"></script>
+    <link rel="top" title="Statistics in Python" href="../index.html" />
+    <link rel="up" title="2. Examples" href="index.html" />
+    <link rel="next" title="2.1.4. Analysis of Iris petal and sepal sizes" href="plot_iris_analysis.html" />
+    <link rel="prev" title="2.1.2. Plotting simple quantities of a pandas dataframe" href="plot_pandas.html" /> 
+  </head>
+  <body>
+   <!-- Use the header to add javascript -->
+    
+    <script type="text/javascript">
+    // Function to collapse the tip divs
+    function collapse_tip_div(obj){
+	// Update the representation on the tip div based on whether it
+	// has the 'collapsed' css class or not: we only want to
+	// collapse divs that are not already collapsed
+	if($(obj).hasClass("collapsed")) {
+	} else {
+	    $(obj).find("p.summary").remove();
+	    var content = $(obj).text();
+	    var html = $(obj).html();
+
+	    if(content.length > 40) {
+		if ($.browser.msie) {
+		    // We start at '3' to avoid 'tip', as IE
+		    // does not count whitespace
+		    var content = content.substr(3, 50);
+		} else {
+		    // We start at '5' to avoid 'tip '
+		    var content = content.substr(5, 50);
+		}
+	    }
+	    $(obj).html('<p class="summary"><img src="../_static/plus.png">' + content + '...</p>' + html);
+	}
+    }
+    </script>
+
+    <script type="text/javascript">
+    $(function () {
+	$(".tip")
+	    .click(function(event){
+		$(this).toggleClass("collapsed");
+		// Change state of the global button
+		$('div.related li.transparent').removeClass('transparent')
+		$(this).find("p.summary").remove();
+		if($(this).hasClass("collapsed")) {
+		    var content = $(this).text();
+		    var html = $(this).html();
+    
+		    if(content.length > 40) {
+			if ($.browser.msie) {
+			    // We start at '3' to avoid 'tip', as IE
+			    // does not count whitespace
+			    var content = content.substr(3, 50);
+			} else {
+			    // We start at '5' to avoid 'tip '
+			    var content = content.substr(5, 50);
+			}
+		    }
+		    $(this).html('<p class="summary"><img src="../_static/plus.png">' + content + '...</p>' + html);
+		}
+		if (event.target.tagName.toLowerCase() != "a") {
+                   return true; //Makes links clickable
+		}
+	});
+    });
+    </script>
+
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="plot_iris_analysis.html" title="2.1.4. Analysis of Iris petal and sepal sizes"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="plot_pandas.html" title="2.1.2. Plotting simple quantities of a pandas dataframe"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Statistics in Python</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">2. Examples</a> &raquo;</li>
+     
+    <!-- Insert a menu in the navigation bar -->
+    <li class="left">
+	<!-- On click toggle the 'tip' on or off-->
+	<a onclick="$('.tip').each(function (index, obj) {
+			    collapse_tip_div(obj);
+		    });
+		    $('.tip').addClass('collapsed');
+		    $('.left').addClass('transparent');">
+	<img src="../_static/minus.png"
+         alt="Collapse to compact view" style="padding: 1ex;"/>
+	<span class="hiddenlink">Collapse document to compact view</span>
+    </a></li>
+
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body">
+            
+  <div class="section" id="exploring-diabetes-hospital-readmission">
+<span id="example-plot-diabetes-py"></span><h1>2.1.3. Exploring diabetes hospital readmission<a class="headerlink" href="#exploring-diabetes-hospital-readmission" title="Permalink to this headline">¶</a></h1>
+<img alt="../_images/plot_diabetes_1.png" class="align-center" src="../_images/plot_diabetes_1.png" />
+<p><strong>Python source code:</strong> <a class="reference download internal" href="../_downloads/plot_diabetes.py"><tt class="xref download docutils literal"><span class="pre">plot_diabetes.py</span></tt></a></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">pandas</span>
+<div class="newline"></div><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="n">data</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">&#39;../dataset_diabetes/diabetic_data.csv&#39;</span><span class="p">,</span> <span class="n">na_values</span><span class="o">=</span><span class="s">&#39;?&#39;</span><span class="p">)</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="c"># Age and weights are given as ranges, that are interpreted as string</span>
+<div class="newline"></div><span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">(</span><span class="s">&#39;age&#39;</span><span class="p">,</span> <span class="s">&#39;weight&#39;</span><span class="p">):</span>
+<div class="newline"></div>    <span class="k">for</span> <span class="n">string_value</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
+<div class="newline"></div>        <span class="n">numerical_values</span> <span class="o">=</span> <span class="n">string_value</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;-&#39;</span><span class="p">)</span>
+<div class="newline"></div>        <span class="n">numerical_value</span> <span class="o">=</span> <a href="http://docs.scipy.org/doc/numpy-1.6.0/reference/generated/numpy.mean.html#numpy.mean"><span class="n">np</span><span class="o">.</span><span class="n">mean</span></a><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">numerical_values</span><span class="p">])</span>
+<div class="newline"></div>        <span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">string_value</span><span class="p">,</span> <span class="n">numerical_value</span><span class="p">)</span>
+<div class="newline"></div>
+<div class="newline"></div>
+<div class="newline"></div><span class="kn">from</span> <span class="nn">pandas.tools</span> <span class="kn">import</span> <span class="n">plotting</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="c"># Scatter matrices for different columns</span>
+<div class="newline"></div><span class="n">plotting</span><span class="o">.</span><span class="n">scatter_matrix</span><span class="p">(</span><span class="n">data</span><span class="p">[[</span><span class="s">&#39;age&#39;</span><span class="p">,</span> <span class="s">&#39;weight&#39;</span><span class="p">,</span> <span class="s">&#39;time_in_hospital&#39;</span><span class="p">,</span>
+<div class="newline"></div>       <span class="s">&#39;max_glu_serum&#39;</span><span class="p">,</span> <span class="s">&#39;A1Cresult&#39;</span><span class="p">,</span> <span class="s">&#39;metformin&#39;</span><span class="p">,</span>
+<div class="newline"></div>       <span class="s">&#39;repaglinide&#39;</span><span class="p">,</span> <span class="s">&#39;nateglinide&#39;</span><span class="p">,</span> <span class="s">&#39;chlorpropamide&#39;</span><span class="p">,</span> <span class="s">&#39;glimepiride&#39;</span><span class="p">,</span>
+<div class="newline"></div>       <span class="s">&#39;acetohexamide&#39;</span><span class="p">,</span> <span class="s">&#39;glipizide&#39;</span><span class="p">,</span> <span class="s">&#39;glyburide&#39;</span><span class="p">,</span> <span class="s">&#39;tolbutamide&#39;</span><span class="p">,</span>
+<div class="newline"></div>       <span class="s">&#39;pioglitazone&#39;</span><span class="p">,</span> <span class="s">&#39;rosiglitazone&#39;</span><span class="p">,</span> <span class="s">&#39;acarbose&#39;</span><span class="p">,</span> <span class="s">&#39;miglitol&#39;</span><span class="p">,</span>
+<div class="newline"></div>       <span class="s">&#39;troglitazone&#39;</span><span class="p">,</span> <span class="s">&#39;tolazamide&#39;</span><span class="p">,</span> <span class="s">&#39;citoglipton&#39;</span><span class="p">,</span> <span class="s">&#39;insulin&#39;</span><span class="p">,</span>
+<div class="newline"></div>       <span class="s">&#39;glyburide-metformin&#39;</span><span class="p">,</span> <span class="s">&#39;glipizide-metformin&#39;</span><span class="p">,</span>
+<div class="newline"></div>       <span class="s">&#39;glimepiride-pioglitazone&#39;</span><span class="p">,</span> <span class="s">&#39;metformin-rosiglitazone&#39;</span><span class="p">,</span>
+<div class="newline"></div>       <span class="s">&#39;metformin-pioglitazone&#39;</span><span class="p">]])</span>
+<div class="newline"></div><span class="c">#plotting.scatter_matrix(data[[&#39;PIQ&#39;, &#39;VIQ&#39;, &#39;FSIQ&#39;]])</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<div class="newline"></div><a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.show"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
+<div class="newline"></div></pre></div>
+</div>
+<p><strong>Total running time of the example:</strong>  3.86 seconds
+( 0 minutes  3.86 seconds)</p>
+<p><div style="clear: both"></div></p>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="plot_iris_analysis.html" title="2.1.4. Analysis of Iris petal and sepal sizes"
+             >next</a></li>
+        <li class="right" >
+          <a href="plot_pandas.html" title="2.1.2. Plotting simple quantities of a pandas dataframe"
+             >previous</a> |</li>
+        <li><a href="../index.html">Statistics in Python</a> &raquo;</li>
+          <li><a href="index.html" >2. Examples</a> &raquo;</li>
+     
+    <!-- Insert a menu in the navigation bar -->
+    <li class="left">
+	<!-- On click toggle the 'tip' on or off-->
+	<a onclick="$('.tip').each(function (index, obj) {
+			    collapse_tip_div(obj);
+		    });
+		    $('.tip').addClass('collapsed');
+		    $('.left').addClass('transparent');">
+	<img src="../_static/minus.png"
+         alt="Collapse to compact view" style="padding: 1ex;"/>
+	<span class="hiddenlink">Collapse document to compact view</span>
+    </a></li>
+
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012,2013,2014,2015.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

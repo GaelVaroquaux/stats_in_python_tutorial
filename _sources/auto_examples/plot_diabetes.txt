@@ -1,0 +1,25 @@
+
+
+.. _example_plot_diabetes.py:
+
+
+Exploring diabetes hospital readmission
+=================================================
+
+
+
+
+.. image:: images/plot_diabetes_1.png
+    :align: center
+
+
+
+
+**Python source code:** :download:`plot_diabetes.py <plot_diabetes.py>`
+
+.. literalinclude:: plot_diabetes.py
+    :lines: 6-
+
+**Total running time of the example:**  3.86 seconds
+( 0 minutes  3.86 seconds)
+    

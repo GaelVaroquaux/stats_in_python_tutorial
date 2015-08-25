@@ -33,30 +33,6 @@ Code examples for the statistics in Python tutorial.
 .. raw:: html
 
 
-    <div class="thumbnailContainer" tooltip="Do a boxplot on numerical data. ">
-
-.. figure:: ./images/thumb/plot_basic_statistics.png
-   :target: ./plot_basic_statistics.html
-
-   :ref:`example_plot_basic_statistics.py`
-
-
-.. raw:: html
-
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   ./plot_basic_statistics
-
-
-
-.. raw:: html
-
-
     <div class="thumbnailContainer" tooltip="Plot boxplots for FSIQ, PIQ, and the paired difference between the two: while the spread (error...">
 
 .. figure:: ./images/thumb/plot_paired_boxplots.png
@@ -99,6 +75,30 @@ Code examples for the statistics in Python tutorial.
    :hidden:
 
    ./plot_pandas
+
+
+
+.. raw:: html
+
+
+    <div class="thumbnailContainer" tooltip="">
+
+.. figure:: ./images/thumb/plot_diabetes.png
+   :target: ./plot_diabetes.html
+
+   :ref:`example_plot_diabetes.py`
+
+
+.. raw:: html
+
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   ./plot_diabetes
 
 
 
@@ -171,6 +171,30 @@ Code examples for the statistics in Python tutorial.
    :hidden:
 
    ./plot_regression_3d
+
+
+
+.. raw:: html
+
+
+    <div class="thumbnailContainer" tooltip="This example uses seaborn to quickly plot various factors relating wages, experience and educti...">
+
+.. figure:: ./images/thumb/plot_wage_data.png
+   :target: ./plot_wage_data.html
+
+   :ref:`example_plot_wage_data.py`
+
+
+.. raw:: html
+
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   ./plot_wage_data
 
 
 .. raw:: html
