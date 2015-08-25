@@ -804,6 +804,7 @@ def generate_file_rst(fname, target_dir, src_dir, root_dir, plot_gallery):
             finally:
                 os.chdir(cwd)
                 sys.stdout = orig_stdout
+                plt.rcdefaults()
 
             print " - time elapsed : %.2g sec" % time_elapsed
         else:
