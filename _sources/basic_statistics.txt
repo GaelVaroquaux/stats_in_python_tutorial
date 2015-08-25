@@ -10,11 +10,7 @@ Basic statistics
 .. tip::
 
     This page gives an introduction to statistics with Python. It is
-    useful to get acquainted with data representations in Python. In
-    terms of experimental psychology, the patterns demonstrated here can
-    be applied to simple dataset that arise from psychophysics, or
-    reaction time experiments. We will see how to process efficiently
-    more complex data as produced by brain imaging in the next course.
+    useful to get acquainted with data representations in Python. 
 
 .. contents:: Contents
    :local:
@@ -25,100 +21,53 @@ Basic statistics
 Interacting with data
 ======================
 
-Work environment: IPython
----------------------------
-
 .. tip::
-
-    We will be working in the interactive Python prompt, `IPython
-    <http://ipython.org/>`_. You can either start it by itself, or in the 
-    `spyder <http://code.google.com/p/spyderlib>`_ environment.
 
     In this document, the Python prompts are represented with the sign
     ">>>". If you need to copy-paste code, you can click on the top right
     of the code blocks, to hide the prompts and the outputs.
 
-Basic array manipulation: numpy
---------------------------------
+Data representation and vocabulary
+----------------------------------
 
-We have the reaction times in a psychophysical experiment:
+The setting that we consider for statistical analysis is that of multiple
+*observations* or *samples* described by a set of different *attributes*
+or *features*. The data can than be seen as a 2D table, or matrix, with
+columns given the different attributes of the data, and rows the
+observations. For instance, the data contained in
+:download:`examples/brain_size.csv`:
 
-  474.688  506.445  524.081  530.672  530.869 566.984  582.311  582.940 603.574  792.358
-
-In Python, we will represent them using a numerical "array", with the
-:mod:`numpy` module::
-
-    >>> import numpy as np
-    >>> x = np.array([474.688, 506.445, 524.081, 530.672, 530.869, 566.984, 582.311, 582.940, 603.574, 792.358])
-
-We can access the elements of x with **indexing, starting at 0**::
-
-    >>> x[0]    # First element
-    474.68799999999999
-    >>> x[:3]   # Up to the third element
-    array([ 474.688,  506.445,  524.081])
-    >>> x[-1]   # Last element
-    792.35799999999995
-
-Mathematical operations on arrays are done using the numpy module::
-
-    >>> np.max(x)
-    792.35799999999995
-    >>> np.sum(x[:3])
-    1505.2139999999999
-    >>> np.mean(x)
-    569.49219999999991
-    >>> np.log(x)
-    array([ 6.16265775,  6.22741573,  6.26164625,  6.27414413,  6.27451529,
-            6.34033108,  6.36700467,  6.36808427,  6.40286865,  6.67501331])
-
-.. topic:: **Finding help**
-
-   * The reference documentation can be found on http://docs.scipy.org
-   * http://scipy-lectures.github.io contains tutorials on Python, numpy,
-     and the scientific Python ecosystem.
-   * Typing `np.mean?` in IPython will display help on
-     :func:`numpy.mean`.
-   * :func:`numpy.lookfor` can be used to search for keywords in
-     functions help.
-
-|
+.. include:: examples/brain_size.csv
+   :literal:
+   :end-line: 6
 
 
-.. topic:: **Exercise**
-    :class: green
-
-    * Display the last two entries of x.
-    * Compute the standard deviation of x (how will you find the function
-      to do so?).
-
-
-
-Mixed-type data: pandas
+The panda data-frame
 ------------------------
 
-Inputing data
-..............
+.. tip::
 
-We have a CSV file giving observations of brain size and weight and IQ
-(Willerman et al. 1991):
+    We will store and manipulate this data in a
+    :class:`pandas.DataFrame`, from the `pandas
+    <http://pandas.pydata.org>`_ module. It is the Python equivalent of
+    the spreadsheet table. It is different from a 2D numpy array as it
+    has named columns, can contained a mixture of different data types by
+    column, and has elaborate selection and pivotal mechanisms.
 
-  .. include:: examples/brain_size.csv
-    :end-line: 5
-    :literal:
+Reading data from a CSV file
+.............................
 
 .. sidebar:: **Separator**
 
-   Although it is a 'CSV' file, the separator is ";".
+   It is a CSV file, but the separator is ";"
 
-|
-
-The data are a mixture of numerical and categorical values. We will use
-`pandas <http://pandas.pydata.org>`_ to manipulate them::
+Using the above CSV file that gives observations of brain size and weight
+and IQ (Willerman et al. 1991), the data are a mixture of numerical and
+categorical values::
 
     >>> import pandas
     >>> data = pandas.read_csv('examples/brain_size.csv', sep=';', na_values=".")
-    >>> print data  # doctest: +ELLIPSIS
+    >>> data  # doctest: +ELLIPSIS
         Unnamed: 0  Gender  FSIQ  VIQ  PIQ  Weight  Height  MRI_Count
     0            1  Female   133  132  124     118    64.5     816932
     1            2    Male   140  150  124     NaN    72.5    1001121
@@ -132,6 +81,13 @@ The data are a mixture of numerical and categorical values. We will use
    The weight of the second individual is missing in the CSV file. If we
    don't specify the missing value (NA = not available) marker, we will
    not be able to do statistics on the weight.
+
+::
+
+    >>> data.shape    # 40 rows and 8 columns
+    (40, 8)
+    >>> data.columns    # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE 
+    Index([u'Unnamed: 0', u'Gender', u'FSIQ', u'VIQ', u'PIQ', u'Weight', u'Height', u'MRI_Count'], dtype='object')
 
 Manipulating data
 ..................
@@ -155,7 +111,7 @@ Manipulating data
 
     >>> # More manual, but more versatile
     >>> for name, value in gender_data['VIQ']:
-    ...     print name, np.mean(value)
+    ...     print name, value.mean()
     Female 109.45
     Male 115.25
 
@@ -243,8 +199,8 @@ Student's t-test
 Gaussian distributions of given population mean. It returns the T
 statistic, and the p-value (see the function's help)::
 
-    >>> stats.ttest_1samp(data['VIQ'], 0)
-    (30.088099970849338, 1.3289196468727784e-28)
+    >>> stats.ttest_1samp(data['VIQ'], 0)   # doctest: +ELLIPSIS
+    (array(30.088099970...), 1.32891964...e-28)
 
 .. tip::
    
@@ -270,8 +226,8 @@ with :func:`scipy.stats.ttest_ind`::
 
     >>> female_viq = data[data['Gender'] == 'Female']['VIQ']
     >>> male_viq = data[data['Gender'] == 'Male']['VIQ']
-    >>> stats.ttest_ind(female_viq, male_viq)
-    (-0.77261617232750124, 0.44452876778583217)
+    >>> stats.ttest_ind(female_viq, male_viq)   # doctest: +ELLIPSIS
+    (array(-0.77261617232...), 0.4445287677858...)
 
 Paired tests
 ------------
@@ -284,16 +240,16 @@ Paired tests
 PIQ, VIQ, and FSIQ give 3 measures of IQ. Let us test if FISQ and PIQ are
 significantly different. We need to use a 2 sample test::
 
-    >>> stats.ttest_ind(data['FSIQ'], data['PIQ'])
-    (0.46563759638096403, 0.64277250094148408)
+    >>> stats.ttest_ind(data['FSIQ'], data['PIQ'])   # doctest: +ELLIPSIS
+    (array(0.46563759638...), 0.64277250...)
 
 The problem with this approach is that is forgets that there are links
 between observations: FSIQ and PIQ are measure on the same individuals.
 Thus the variance due to inter-subject variability is confounding, and
 can be removed, using a "paired test", or "repeated measure test"::
 
-    >>> stats.ttest_rel(data['FSIQ'], data['PIQ'])
-    (1.7842019405859857, 0.082172638183642358)
+    >>> stats.ttest_rel(data['FSIQ'], data['PIQ'])   # doctest: +ELLIPSIS
+    (array(1.784201940...), 0.082172638183...)
 
 .. image:: auto_examples/images/plot_pandas_5.png
    :target: auto_examples/plot_pandas.html
@@ -302,8 +258,8 @@ can be removed, using a "paired test", or "repeated measure test"::
 
 This is equivalent to a 1-sample test on the difference::
 
-    >>> stats.ttest_1samp(data['FSIQ'] - data['PIQ'], 0)
-    (1.7842019405859857, 0.082172638183642358)
+    >>> stats.ttest_1samp(data['FSIQ'] - data['PIQ'], 0)   # doctest: +ELLIPSIS
+    (array(1.784201940...), 0.082172638...)
 
 |
 
@@ -312,8 +268,8 @@ can use a `Wilcoxon signed-rank test
 <http://en.wikipedia.org/wiki/Wilcoxon_signed-rank_test>`_, that relaxes
 this assumption::
 
-    >>> stats.wilcoxon(data['FSIQ'], data['PIQ'])
-    (274.5, 0.034714577290489719)
+    >>> stats.wilcoxon(data['FSIQ'], data['PIQ'])   # doctest: +ELLIPSIS
+    (274.5, 0.106594927...)
 
 .. note::
 
@@ -359,6 +315,7 @@ where `e` is observation noise. We will use the `statmodels
 
 First, we generate simulated data according to the model::
 
+    >>> import numpy as np
     >>> x = np.linspace(-5, 5, 20)
     >>> np.random.seed(1)
     >>> # normal distributed noise
