@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>2.1.2. Plotting quantities from a CSV file &mdash; Statistics in Python</title>
+    <title>2.1.3. Plotting simple quantities of a pandas dataframe &mdash; Statistics in Python</title>
     
     <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -26,8 +26,8 @@
     <script type="text/javascript" src="../_static/copybutton.js"></script>
     <link rel="top" title="Statistics in Python" href="../index.html" />
     <link rel="up" title="2. Examples" href="index.html" />
-    <link rel="next" title="2.1.3. Analysis of Iris petal and sepal sizes" href="plot_iris_analysis.html" />
-    <link rel="prev" title="2.1.1. Basic plotting example" href="plot_basic_statistics.html" /> 
+    <link rel="next" title="2.1.4. Analysis of Iris petal and sepal sizes" href="plot_iris_analysis.html" />
+    <link rel="prev" title="2.1.2. Boxplots and paired differences" href="plot_paired_boxplots.html" /> 
   </head>
   <body>
    <!-- Use the header to add javascript -->
@@ -95,10 +95,10 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="plot_iris_analysis.html" title="2.1.3. Analysis of Iris petal and sepal sizes"
+          <a href="plot_iris_analysis.html" title="2.1.4. Analysis of Iris petal and sepal sizes"
              accesskey="N">next</a></li>
         <li class="right" >
-          <a href="plot_basic_statistics.html" title="2.1.1. Basic plotting example"
+          <a href="plot_paired_boxplots.html" title="2.1.2. Boxplots and paired differences"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">Statistics in Python</a> &raquo;</li>
           <li><a href="index.html" accesskey="U">2. Examples</a> &raquo;</li>
@@ -123,12 +123,13 @@
       <div class="documentwrapper">
           <div class="body">
             
-  <div class="section" id="plotting-quantities-from-a-csv-file">
-<span id="example-plot-pandas-py"></span><h1>2.1.2. Plotting quantities from a CSV file<a class="headerlink" href="#plotting-quantities-from-a-csv-file" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="plotting-simple-quantities-of-a-pandas-dataframe">
+<span id="example-plot-pandas-py"></span><h1>2.1.3. Plotting simple quantities of a pandas dataframe<a class="headerlink" href="#plotting-simple-quantities-of-a-pandas-dataframe" title="Permalink to this headline">¶</a></h1>
 <p>This example loads from a CSV file data with mixed numerical and
 categorical entries, and plots a few quantities, separately for females
-and males, thanks to the pandas integrating plotting tool (that uses
+and males, thanks to the pandas integrated plotting tool (that uses
 matplotlib behind the scene).</p>
+<p>See <a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/visualization.html">http://pandas.pydata.org/pandas-docs/stable/visualization.html</a></p>
 <ul class="horizontal">
 <li><img alt="../_images/plot_pandas_1.png" class="first" src="../_images/plot_pandas_1.png" />
 </li>
@@ -144,29 +145,24 @@ matplotlib behind the scene).</p>
 <p><strong>Python source code:</strong> <a class="reference download internal" href="../_downloads/plot_pandas.py"><tt class="xref download docutils literal"><span class="pre">plot_pandas.py</span></tt></a></p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">pandas</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
-<div class="newline"></div>
 <div class="newline"></div><span class="n">data</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">&#39;brain_size.csv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">&#39;;&#39;</span><span class="p">,</span> <span class="n">na_values</span><span class="o">=</span><span class="s">&#39;.&#39;</span><span class="p">)</span>
-<div class="newline"></div><span class="n">gender_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s">&#39;Gender&#39;</span><span class="p">)</span>
-<div class="newline"></div><span class="n">gender_data</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;FSIQ&#39;</span><span class="p">,</span> <span class="s">&#39;VIQ&#39;</span><span class="p">,</span> <span class="s">&#39;PIQ&#39;</span><span class="p">])</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="c"># Box plots of different columns for each gender</span>
+<div class="newline"></div><span class="n">groupby_gender</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s">&#39;Gender&#39;</span><span class="p">)</span>
+<div class="newline"></div><span class="n">groupby_gender</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;FSIQ&#39;</span><span class="p">,</span> <span class="s">&#39;VIQ&#39;</span><span class="p">,</span> <span class="s">&#39;PIQ&#39;</span><span class="p">])</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="kn">from</span> <span class="nn">pandas.tools</span> <span class="kn">import</span> <span class="n">plotting</span>
-<div class="newline"></div><span class="n">plotting</span><span class="o">.</span><span class="n">scatter_matrix</span><span class="p">(</span><span class="n">data</span><span class="p">[[</span><span class="s">&#39;Weight&#39;</span><span class="p">,</span> <span class="s">&#39;Height&#39;</span><span class="p">,</span> <span class="s">&#39;MRI_Count&#39;</span><span class="p">]])</span>
 <div class="newline"></div>
+<div class="newline"></div><span class="c"># Scatter matrices for different columns</span>
+<div class="newline"></div><span class="n">plotting</span><span class="o">.</span><span class="n">scatter_matrix</span><span class="p">(</span><span class="n">data</span><span class="p">[[</span><span class="s">&#39;Weight&#39;</span><span class="p">,</span> <span class="s">&#39;Height&#39;</span><span class="p">,</span> <span class="s">&#39;MRI_Count&#39;</span><span class="p">]])</span>
 <div class="newline"></div><span class="n">plotting</span><span class="o">.</span><span class="n">scatter_matrix</span><span class="p">(</span><span class="n">data</span><span class="p">[[</span><span class="s">&#39;PIQ&#39;</span><span class="p">,</span> <span class="s">&#39;VIQ&#39;</span><span class="p">,</span> <span class="s">&#39;FSIQ&#39;</span><span class="p">]])</span>
 <div class="newline"></div>
-<div class="newline"></div><a href="http://matplotlib.org/api/figure_api.html#matplotlib.figure"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span></a><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-<div class="newline"></div><span class="n">data</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;FSIQ&#39;</span><span class="p">,</span> <span class="s">&#39;PIQ&#39;</span><span class="p">])</span>
-<div class="newline"></div>
-<div class="newline"></div><a href="http://matplotlib.org/api/figure_api.html#matplotlib.figure"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span></a><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-<div class="newline"></div><a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.boxplot"><span class="n">plt</span><span class="o">.</span><span class="n">boxplot</span></a><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">&#39;FSIQ&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;PIQ&#39;</span><span class="p">])</span>
-<div class="newline"></div><a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.xticks"><span class="n">plt</span><span class="o">.</span><span class="n">xticks</span></a><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="p">),</span> <span class="p">(</span><span class="s">&#39;FSIQ - PIQ&#39;</span><span class="p">,</span> <span class="p">))</span>
-<div class="newline"></div>
+<div class="newline"></div><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 <div class="newline"></div><a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.show"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 <div class="newline"></div></pre></div>
 </div>
-<p><strong>Total running time of the example:</strong>  1.08 seconds
-( 0 minutes  1.08 seconds)</p>
+<p><strong>Total running time of the example:</strong>  0.91 seconds
+( 0 minutes  0.91 seconds)</p>
 <p><div style="clear: both"></div></p>
 </div>
 
@@ -179,10 +175,10 @@ matplotlib behind the scene).</p>
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="plot_iris_analysis.html" title="2.1.3. Analysis of Iris petal and sepal sizes"
+          <a href="plot_iris_analysis.html" title="2.1.4. Analysis of Iris petal and sepal sizes"
              >next</a></li>
         <li class="right" >
-          <a href="plot_basic_statistics.html" title="2.1.1. Basic plotting example"
+          <a href="plot_paired_boxplots.html" title="2.1.2. Boxplots and paired differences"
              >previous</a> |</li>
         <li><a href="../index.html">Statistics in Python</a> &raquo;</li>
           <li><a href="index.html" >2. Examples</a> &raquo;</li>

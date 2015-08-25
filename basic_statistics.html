@@ -123,10 +123,6 @@
             
   <div class="section" id="basic-statistics">
 <h1>1. Basic statistics<a class="headerlink" href="#basic-statistics" title="Permalink to this headline">¶</a></h1>
-<div class="topic">
-<p class="topic-title first"><strong>Prerequisites</strong></p>
-<p>This course assumes that you already know Python. The <a class="reference external" href="http://scipy-lectures.github.io">scipy-lectures</a> give an introduction to Python.</p>
-</div>
 <div class="admonition tip">
 <p class="first admonition-title">Tip</p>
 <p class="last">This page gives an introduction to statistics with Python. It is
@@ -136,23 +132,23 @@ useful to get acquainted with data representations in Python.</p>
 <p class="topic-title first">Contents</p>
 <ul class="simple">
 <li><a class="reference internal" href="#data-representation-and-interaction" id="id2">Data representation and interaction</a></li>
-<li><a class="reference internal" href="#hypothesis-testing-two-group-comparisons" id="id3">Hypothesis testing: two-group comparisons</a></li>
-<li><a class="reference internal" href="#linear-models-anova" id="id4">Linear models, ANOVA</a></li>
+<li><a class="reference internal" href="#hypothesis-testing-comparing-two-groups" id="id3">Hypothesis testing: comparing two groups</a></li>
+<li><a class="reference internal" href="#linear-models-multiple-factors-and-analysis-of-variance" id="id4">Linear models, multiple factors, and analysis of variance</a></li>
 </ul>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">In this document, the Python prompts are represented with the sign
+&#8220;&gt;&gt;&gt;&#8221;. To copy-paste code, you can click on the top right of the code
+blocks, to hide the prompts and the outputs.</p>
 </div>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <div class="section" id="data-representation-and-interaction">
 <h2><a class="toc-backref" href="#id2">1.1. Data representation and interaction</a><a class="headerlink" href="#data-representation-and-interaction" title="Permalink to this headline">¶</a></h2>
-<div class="admonition tip">
-<p class="first admonition-title">Tip</p>
-<p class="last">In this document, the Python prompts are represented with the sign
-&#8220;&gt;&gt;&gt;&#8221;. If you need to copy-paste code, you can click on the top right
-of the code blocks, to hide the prompts and the outputs.</p>
-</div>
-<div class="section" id="data-representation-and-vocabulary">
-<h3>1.1.1. Data representation and vocabulary<a class="headerlink" href="#data-representation-and-vocabulary" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="data-as-a-table">
+<h3>1.1.1. Data as a table<a class="headerlink" href="#data-as-a-table" title="Permalink to this headline">¶</a></h3>
 <p>The setting that we consider for statistical analysis is that of multiple
 <em>observations</em> or <em>samples</em> described by a set of different <em>attributes</em>
 or <em>features</em>. The data can than be seen as a 2D table, or matrix, with
@@ -178,15 +174,15 @@ the spreadsheet table. It is different from a 2D numpy array as it
 has named columns, can contained a mixture of different data types by
 column, and has elaborate selection and pivotal mechanisms.</p>
 </div>
-<div class="section" id="reading-data-from-a-csv-file">
-<h4>1.1.2.1. Reading data from a CSV file<a class="headerlink" href="#reading-data-from-a-csv-file" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="creating-dataframes-reading-data-files-or-converting-arrays">
+<h4>1.1.2.1. Creating dataframes: reading data files or converting arrays<a class="headerlink" href="#creating-dataframes-reading-data-files-or-converting-arrays" title="Permalink to this headline">¶</a></h4>
 <div class="sidebar">
 <p class="first sidebar-title"><strong>Separator</strong></p>
 <p class="last">It is a CSV file, but the separator is &#8221;;&#8221;</p>
 </div>
-<p>Using the above CSV file that gives observations of brain size and weight
-and IQ (Willerman et al. 1991), the data are a mixture of numerical and
-categorical values:</p>
+<p><strong>Reading from a CSV file:</strong> Using the above CSV file that gives
+observations of brain size and weight and IQ (Willerman et al. 1991), the
+data are a mixture of numerical and categorical values:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">&#39;examples/brain_size.csv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">&#39;;&#39;</span><span class="p">,</span> <span class="n">na_values</span><span class="o">=</span><span class="s">&quot;.&quot;</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span>  
@@ -205,6 +201,40 @@ categorical values:</p>
 <p class="last">The weight of the second individual is missing in the CSV file. If we
 don&#8217;t specify the missing value (NA = not available) marker, we will
 not be able to do statistical analysis.</p>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p><strong>Creating from arrays</strong>:: data-frames can also be seen as a dictionary
+of 1D &#8216;series&#8217;, eg arrays or lists. If we have 3 numpy arrays:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">sin_t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">cos_t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<div class="newline"></div></pre></div>
+</div>
+<p>We can expose them as a pandas dataframe:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s">&#39;t&#39;</span><span class="p">:</span> <span class="n">t</span><span class="p">,</span> <span class="s">&#39;sin&#39;</span><span class="p">:</span> <span class="n">sin_t</span><span class="p">,</span> <span class="s">&#39;cos&#39;</span><span class="p">:</span> <span class="n">cos_t</span><span class="p">})</span>  
+<div class="newline"></div><span class="go">         cos       sin         t</span>
+<div class="newline"></div><span class="go">0   0.960170  0.279415 -6.000000</span>
+<div class="newline"></div><span class="go">1   0.609977  0.792419 -5.368421</span>
+<div class="newline"></div><span class="go">2   0.024451  0.999701 -4.736842</span>
+<div class="newline"></div><span class="go">3  -0.570509  0.821291 -4.105263</span>
+<div class="newline"></div><span class="go">4  -0.945363  0.326021 -3.473684</span>
+<div class="newline"></div><span class="go">5  -0.955488 -0.295030 -2.842105</span>
+<div class="newline"></div><span class="go">6  -0.596979 -0.802257 -2.210526</span>
+<div class="newline"></div><span class="go">7  -0.008151 -0.999967 -1.578947</span>
+<div class="newline"></div><span class="go">8   0.583822 -0.811882 -0.947368</span>
+<div class="newline"></div><span class="gp">...</span>
+<div class="newline"></div></pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p><strong>Other inputs</strong>: pandas can input data from SQL, excel files, or other
+formats. See the <a class="reference external" href="http://pandas.pydata.org">pandas documentation</a>.</p>
+<div class="line-block">
+<div class="line"><br /></div>
 </div>
 </div>
 <div class="section" id="manipulating-data">
@@ -229,6 +259,11 @@ not be able to do statistical analysis.</p>
 <div class="newline"></div><span class="go">109.45</span>
 <div class="newline"></div></pre></div>
 </div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For a quick view on a large dataframe, use its <cite>describe</cite>
+method: <a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.describe.html#pandas.DataFrame.describe" title="(in pandas v0.16.2)"><tt class="xref py py-meth docutils literal"><span class="pre">pandas.DataFrame.describe()</span></tt></a>.</p>
+</div>
 <p><strong>groupby</strong>: splitting a dataframe on values of categorical variables:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">groupby_gender</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s">&#39;Gender&#39;</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">gender</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">groupby_gender</span><span class="p">[</span><span class="s">&#39;VIQ&#39;</span><span class="p">]:</span>
@@ -250,7 +285,7 @@ operations on the resulting group of dataframes:</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<a class="reference external image-reference" href="auto_examples/plot_pandas.html"><img alt="_images/plot_pandas_1.png" class="align-right" src="_images/plot_pandas_1.png" style="width: 320.0px; height: 240.0px;" /></a>
+<a class="reference external image-reference" href="auto_examples/plot_pandas.html"><img alt="_images/plot_pandas_1.png" class="align-right" src="_images/plot_pandas_1.png" style="width: 336.0px; height: 252.0px;" /></a>
 <div class="green topic">
 <p class="topic-title first"><strong>Exercise</strong></p>
 <ul>
@@ -265,25 +300,33 @@ males and females?</p>
 </li>
 </ul>
 </div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><cite>groupby_gender.boxplot</cite> is used for the plots above (see <a class="reference internal" href="auto_examples/plot_pandas.html#example-plot-pandas-py"><em>this
+example</em></a>).</p>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 </div>
 <div class="section" id="plotting-data">
 <h4>1.1.2.3. Plotting data<a class="headerlink" href="#plotting-data" title="Permalink to this headline">¶</a></h4>
 <p>Pandas comes with some plotting tools (that use matplotlib behind the
-scene) to display statistics on dataframes:</p>
+scene) to display statistics of the data in dataframes:</p>
+<p><strong>Scatter matrices</strong>:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pandas.tools</span> <span class="kn">import</span> <span class="n">plotting</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">plotting</span><span class="o">.</span><span class="n">scatter_matrix</span><span class="p">(</span><span class="n">data</span><span class="p">[[</span><span class="s">&#39;Weight&#39;</span><span class="p">,</span> <span class="s">&#39;Height&#39;</span><span class="p">,</span> <span class="s">&#39;MRI_Count&#39;</span><span class="p">]])</span>   
 <div class="newline"></div></pre></div>
 </div>
-<a class="reference external image-reference" href="auto_examples/plot_pandas.html"><img alt="_images/plot_pandas_2.png" class="align-center" src="_images/plot_pandas_2.png" style="width: 400.0px; height: 300.0px;" /></a>
+<a class="reference external image-reference" href="auto_examples/plot_pandas.html"><img alt="_images/plot_pandas_2.png" class="align-center" src="_images/plot_pandas_2.png" style="width: 560.0px; height: 420.0px;" /></a>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">plotting</span><span class="o">.</span><span class="n">scatter_matrix</span><span class="p">(</span><span class="n">data</span><span class="p">[[</span><span class="s">&#39;PIQ&#39;</span><span class="p">,</span> <span class="s">&#39;VIQ&#39;</span><span class="p">,</span> <span class="s">&#39;FSIQ&#39;</span><span class="p">]])</span>   
 <div class="newline"></div></pre></div>
 </div>
 <div class="sidebar">
 <p class="first sidebar-title"><strong>Two populations</strong></p>
-<p class="last">The IQ metrics are bimodal. It looks like there are 2 sub-populations.
-We will come back to this hypothesis.</p>
+<p class="last">The IQ metrics are bimodal, as if there are 2 sub-populations.</p>
 </div>
-<a class="reference external image-reference" href="auto_examples/plot_pandas.html"><img alt="_images/plot_pandas_3.png" class="align-center" src="_images/plot_pandas_3.png" style="width: 400.0px; height: 300.0px;" /></a>
+<a class="reference external image-reference" href="auto_examples/plot_pandas.html"><img alt="_images/plot_pandas_3.png" class="align-center" src="_images/plot_pandas_3.png" style="width: 560.0px; height: 420.0px;" /></a>
 <div class="green topic">
 <p class="topic-title first"><strong>Exercise</strong></p>
 <p>Plot the scatter matrix for males only, and for females only. Do you
@@ -295,8 +338,8 @@ think that the 2 sub-populations correspond to gender?</p>
 </div>
 </div>
 </div>
-<div class="section" id="hypothesis-testing-two-group-comparisons">
-<h2><a class="toc-backref" href="#id3">1.2. Hypothesis testing: two-group comparisons</a><a class="headerlink" href="#hypothesis-testing-two-group-comparisons" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="hypothesis-testing-comparing-two-groups">
+<h2><a class="toc-backref" href="#id3">1.2. Hypothesis testing: comparing two groups</a><a class="headerlink" href="#hypothesis-testing-comparing-two-groups" title="Permalink to this headline">¶</a></h2>
 <p>For simple statistical tests, we will use the <cite>stats</cite> sub-module of
 <a class="reference external" href="http://docs.scipy.org/doc/">scipy</a>:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
@@ -343,24 +386,24 @@ with <a class="reference external" href="http://docs.scipy.org/doc/scipy/referen
 </div>
 </div>
 </div>
-<div class="section" id="paired-tests">
-<h3>1.2.2. Paired tests<a class="headerlink" href="#paired-tests" title="Permalink to this headline">¶</a></h3>
-<a class="reference external image-reference" href="auto_examples/plot_pandas.html"><img alt="_images/plot_pandas_4.png" class="align-right" src="_images/plot_pandas_4.png" style="width: 280.0px; height: 210.0px;" /></a>
+<div class="section" id="paired-tests-repeated-measurements-on-the-same-indivuals">
+<h3>1.2.2. Paired tests: repeated measurements on the same indivuals<a class="headerlink" href="#paired-tests-repeated-measurements-on-the-same-indivuals" title="Permalink to this headline">¶</a></h3>
+<a class="reference external image-reference" href="auto_examples/plot_pandas.html"><img alt="_images/plot_paired_boxplots_1.png" class="align-right" src="_images/plot_paired_boxplots_1.png" style="width: 280.0px; height: 210.0px;" /></a>
 <p>PIQ, VIQ, and FSIQ give 3 measures of IQ. Let us test if FISQ and PIQ are
 significantly different. We need to use a 2 sample test:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">stats</span><span class="o">.</span><span class="n">ttest_ind</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">&#39;FSIQ&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;PIQ&#39;</span><span class="p">])</span>   
 <div class="newline"></div><span class="go">(array(0.46563759638...), 0.64277250...)</span>
 <div class="newline"></div></pre></div>
 </div>
-<p>The problem with this approach is that is forgets that there are links
-between observations: FSIQ and PIQ are measure on the same individuals.
+<p>The problem with this approach is that it forgets that there are links
+between observations: FSIQ and PIQ are measured on the same individuals.
 Thus the variance due to inter-subject variability is confounding, and
-can be removed, using a &#8220;paired test&#8221;, or &#8220;repeated measure test&#8221;:</p>
+can be removed, using a &#8220;paired test&#8221;, or &#8220;repeated measures test&#8221;:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">stats</span><span class="o">.</span><span class="n">ttest_rel</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">&#39;FSIQ&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;PIQ&#39;</span><span class="p">])</span>   
 <div class="newline"></div><span class="go">(array(1.784201940...), 0.082172638183...)</span>
 <div class="newline"></div></pre></div>
 </div>
-<a class="reference external image-reference" href="auto_examples/plot_pandas.html"><img alt="_images/plot_pandas_5.png" class="align-right" src="_images/plot_pandas_5.png" style="width: 240.0px; height: 180.0px;" /></a>
+<a class="reference external image-reference" href="auto_examples/plot_pandas.html"><img alt="_images/plot_paired_boxplots_2.png" class="align-right" src="_images/plot_paired_boxplots_2.png" style="width: 240.0px; height: 180.0px;" /></a>
 <p>This is equivalent to a 1-sample test on the difference:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">stats</span><span class="o">.</span><span class="n">ttest_1samp</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">&#39;FSIQ&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;PIQ&#39;</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>   
 <div class="newline"></div><span class="go">(array(1.784201940...), 0.082172638...)</span>
@@ -395,8 +438,8 @@ males and females.</li>
 </div>
 </div>
 </div>
-<div class="section" id="linear-models-anova">
-<h2><a class="toc-backref" href="#id4">1.3. Linear models, ANOVA</a><a class="headerlink" href="#linear-models-anova" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="linear-models-multiple-factors-and-analysis-of-variance">
+<h2><a class="toc-backref" href="#id4">1.3. Linear models, multiple factors, and analysis of variance</a><a class="headerlink" href="#linear-models-multiple-factors-and-analysis-of-variance" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="a-simple-linear-regression">
 <h3>1.3.1. A simple linear regression<a class="headerlink" href="#a-simple-linear-regression" title="Permalink to this headline">¶</a></h3>
 <a class="reference external image-reference" href="auto_examples/plot_regression.html"><img alt="_images/plot_regression_1.png" class="align-right" src="_images/plot_regression_1.png" style="width: 300.0px; height: 240.0px;" /></a>
@@ -504,8 +547,8 @@ variable) with 2 variables <cite>x</cite> and <cite>y</cite>:</p>
 <div class="newline"></div></pre></div>
 </div>
 </div>
-<div class="section" id="post-hoc-anova-contrast-vectors">
-<h3>1.3.3. Post-hoc ANOVA: contrast vectors<a class="headerlink" href="#post-hoc-anova-contrast-vectors" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="post-hoc-analysis-of-variance-anova-and-contrast-vectors">
+<h3>1.3.3. Post-hoc analysis of variance: ANOVA and contrast vectors<a class="headerlink" href="#post-hoc-analysis-of-variance-anova-and-contrast-vectors" title="Permalink to this headline">¶</a></h3>
 <p>In the above iris example, we wish to test if the petal length is
 different between versicolor and virginica, after removing the effect of
 sepal width. This can be formulated as testing the difference between the

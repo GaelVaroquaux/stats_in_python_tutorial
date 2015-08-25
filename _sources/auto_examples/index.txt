@@ -57,6 +57,30 @@ Code examples for the statistics in Python tutorial.
 .. raw:: html
 
 
+    <div class="thumbnailContainer" tooltip="Plot boxplots for FSIQ, PIQ, and the paired difference between the two: while the spread (error...">
+
+.. figure:: ./images/thumb/plot_paired_boxplots.png
+   :target: ./plot_paired_boxplots.html
+
+   :ref:`example_plot_paired_boxplots.py`
+
+
+.. raw:: html
+
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   ./plot_paired_boxplots
+
+
+
+.. raw:: html
+
+
     <div class="thumbnailContainer" tooltip="This example loads from a CSV file data with mixed numerical and categorical entries, and plots...">
 
 .. figure:: ./images/thumb/plot_pandas.png

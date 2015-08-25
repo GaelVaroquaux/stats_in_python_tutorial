@@ -3,14 +3,15 @@
 .. _example_plot_pandas.py:
 
 
-Plotting quantities from a CSV file
-=====================================
+Plotting simple quantities of a pandas dataframe
+=================================================
 
 This example loads from a CSV file data with mixed numerical and
 categorical entries, and plots a few quantities, separately for females
-and males, thanks to the pandas integrating plotting tool (that uses
+and males, thanks to the pandas integrated plotting tool (that uses
 matplotlib behind the scene).
 
+See http://pandas.pydata.org/pandas-docs/stable/visualization.html
 
 
 
@@ -43,8 +44,8 @@ matplotlib behind the scene).
 **Python source code:** :download:`plot_pandas.py <plot_pandas.py>`
 
 .. literalinclude:: plot_pandas.py
-    :lines: 11-
+    :lines: 12-
 
-**Total running time of the example:**  1.08 seconds
-( 0 minutes  1.08 seconds)
+**Total running time of the example:**  0.91 seconds
+( 0 minutes  0.91 seconds)
     
