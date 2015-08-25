@@ -49,16 +49,16 @@ The panda data-frame
     has named columns, can contained a mixture of different data types by
     column, and has elaborate selection and pivotal mechanisms.
 
-Reading data from a CSV file
-.............................
+Creating dataframes: reading data files or converting arrays
+............................................................
 
 .. sidebar:: **Separator**
 
    It is a CSV file, but the separator is ";"
-
-Using the above CSV file that gives observations of brain size and weight
-and IQ (Willerman et al. 1991), the data are a mixture of numerical and
-categorical values::
+ 
+**Reading from a CSV file:** Using the above CSV file that gives
+observations of brain size and weight and IQ (Willerman et al. 1991), the
+data are a mixture of numerical and categorical values::
 
     >>> import pandas
     >>> data = pandas.read_csv('examples/brain_size.csv', sep=';', na_values=".")
@@ -76,6 +76,38 @@ categorical values::
    The weight of the second individual is missing in the CSV file. If we
    don't specify the missing value (NA = not available) marker, we will
    not be able to do statistical analysis.
+
+|
+
+**Creating from arrays**:: data-frames can also be seen as a dictionary
+of 1D 'series', eg arrays or lists. If we have 3 numpy arrays::
+
+    >>> import numpy as np
+    >>> t = np.linspace(-6, 6, 20)
+    >>> sin_t = np.sin(t)
+    >>> cos_t = np.cos(t)
+
+We can expose them as a pandas dataframe::
+
+    >>> pandas.DataFrame({'t': t, 'sin': sin_t, 'cos': cos_t})  # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE 
+             cos       sin         t
+    0   0.960170  0.279415 -6.000000
+    1   0.609977  0.792419 -5.368421
+    2   0.024451  0.999701 -4.736842
+    3  -0.570509  0.821291 -4.105263
+    4  -0.945363  0.326021 -3.473684
+    5  -0.955488 -0.295030 -2.842105
+    6  -0.596979 -0.802257 -2.210526
+    7  -0.008151 -0.999967 -1.578947
+    8   0.583822 -0.811882 -0.947368
+    ...
+
+|
+
+**Other inputs**: pandas can input data from SQL, excel files, or other
+formats. See the `pandas documentation <http://pandas.pydata.org>`_.
+
+|
 
 Manipulating data
 ..................
@@ -147,6 +179,8 @@ operations on the resulting group of dataframes::
    
    `groupby_gender.boxplot` is used for the plots above (see :ref:`this
    example <example_plot_pandas.py>`).
+
+|
 
 Plotting data
 ..............
