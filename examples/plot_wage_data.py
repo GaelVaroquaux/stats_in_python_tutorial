@@ -47,7 +47,7 @@ names = [
 short_names = [n.split(':')[0] for n in names]
 
 data = pandas.read_csv('wages.txt', skiprows=27, skipfooter=6, sep=None,
-       header=None)
+                       header=None)
 data.columns = short_names
 
 

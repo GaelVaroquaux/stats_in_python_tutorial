@@ -2,6 +2,9 @@
 Statistics in Python 
 =============================
 
+See the online version:
+http://gaelvaroquaux.github.io/stats_in_python_tutorial
+
 License
 ----------
 
@@ -31,7 +34,7 @@ Requirements
 * make
 * sphinx (>= 1.0)
 * matplotlib
-* statsmodel
+* statsmodels
 * pandas
-
+* seaborn
 
