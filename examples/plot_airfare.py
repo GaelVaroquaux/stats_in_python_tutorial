@@ -1,8 +1,12 @@
 """
-Airfares before and after 9/11
+Air fares before and after 9/11
 =====================================
 
 This is a business-intelligence (BI) like application.
+
+What is interesting here is that we may want to study fares as a function
+of the year, paired accordingly to the trips, or forgetting the year,
+only as a function of the trip endpoints.
 """
 
 # Standard library imports
@@ -58,6 +62,7 @@ data_2001['year'] = 2001
 
 data_flat = pandas.concat([data_2000, data_2001])
 
+
 ##############################################################################
 # Plot scatter matrices highlighting different aspects
 
@@ -69,8 +74,19 @@ seaborn.pairplot(data_flat, vars=['fare', 'dist', 'nb_passengers'],
 seaborn.pairplot(data_flat, vars=['fare', 'dist', 'nb_passengers'],
                  kind='reg', hue='year', markers='.')
 
+
+##############################################################################
+# Plot the difference in fare
+
 import matplotlib.pyplot as plt
+
+plt.figure(figsize=(5, 2))
+seaborn.boxplot(data.fare_2001 - data.fare_2000)
+plt.title('Fare: 2001 - 2000')
+
+plt.figure(figsize=(5, 2))
+seaborn.boxplot(data.nb_passengers_2001 - data.nb_passengers_2000)
+plt.title('NB passengers: 2001 - 2000')
+
 plt.show()
 
-# Restore the default matplotlib style
-plt.rcdefaults()
