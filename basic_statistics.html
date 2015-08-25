@@ -135,7 +135,7 @@ useful to get acquainted with data representations in Python.</p>
 <div class="contents local topic" id="contents">
 <p class="topic-title first">Contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#interacting-with-data" id="id2">Interacting with data</a></li>
+<li><a class="reference internal" href="#data-representation-and-interaction" id="id2">Data representation and interaction</a></li>
 <li><a class="reference internal" href="#hypothesis-testing-two-group-comparisons" id="id3">Hypothesis testing: two-group comparisons</a></li>
 <li><a class="reference internal" href="#linear-models-anova" id="id4">Linear models, ANOVA</a></li>
 </ul>
@@ -143,8 +143,8 @@ useful to get acquainted with data representations in Python.</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<div class="section" id="interacting-with-data">
-<h2><a class="toc-backref" href="#id2">1.1. Interacting with data</a><a class="headerlink" href="#interacting-with-data" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="data-representation-and-interaction">
+<h2><a class="toc-backref" href="#id2">1.1. Data representation and interaction</a><a class="headerlink" href="#data-representation-and-interaction" title="Permalink to this headline">¶</a></h2>
 <div class="admonition tip">
 <p class="first admonition-title">Tip</p>
 <p class="last">In this document, the Python prompts are represented with the sign
@@ -204,44 +204,49 @@ categorical values:</p>
 <p><strong>Missing values</strong></p>
 <p class="last">The weight of the second individual is missing in the CSV file. If we
 don&#8217;t specify the missing value (NA = not available) marker, we will
-not be able to do statistics on the weight.</p>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="o">.</span><span class="n">shape</span>    <span class="c"># 40 rows and 8 columns</span>
-<div class="newline"></div><span class="go">(40, 8)</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="o">.</span><span class="n">columns</span>    
-<div class="newline"></div><span class="go">Index([u&#39;Unnamed: 0&#39;, u&#39;Gender&#39;, u&#39;FSIQ&#39;, u&#39;VIQ&#39;, u&#39;PIQ&#39;, u&#39;Weight&#39;, u&#39;Height&#39;, u&#39;MRI_Count&#39;], dtype=&#39;object&#39;)</span>
-<div class="newline"></div></pre></div>
+not be able to do statistical analysis.</p>
 </div>
 </div>
 <div class="section" id="manipulating-data">
 <h4>1.1.2.2. Manipulating data<a class="headerlink" href="#manipulating-data" title="Permalink to this headline">¶</a></h4>
 <p><cite>data</cite> is a pandas dataframe, that resembles R&#8217;s dataframe:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;Gender&#39;</span><span class="p">]</span>  
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="o">.</span><span class="n">shape</span>    <span class="c"># 40 rows and 8 columns</span>
+<div class="newline"></div><span class="go">(40, 8)</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="o">.</span><span class="n">columns</span>  <span class="c"># It has columns   </span>
+<div class="newline"></div><span class="go">Index([u&#39;Unnamed: 0&#39;, u&#39;Gender&#39;, u&#39;FSIQ&#39;, u&#39;VIQ&#39;, u&#39;PIQ&#39;, u&#39;Weight&#39;, u&#39;Height&#39;, u&#39;MRI_Count&#39;], dtype=&#39;object&#39;)</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;Gender&#39;</span><span class="p">]</span>  <span class="c"># Columns can be addressed by name   </span>
 <div class="newline"></div><span class="go">0     Female</span>
 <div class="newline"></div><span class="go">1       Male</span>
 <div class="newline"></div><span class="go">2       Male</span>
 <div class="newline"></div><span class="go">3       Male</span>
 <div class="newline"></div><span class="go">4     Female</span>
 <div class="newline"></div><span class="gp">...</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">gender_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s">&#39;Gender&#39;</span><span class="p">)</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">gender_data</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-<div class="newline"></div><span class="go">        Unnamed: 0   FSIQ     VIQ     PIQ      Weight     Height  MRI_Count</span>
-<div class="newline"></div><span class="go">Gender</span>
-<div class="newline"></div><span class="go">Female       19.65  111.9  109.45  110.45  137.200000  65.765000   862654.6</span>
-<div class="newline"></div><span class="go">Male         21.35  115.0  115.25  111.60  166.444444  71.431579   954855.4</span>
-<div class="newline"></div>
-<div class="newline"></div>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="c"># More manual, but more versatile</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">gender_data</span><span class="p">[</span><span class="s">&#39;VIQ&#39;</span><span class="p">]:</span>
-<div class="newline"></div><span class="gp">... </span>    <span class="k">print</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-<div class="newline"></div><span class="go">Female 109.45</span>
-<div class="newline"></div><span class="go">Male 115.25</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="c"># Simpler selector</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s">&#39;Gender&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#39;Female&#39;</span><span class="p">][</span><span class="s">&#39;VIQ&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 <div class="newline"></div><span class="go">109.45</span>
 <div class="newline"></div></pre></div>
 </div>
+<p><strong>groupby</strong>: splitting a dataframe on values of categorical variables:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">groupby_gender</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s">&#39;Gender&#39;</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">gender</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">groupby_gender</span><span class="p">[</span><span class="s">&#39;VIQ&#39;</span><span class="p">]:</span>
+<div class="newline"></div><span class="gp">... </span>    <span class="k">print</span> <span class="n">gender</span><span class="p">,</span> <span class="n">value</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<div class="newline"></div><span class="go">Female 109.45</span>
+<div class="newline"></div><span class="go">Male 115.25</span>
+<div class="newline"></div></pre></div>
+</div>
+<p><cite>groupby_gender</cite> is a powerfull object that exposes many
+operations on the resulting group of dataframes:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">groupby_gender</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<div class="newline"></div><span class="go">        Unnamed: 0   FSIQ     VIQ     PIQ      Weight     Height  MRI_Count</span>
+<div class="newline"></div><span class="go">Gender</span>
+<div class="newline"></div><span class="go">Female       19.65  111.9  109.45  110.45  137.200000  65.765000   862654.6</span>
+<div class="newline"></div><span class="go">Male         21.35  115.0  115.25  111.60  166.444444  71.431579   954855.4</span>
+<div class="newline"></div></pre></div>
+</div>
+<p>(use tab-completion on <cite>groupby_gender</cite> to find more).</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>

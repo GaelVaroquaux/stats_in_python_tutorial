@@ -18,8 +18,8 @@ Basic statistics
 
 |
 
-Interacting with data
-======================
+Data representation and interaction
+====================================
 
 .. tip::
 
@@ -80,44 +80,51 @@ categorical values::
 
    The weight of the second individual is missing in the CSV file. If we
    don't specify the missing value (NA = not available) marker, we will
-   not be able to do statistics on the weight.
-
-::
-
-    >>> data.shape    # 40 rows and 8 columns
-    (40, 8)
-    >>> data.columns    # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE 
-    Index([u'Unnamed: 0', u'Gender', u'FSIQ', u'VIQ', u'PIQ', u'Weight', u'Height', u'MRI_Count'], dtype='object')
+   not be able to do statistical analysis.
 
 Manipulating data
 ..................
 
 `data` is a pandas dataframe, that resembles R's dataframe::
 
-    >>> print data['Gender']  # doctest: +ELLIPSIS
+    >>> data.shape    # 40 rows and 8 columns
+    (40, 8)
+
+    >>> data.columns  # It has columns   # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE 
+    Index([u'Unnamed: 0', u'Gender', u'FSIQ', u'VIQ', u'PIQ', u'Weight', u'Height', u'MRI_Count'], dtype='object')
+
+    >>> print data['Gender']  # Columns can be addressed by name   # doctest: +ELLIPSIS
     0     Female
     1       Male
     2       Male
     3       Male
     4     Female
     ...
-    >>> gender_data = data.groupby('Gender')
-    >>> print gender_data.mean()
+
+    >>> # Simpler selector
+    >>> data[data['Gender'] == 'Female']['VIQ'].mean()
+    109.45
+
+
+**groupby**: splitting a dataframe on values of categorical variables::
+
+    >>> groupby_gender = data.groupby('Gender')
+    >>> for gender, value in groupby_gender['VIQ']:
+    ...     print gender, value.mean()
+    Female 109.45
+    Male 115.25
+
+
+`groupby_gender` is a powerfull object that exposes many
+operations on the resulting group of dataframes::
+
+    >>> groupby_gender.mean()
             Unnamed: 0   FSIQ     VIQ     PIQ      Weight     Height  MRI_Count
     Gender                                                                     
     Female       19.65  111.9  109.45  110.45  137.200000  65.765000   862654.6
     Male         21.35  115.0  115.25  111.60  166.444444  71.431579   954855.4
 
-
-    >>> # More manual, but more versatile
-    >>> for name, value in gender_data['VIQ']:
-    ...     print name, value.mean()
-    Female 109.45
-    Male 115.25
-
-    >>> # Simpler selector
-    >>> data[data['Gender'] == 'Female']['VIQ'].mean()
-    109.45
+(use tab-completion on `groupby_gender` to find more).
 
 |
 
