@@ -90,7 +90,7 @@ install: html
 	cd _build/ && \
         git clone .. gh-pages && \
 	cd gh-pages && \
-	git remote add github git@github.com:GaelVaroquaux/stats_in_python_tutorial.gitt && \
+	git remote add github git@github.com:GaelVaroquaux/stats_in_python_tutorial.git && \
 	git checkout gh-pages && \
 	git fetch github && \
 	git merge github/gh-pages && \
