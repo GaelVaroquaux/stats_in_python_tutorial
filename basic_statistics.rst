@@ -100,6 +100,8 @@ Manipulating data
     >>> data[data['Gender'] == 'Female']['VIQ'].mean()
     109.45
 
+.. note:: For a quick view on a large dataframe, use its `describe`
+    method: :meth:`pandas.DataFrame.describe`.
 
 **groupby**: splitting a dataframe on values of categorical variables::
 
