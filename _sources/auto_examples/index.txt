@@ -81,30 +81,6 @@ Code examples for the statistics in Python tutorial.
 .. raw:: html
 
 
-    <div class="thumbnailContainer" tooltip="">
-
-.. figure:: ./images/thumb/plot_diabetes.png
-   :target: ./plot_diabetes.html
-
-   :ref:`example_plot_diabetes.py`
-
-
-.. raw:: html
-
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   ./plot_diabetes
-
-
-
-.. raw:: html
-
-
     <div class="thumbnailContainer" tooltip="Ilustrate an analysis on a real dataset:">
 
 .. figure:: ./images/thumb/plot_iris_analysis.png
@@ -153,6 +129,30 @@ Code examples for the statistics in Python tutorial.
 .. raw:: html
 
 
+    <div class="thumbnailContainer" tooltip="This example uses seaborn to quickly plot various factors relating wages, experience and educti...">
+
+.. figure:: ./images/thumb/plot_wage_data.png
+   :target: ./plot_wage_data.html
+
+   :ref:`example_plot_wage_data.py`
+
+
+.. raw:: html
+
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   ./plot_wage_data
+
+
+
+.. raw:: html
+
+
     <div class="thumbnailContainer" tooltip="Calculate using 'statsmodels' just the best fit, or all the corresponding statistical parameter...">
 
 .. figure:: ./images/thumb/plot_regression_3d.png
@@ -177,12 +177,12 @@ Code examples for the statistics in Python tutorial.
 .. raw:: html
 
 
-    <div class="thumbnailContainer" tooltip="This example uses seaborn to quickly plot various factors relating wages, experience and educti...">
+    <div class="thumbnailContainer" tooltip="This is a business-intelligence (BI) like application.">
 
-.. figure:: ./images/thumb/plot_wage_data.png
-   :target: ./plot_wage_data.html
+.. figure:: ./images/thumb/plot_airfare.png
+   :target: ./plot_airfare.html
 
-   :ref:`example_plot_wage_data.py`
+   :ref:`example_plot_airfare.py`
 
 
 .. raw:: html
@@ -194,7 +194,7 @@ Code examples for the statistics in Python tutorial.
 .. toctree::
    :hidden:
 
-   ./plot_wage_data
+   ./plot_airfare
 
 
 .. raw:: html

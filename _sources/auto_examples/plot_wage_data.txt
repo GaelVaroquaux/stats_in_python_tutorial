@@ -15,7 +15,8 @@ data.
 
 Note that importing seaborn changes the matplotlib style to have an
 "excel-like" feeling. This changes affect other matplotlib figures. To
-restore defaults, we call plt.rcdefaults().
+restore defaults once this example is run, we would need to call
+plt.rcdefaults().
 
 
 
@@ -48,8 +49,8 @@ restore defaults, we call plt.rcdefaults().
 **Python source code:** :download:`plot_wage_data.py <plot_wage_data.py>`
 
 .. literalinclude:: plot_wage_data.py
-    :lines: 16-
+    :lines: 17-
 
-**Total running time of the example:**  12.95 seconds
-( 0 minutes  12.95 seconds)
+**Total running time of the example:**  14.30 seconds
+( 0 minutes  14.30 seconds)
     

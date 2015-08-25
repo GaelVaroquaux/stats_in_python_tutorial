@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>2.1.7. Visualizing factors influencing wages &mdash; Statistics in Python</title>
+    <title>2.1.5. Visualizing factors influencing wages &mdash; Statistics in Python</title>
     
     <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -26,8 +26,8 @@
     <script type="text/javascript" src="../_static/copybutton.js"></script>
     <link rel="top" title="Statistics in Python" href="../index.html" />
     <link rel="up" title="2. Examples" href="index.html" />
-    <link rel="next" title="2.2.1. Relating Gender and IQ" href="solutions/plot_brain_size.html" />
-    <link rel="prev" title="2.1.6. Multiple Regression" href="plot_regression_3d.html" /> 
+    <link rel="next" title="2.1.6. Multiple Regression" href="plot_regression_3d.html" />
+    <link rel="prev" title="2.1.4. Simple Regression" href="plot_regression.html" /> 
   </head>
   <body>
    <!-- Use the header to add javascript -->
@@ -95,10 +95,10 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="solutions/plot_brain_size.html" title="2.2.1. Relating Gender and IQ"
+          <a href="plot_regression_3d.html" title="2.1.6. Multiple Regression"
              accesskey="N">next</a></li>
         <li class="right" >
-          <a href="plot_regression_3d.html" title="2.1.6. Multiple Regression"
+          <a href="plot_regression.html" title="2.1.4. Simple Regression"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">Statistics in Python</a> &raquo;</li>
           <li><a href="index.html" accesskey="U">2. Examples</a> &raquo;</li>
@@ -124,7 +124,7 @@
           <div class="body">
             
   <div class="section" id="visualizing-factors-influencing-wages">
-<span id="example-plot-wage-data-py"></span><h1>2.1.7. Visualizing factors influencing wages<a class="headerlink" href="#visualizing-factors-influencing-wages" title="Permalink to this headline">¶</a></h1>
+<span id="example-plot-wage-data-py"></span><h1>2.1.5. Visualizing factors influencing wages<a class="headerlink" href="#visualizing-factors-influencing-wages" title="Permalink to this headline">¶</a></h1>
 <p>This example uses seaborn to quickly plot various factors relating wages,
 experience and eduction.</p>
 <p>Seaborn (<a class="reference external" href="http://stanford.edu/~mwaskom/software/seaborn/">http://stanford.edu/~mwaskom/software/seaborn/</a>) is a library
@@ -132,7 +132,8 @@ that combines visualization and statistical fits to show trends in
 data.</p>
 <p>Note that importing seaborn changes the matplotlib style to have an
 &#8220;excel-like&#8221; feeling. This changes affect other matplotlib figures. To
-restore defaults, we call plt.rcdefaults().</p>
+restore defaults once this example is run, we would need to call
+plt.rcdefaults().</p>
 <ul class="horizontal">
 <li><img alt="../_images/plot_wage_data_1.png" class="first" src="../_images/plot_wage_data_1.png" />
 </li>
@@ -179,7 +180,7 @@ restore defaults, we call plt.rcdefaults().</p>
 <div class="newline"></div><span class="n">short_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;:&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">names</span><span class="p">]</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="n">data</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">&#39;wages.txt&#39;</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">27</span><span class="p">,</span> <span class="n">skipfooter</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-<div class="newline"></div>       <span class="n">header</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+<div class="newline"></div>                       <span class="n">header</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
 <div class="newline"></div><span class="n">data</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">short_names</span>
 <div class="newline"></div>
 <div class="newline"></div>
@@ -209,13 +210,10 @@ restore defaults, we call plt.rcdefaults().</p>
 <div class="newline"></div>
 <div class="newline"></div><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 <div class="newline"></div><a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.show"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
-<div class="newline"></div>
-<div class="newline"></div><span class="c"># Restore the default matplotlib style</span>
-<div class="newline"></div><span class="n">plt</span><span class="o">.</span><span class="n">rcdefaults</span><span class="p">()</span>
 <div class="newline"></div></pre></div>
 </div>
-<p><strong>Total running time of the example:</strong>  12.95 seconds
-( 0 minutes  12.95 seconds)</p>
+<p><strong>Total running time of the example:</strong>  14.30 seconds
+( 0 minutes  14.30 seconds)</p>
 <p><div style="clear: both"></div></p>
 </div>
 
@@ -228,10 +226,10 @@ restore defaults, we call plt.rcdefaults().</p>
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="solutions/plot_brain_size.html" title="2.2.1. Relating Gender and IQ"
+          <a href="plot_regression_3d.html" title="2.1.6. Multiple Regression"
              >next</a></li>
         <li class="right" >
-          <a href="plot_regression_3d.html" title="2.1.6. Multiple Regression"
+          <a href="plot_regression.html" title="2.1.4. Simple Regression"
              >previous</a> |</li>
         <li><a href="../index.html">Statistics in Python</a> &raquo;</li>
           <li><a href="index.html" >2. Examples</a> &raquo;</li>

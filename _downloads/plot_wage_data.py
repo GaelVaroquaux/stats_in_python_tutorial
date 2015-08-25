@@ -11,7 +11,8 @@ data.
 
 Note that importing seaborn changes the matplotlib style to have an
 "excel-like" feeling. This changes affect other matplotlib figures. To
-restore defaults, we call plt.rcdefaults().
+restore defaults once this example is run, we would need to call
+plt.rcdefaults().
 """
 
 # Standard library imports
@@ -47,7 +48,7 @@ names = [
 short_names = [n.split(':')[0] for n in names]
 
 data = pandas.read_csv('wages.txt', skiprows=27, skipfooter=6, sep=None,
-       header=None)
+                       header=None)
 data.columns = short_names
 
 
@@ -78,5 +79,3 @@ plt.suptitle('Effect of occupation: 1=Management, 2=Sales, 3=Clerical, '
 import matplotlib.pyplot as plt
 plt.show()
 
-# Restore the default matplotlib style
-plt.rcdefaults()

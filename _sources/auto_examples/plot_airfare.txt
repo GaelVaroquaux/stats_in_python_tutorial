@@ -1,0 +1,38 @@
+
+
+.. _example_plot_airfare.py:
+
+
+Air fares before and after 9/11
+=====================================
+
+This is a business-intelligence (BI) like application.
+
+What is interesting here is that we may want to study fares as a function
+of the year, paired accordingly to the trips, or forgetting the year,
+only as a function of the trip endpoints.
+
+
+
+.. rst-class:: horizontal
+
+
+    *
+
+      .. image:: images/plot_airfare_1.png
+
+    *
+
+      .. image:: images/plot_airfare_2.png
+
+
+
+
+**Python source code:** :download:`plot_airfare.py <plot_airfare.py>`
+
+.. literalinclude:: plot_airfare.py
+    :lines: 11-
+
+**Total running time of the example:**  13.58 seconds
+( 0 minutes  13.58 seconds)
+    
