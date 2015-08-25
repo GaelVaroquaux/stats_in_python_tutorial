@@ -238,7 +238,7 @@ intersphinx_mapping = {
     'http://scikit-image.org/docs/0.8.0/': None,
     'http://docs.enthought.com/mayavi/mayavi/': None,
     'http://statsmodels.sourceforge.net/': None,
-    'http://pandas.pydata.org': None,
+    'http://pandas.pydata.org/pandas-docs/stable/': None,
 }
 
 extlinks = {
