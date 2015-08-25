@@ -2,11 +2,6 @@
 Basic statistics
 =================
 
-.. topic:: **Prerequisites**
-
-   This course assumes that you already know Python. The `scipy-lectures
-   <http://scipy-lectures.github.io>`_ give an introduction to Python.
-
 .. tip::
 
     This page gives an introduction to statistics with Python. It is
@@ -16,19 +11,19 @@ Basic statistics
    :local:
    :depth: 1
 
+.. tip::
+
+    In this document, the Python prompts are represented with the sign
+    ">>>". To copy-paste code, you can click on the top right of the code
+    blocks, to hide the prompts and the outputs.
+
 |
 
 Data representation and interaction
 ====================================
 
-.. tip::
-
-    In this document, the Python prompts are represented with the sign
-    ">>>". If you need to copy-paste code, you can click on the top right
-    of the code blocks, to hide the prompts and the outputs.
-
-Data representation and vocabulary
-----------------------------------
+Data as a table
+----------------
 
 The setting that we consider for statistical analysis is that of multiple
 *observations* or *samples* described by a set of different *attributes*
@@ -131,7 +126,7 @@ operations on the resulting group of dataframes::
 .. image:: auto_examples/images/plot_pandas_1.png
    :target: auto_examples/plot_pandas.html
    :align: right
-   :scale: 40
+   :scale: 42
 
 
 .. topic:: **Exercise**
@@ -146,18 +141,25 @@ operations on the resulting group of dataframes::
     * What is the average value of MRI counts expressed in log units, for
       males and females?
 
+.. note:: 
+   
+   `groupby_gender.boxplot` is used for the plots above (see :ref:`this
+   example <example_plot_pandas.py>`).
+
 Plotting data
 ..............
 
 Pandas comes with some plotting tools (that use matplotlib behind the
-scene) to display statistics on dataframes::
+scene) to display statistics of the data in dataframes:
+
+**Scatter matrices**::
 
     >>> from pandas.tools import plotting
     >>> plotting.scatter_matrix(data[['Weight', 'Height', 'MRI_Count']])   # doctest: +SKIP
 
 .. image:: auto_examples/images/plot_pandas_2.png
    :target: auto_examples/plot_pandas.html
-   :scale: 50
+   :scale: 70
    :align: center
 
 ::
@@ -166,12 +168,11 @@ scene) to display statistics on dataframes::
 
 .. sidebar:: **Two populations**
 
-   The IQ metrics are bimodal. It looks like there are 2 sub-populations.
-   We will come back to this hypothesis.
+   The IQ metrics are bimodal, as if there are 2 sub-populations.
 
 .. image:: auto_examples/images/plot_pandas_3.png
    :target: auto_examples/plot_pandas.html
-   :scale: 50
+   :scale: 70
    :align: center
 
 .. topic:: **Exercise**
@@ -182,7 +183,7 @@ scene) to display statistics on dataframes::
 
 |
 
-Hypothesis testing: two-group comparisons
+Hypothesis testing: comparing two groups
 ==========================================
 
 For simple statistical tests, we will use the `stats` sub-module of 
@@ -236,10 +237,10 @@ with :func:`scipy.stats.ttest_ind`::
     >>> stats.ttest_ind(female_viq, male_viq)   # doctest: +ELLIPSIS
     (array(-0.77261617232...), 0.4445287677858...)
 
-Paired tests
-------------
+Paired tests: repeated measurements on the same indivuals
+----------------------------------------------------------
 
-.. image:: auto_examples/images/plot_pandas_4.png
+.. image:: auto_examples/images/plot_paired_boxplots_1.png
    :target: auto_examples/plot_pandas.html
    :scale: 70
    :align: right
@@ -250,15 +251,15 @@ significantly different. We need to use a 2 sample test::
     >>> stats.ttest_ind(data['FSIQ'], data['PIQ'])   # doctest: +ELLIPSIS
     (array(0.46563759638...), 0.64277250...)
 
-The problem with this approach is that is forgets that there are links
-between observations: FSIQ and PIQ are measure on the same individuals.
+The problem with this approach is that it forgets that there are links
+between observations: FSIQ and PIQ are measured on the same individuals.
 Thus the variance due to inter-subject variability is confounding, and
-can be removed, using a "paired test", or "repeated measure test"::
+can be removed, using a "paired test", or "repeated measures test"::
 
     >>> stats.ttest_rel(data['FSIQ'], data['PIQ'])   # doctest: +ELLIPSIS
     (array(1.784201940...), 0.082172638183...)
 
-.. image:: auto_examples/images/plot_pandas_5.png
+.. image:: auto_examples/images/plot_paired_boxplots_2.png
    :target: auto_examples/plot_pandas.html
    :scale: 60
    :align: right
@@ -294,8 +295,8 @@ this assumption::
 
 |
 
-Linear models, ANOVA
-======================
+Linear models, multiple factors, and analysis of variance
+==========================================================
 
 A simple linear regression
 ---------------------------
@@ -423,8 +424,8 @@ Such a model can be seen in 3D as fitting a plane to a cloud of (`x`,
     Kurtosis:                       3.659   Cond. No.                         54.0
     ==============================================================================
 
-Post-hoc ANOVA: contrast vectors
----------------------------------
+Post-hoc analysis of variance: ANOVA and contrast vectors
+----------------------------------------------------------
 
 In the above iris example, we wish to test if the petal length is
 different between versicolor and virginica, after removing the effect of

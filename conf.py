@@ -36,8 +36,6 @@ extensions = [
         'gen_rst',
         'sphinx.ext.autodoc',
         'sphinx.ext.doctest',
-        #'matplotlib.sphinxext.plot_directive',
-        #'matplotlib.sphinxext.only_directives',
         'sphinx.ext.pngmath',
         'sphinx.ext.intersphinx',
         'sphinx.ext.extlinks',

@@ -1,22 +1,7 @@
 Statistics in Python
 =====================
 
-.. raw html to center the title
-
-.. raw:: html
-
-  <style type="text/css">
-    div.documentwrapper h1 {
-        margin-bottom: 30px;
-    }
-
-    div.sidebar {
-        margin-right: -20px;
-        margin-top: -10px;
-        border-radius: 6px;
-    }
-  
-  </style>
+:authors: Gaël Varoquaux
 
 .. sidebar:: Download 
     
@@ -25,9 +10,8 @@ Statistics in Python
     
     * `Source code (github) <https://github.com/GaelVaroquaux/stats_in_python_tutorial>`_
 
-.. topic:: Materials for the "Statistics in Python" euroscipy 2015 tutorial.
+**Materials for the "Statistics in Python" euroscipy 2015 tutorial.**
 
-    **Author:** `G. Varoquaux <http://gael-varoquaux.info/>`_
 
 |
 
@@ -50,8 +34,10 @@ Statistics in Python
 _____
 
 .. nice layout in the toc
+   .. include:: tune_toc.rst 
 
-.. include:: tune_toc.rst 
+.. include:: ../../includes/big_toc_css.rst
+
 
 .. toctree::
    :numbered:
