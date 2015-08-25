@@ -89,14 +89,15 @@ install: html
 	rm -rf _build/gh-pages
 	cd _build/ && \
         git clone .. gh-pages && \
+	git remote add github git@github.com:GaelVaroquaux/stats_in_python_tutorial.gitt && \
 	cd gh-pages && \
 	git checkout gh-pages && \
-	git fetch origin && \
-	git merge origin/gh-pages && \
+	git fetch github && \
+	git merge github/gh-pages && \
 	cp -r ../html/* . && \
 	git add * && \
 	git commit -a -m 'Make install' && \
-	git push origin gh-pages
+	git push github
 
 epub:
 	$(SPHINXBUILD) -b epub $(ALLSPHINXOPTS) _build/epub
