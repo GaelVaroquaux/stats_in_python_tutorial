@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>1. Basic statistics &mdash; Statistics in Python</title>
+    <title>Data representation and interaction &mdash; Statistics in Python</title>
     
     <link rel="stylesheet" href="_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -24,9 +24,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/copybutton.js"></script>
-    <link rel="top" title="Statistics in Python" href="index.html" />
-    <link rel="next" title="2. Examples" href="auto_examples/index.html" />
-    <link rel="prev" title="Statistics in Python" href="index.html" /> 
+    <link rel="top" title="Statistics in Python" href="index.html" /> 
   </head>
   <body>
    <!-- Use the header to add javascript -->
@@ -93,12 +91,6 @@
     <div class="related">
       <h3>Navigation</h3>
       <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="auto_examples/index.html" title="2. Examples"
-             accesskey="N">next</a></li>
-        <li class="right" >
-          <a href="index.html" title="Statistics in Python"
-             accesskey="P">previous</a> |</li>
         <li><a href="index.html">Statistics in Python</a> &raquo;</li>
      
     <!-- Insert a menu in the navigation bar -->
@@ -121,14 +113,7 @@
       <div class="documentwrapper">
           <div class="body">
             
-  <div class="section" id="basic-statistics">
-<h1>1. Basic statistics<a class="headerlink" href="#basic-statistics" title="Permalink to this headline">¶</a></h1>
-<div class="admonition tip">
-<p class="first admonition-title">Tip</p>
-<p class="last">This page gives an introduction to statistics with Python. It is
-useful to get acquainted with data representations in Python.</p>
-</div>
-<div class="contents local topic" id="contents">
+  <div class="contents local topic" id="contents">
 <p class="topic-title first">Contents</p>
 <ul class="simple">
 <li><a class="reference internal" href="#data-representation-and-interaction" id="id2">Data representation and interaction</a></li>
@@ -146,9 +131,9 @@ blocks, to hide the prompts and the outputs.</p>
 <div class="line"><br /></div>
 </div>
 <div class="section" id="data-representation-and-interaction">
-<h2><a class="toc-backref" href="#id2">1.1. Data representation and interaction</a><a class="headerlink" href="#data-representation-and-interaction" title="Permalink to this headline">¶</a></h2>
+<h1><a class="toc-backref" href="#id2">Data representation and interaction</a><a class="headerlink" href="#data-representation-and-interaction" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="data-as-a-table">
-<h3>1.1.1. Data as a table<a class="headerlink" href="#data-as-a-table" title="Permalink to this headline">¶</a></h3>
+<h2>Data as a table<a class="headerlink" href="#data-as-a-table" title="Permalink to this headline">¶</a></h2>
 <p>The setting that we consider for statistical analysis is that of multiple
 <em>observations</em> or <em>samples</em> described by a set of different <em>attributes</em>
 or <em>features</em>. The data can than be seen as a 2D table, or matrix, with
@@ -165,7 +150,7 @@ observations. For instance, the data contained in
 </div>
 </div>
 <div class="section" id="the-panda-data-frame">
-<h3>1.1.2. The panda data-frame<a class="headerlink" href="#the-panda-data-frame" title="Permalink to this headline">¶</a></h3>
+<h2>The panda data-frame<a class="headerlink" href="#the-panda-data-frame" title="Permalink to this headline">¶</a></h2>
 <div class="admonition tip">
 <p class="first admonition-title">Tip</p>
 <p class="last">We will store and manipulate this data in a
@@ -175,7 +160,7 @@ has named columns, can contained a mixture of different data types by
 column, and has elaborate selection and pivotal mechanisms.</p>
 </div>
 <div class="section" id="creating-dataframes-reading-data-files-or-converting-arrays">
-<h4>1.1.2.1. Creating dataframes: reading data files or converting arrays<a class="headerlink" href="#creating-dataframes-reading-data-files-or-converting-arrays" title="Permalink to this headline">¶</a></h4>
+<h3>Creating dataframes: reading data files or converting arrays<a class="headerlink" href="#creating-dataframes-reading-data-files-or-converting-arrays" title="Permalink to this headline">¶</a></h3>
 <div class="sidebar">
 <p class="first sidebar-title"><strong>Separator</strong></p>
 <p class="last">It is a CSV file, but the separator is &#8221;;&#8221;</p>
@@ -238,7 +223,7 @@ formats. See the <a class="reference external" href="http://pandas.pydata.org">p
 </div>
 </div>
 <div class="section" id="manipulating-data">
-<h4>1.1.2.2. Manipulating data<a class="headerlink" href="#manipulating-data" title="Permalink to this headline">¶</a></h4>
+<h3>Manipulating data<a class="headerlink" href="#manipulating-data" title="Permalink to this headline">¶</a></h3>
 <p><cite>data</cite> is a pandas dataframe, that resembles R&#8217;s dataframe:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="o">.</span><span class="n">shape</span>    <span class="c"># 40 rows and 8 columns</span>
 <div class="newline"></div><span class="go">(40, 8)</span>
@@ -310,7 +295,7 @@ example</em></a>).</p>
 </div>
 </div>
 <div class="section" id="plotting-data">
-<h4>1.1.2.3. Plotting data<a class="headerlink" href="#plotting-data" title="Permalink to this headline">¶</a></h4>
+<h3>Plotting data<a class="headerlink" href="#plotting-data" title="Permalink to this headline">¶</a></h3>
 <p>Pandas comes with some plotting tools (that use matplotlib behind the
 scene) to display statistics of the data in dataframes:</p>
 <p><strong>Scatter matrices</strong>:</p>
@@ -339,7 +324,7 @@ think that the 2 sub-populations correspond to gender?</p>
 </div>
 </div>
 <div class="section" id="hypothesis-testing-comparing-two-groups">
-<h2><a class="toc-backref" href="#id3">1.2. Hypothesis testing: comparing two groups</a><a class="headerlink" href="#hypothesis-testing-comparing-two-groups" title="Permalink to this headline">¶</a></h2>
+<h1><a class="toc-backref" href="#id3">Hypothesis testing: comparing two groups</a><a class="headerlink" href="#hypothesis-testing-comparing-two-groups" title="Permalink to this headline">¶</a></h1>
 <p>For simple statistical tests, we will use the <cite>stats</cite> sub-module of
 <a class="reference external" href="http://docs.scipy.org/doc/">scipy</a>:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
@@ -351,9 +336,9 @@ think that the 2 sub-populations correspond to gender?</p>
 scipy, see <a class="reference external" href="http://scipy-lectures.github.io/">http://scipy-lectures.github.io/</a></p>
 </div>
 <div class="section" id="student-s-t-test">
-<h3>1.2.1. Student&#8217;s t-test<a class="headerlink" href="#student-s-t-test" title="Permalink to this headline">¶</a></h3>
+<h2>Student&#8217;s t-test<a class="headerlink" href="#student-s-t-test" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="sample-t-test">
-<h4>1.2.1.1. 1-sample t-test<a class="headerlink" href="#sample-t-test" title="Permalink to this headline">¶</a></h4>
+<h3>1-sample t-test<a class="headerlink" href="#sample-t-test" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.ttest_1samp.html#scipy.stats.ttest_1samp" title="(in SciPy v0.16.0)"><tt class="xref py py-func docutils literal"><span class="pre">scipy.stats.ttest_1samp()</span></tt></a> tests if observations are drawn from a
 Gaussian distributions of given population mean. It returns the T
 statistic, and the p-value (see the function&#8217;s help):</p>
@@ -374,7 +359,7 @@ we use, and what is the corresponding p-value?</p>
 </div>
 </div>
 <div class="section" id="id1">
-<h4>1.2.1.2. 2-sample t-test<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<h3>2-sample t-test<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p>We have seen above that the mean VIQ in the male and female populations
 were different. To test if this is significant, we do a 2-sample t-test
 with <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.ttest_ind.html#scipy.stats.ttest_ind" title="(in SciPy v0.16.0)"><tt class="xref py py-func docutils literal"><span class="pre">scipy.stats.ttest_ind()</span></tt></a>:</p>
@@ -387,7 +372,7 @@ with <a class="reference external" href="http://docs.scipy.org/doc/scipy/referen
 </div>
 </div>
 <div class="section" id="paired-tests-repeated-measurements-on-the-same-indivuals">
-<h3>1.2.2. Paired tests: repeated measurements on the same indivuals<a class="headerlink" href="#paired-tests-repeated-measurements-on-the-same-indivuals" title="Permalink to this headline">¶</a></h3>
+<h2>Paired tests: repeated measurements on the same indivuals<a class="headerlink" href="#paired-tests-repeated-measurements-on-the-same-indivuals" title="Permalink to this headline">¶</a></h2>
 <a class="reference external image-reference" href="auto_examples/plot_pandas.html"><img alt="_images/plot_paired_boxplots_1.png" class="align-right" src="_images/plot_paired_boxplots_1.png" style="width: 280.0px; height: 210.0px;" /></a>
 <p>PIQ, VIQ, and FSIQ give 3 measures of IQ. Let us test if FISQ and PIQ are
 significantly different. We need to use a 2 sample test:</p>
@@ -439,9 +424,9 @@ males and females.</li>
 </div>
 </div>
 <div class="section" id="linear-models-multiple-factors-and-analysis-of-variance">
-<h2><a class="toc-backref" href="#id4">1.3. Linear models, multiple factors, and analysis of variance</a><a class="headerlink" href="#linear-models-multiple-factors-and-analysis-of-variance" title="Permalink to this headline">¶</a></h2>
+<h1><a class="toc-backref" href="#id4">Linear models, multiple factors, and analysis of variance</a><a class="headerlink" href="#linear-models-multiple-factors-and-analysis-of-variance" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="a-simple-linear-regression">
-<h3>1.3.1. A simple linear regression<a class="headerlink" href="#a-simple-linear-regression" title="Permalink to this headline">¶</a></h3>
+<h2>A simple linear regression<a class="headerlink" href="#a-simple-linear-regression" title="Permalink to this headline">¶</a></h2>
 <a class="reference external image-reference" href="auto_examples/plot_regression.html"><img alt="_images/plot_regression_1.png" class="align-right" src="_images/plot_regression_1.png" style="width: 300.0px; height: 240.0px;" /></a>
 <p>Given two set of observations, <cite>x</cite> and <cite>y</cite>, we want to test the
 hypothesis that <cite>y</cite> is a linear function of <cite>x</cite>. In other terms:</p>
@@ -501,7 +486,7 @@ use tab-completion to find the relevent attribute.</p>
 </div>
 </div>
 <div class="section" id="multiple-regression">
-<h3>1.3.2. Multiple Regression<a class="headerlink" href="#multiple-regression" title="Permalink to this headline">¶</a></h3>
+<h2>Multiple Regression<a class="headerlink" href="#multiple-regression" title="Permalink to this headline">¶</a></h2>
 <a class="reference external image-reference" href="auto_examples/plot_regression_3d.html"><img alt="_images/plot_regression_3d_1.png" class="align-right" src="_images/plot_regression_3d_1.png" style="width: 360.0px; height: 270.0px;" /></a>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -548,7 +533,7 @@ variable) with 2 variables <cite>x</cite> and <cite>y</cite>:</p>
 </div>
 </div>
 <div class="section" id="post-hoc-analysis-of-variance-anova-and-contrast-vectors">
-<h3>1.3.3. Post-hoc analysis of variance: ANOVA and contrast vectors<a class="headerlink" href="#post-hoc-analysis-of-variance-anova-and-contrast-vectors" title="Permalink to this headline">¶</a></h3>
+<h2>Post-hoc analysis of variance: ANOVA and contrast vectors<a class="headerlink" href="#post-hoc-analysis-of-variance-anova-and-contrast-vectors" title="Permalink to this headline">¶</a></h2>
 <p>In the above iris example, we wish to test if the petal length is
 different between versicolor and virginica, after removing the effect of
 sepal width. This can be formulated as testing the difference between the
@@ -573,7 +558,6 @@ and weight.</p>
 <p><div style="clear: both"></div></p>
 </div>
 </div>
-</div>
 
 
           </div>
@@ -583,12 +567,6 @@ and weight.</p>
     <div class="related">
       <h3>Navigation</h3>
       <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="auto_examples/index.html" title="2. Examples"
-             >next</a></li>
-        <li class="right" >
-          <a href="index.html" title="Statistics in Python"
-             >previous</a> |</li>
         <li><a href="index.html">Statistics in Python</a> &raquo;</li>
      
     <!-- Insert a menu in the navigation bar -->
