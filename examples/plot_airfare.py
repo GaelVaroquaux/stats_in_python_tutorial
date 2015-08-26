@@ -98,21 +98,27 @@ plt.subplots_adjust()
 
 
 ##############################################################################
-# Statistical testing: regression of fare on distance
-
+# Statistical testing: dependence of fare on distance and number of
+# passengers
 import statsmodels.formula.api as sm
+
+result = sm.ols(formula='fare ~ 1 + dist + nb_passengers', data=data_flat).fit()
+print(result.summary())
+
+# Using a robust fit
+result = sm.rlm(formula='fare ~ 1 + dist + nb_passengers', data=data_flat).fit()
+print(result.summary())
+
+
+##############################################################################
+# Statistical testing: regression of fare on distance: 2001/2000 difference
+
 result = sm.ols(formula='fare_2001 - fare_2000 ~ 1 + dist', data=data).fit()
 print(result.summary())
 
 # Plot the corresponding regression
 data['fare_difference'] = data['fare_2001'] - data['fare_2000']
 seaborn.lmplot(x='dist', y='fare_difference', data=data)
-
-# Using a robust fit
-result = sm.rlm(formula='fare_2001 - fare_2000 ~ 1 + dist', data=data).fit()
-print(result.summary())
-
-seaborn.lmplot(x='dist', y='fare_difference', data=data, robust=True)
 
 plt.show()
 
