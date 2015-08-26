@@ -7,6 +7,12 @@ This is a business-intelligence (BI) like application.
 What is interesting here is that we may want to study fares as a function
 of the year, paired accordingly to the trips, or forgetting the year,
 only as a function of the trip endpoints.
+
+Using statsmodels' linear models, we find that both with an OLS (ordinary
+least square) and a robust fit, the intercept and the slope are
+significantly non-zero: the air fares have decreased between 2000 and
+2001, and their dependence on distance travelled has also decreased
+
 """
 
 # Standard library imports
@@ -83,10 +89,30 @@ import matplotlib.pyplot as plt
 plt.figure(figsize=(5, 2))
 seaborn.boxplot(data.fare_2001 - data.fare_2000)
 plt.title('Fare: 2001 - 2000')
+plt.subplots_adjust()
 
 plt.figure(figsize=(5, 2))
 seaborn.boxplot(data.nb_passengers_2001 - data.nb_passengers_2000)
 plt.title('NB passengers: 2001 - 2000')
+plt.subplots_adjust()
+
+
+##############################################################################
+# Statistical testing: regression of fare on distance
+
+import statsmodels.formula.api as sm
+result = sm.ols(formula='fare_2001 - fare_2000 ~ 1 + dist', data=data).fit()
+print(result.summary())
+
+# Plot the corresponding regression
+data['fare_difference'] = data['fare_2001'] - data['fare_2000']
+seaborn.lmplot(x='dist', y='fare_difference', data=data)
+
+# Using a robust fit
+result = sm.rlm(formula='fare_2001 - fare_2000 ~ 1 + dist', data=data).fit()
+print(result.summary())
+
+seaborn.lmplot(x='dist', y='fare_difference', data=data, robust=True)
 
 plt.show()
 

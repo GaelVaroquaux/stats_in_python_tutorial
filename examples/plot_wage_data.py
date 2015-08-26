@@ -51,6 +51,10 @@ data = pandas.read_csv('wages.txt', skiprows=27, skipfooter=6, sep=None,
                        header=None)
 data.columns = short_names
 
+# Log-transform the wages, because they typically are increased with
+# multiplicative factors
+import numpy as np
+data['WAGE'] = np.log10(data['WAGE'])
 
 ##############################################################################
 # Plot scatter matrices highlighting different aspects
@@ -71,11 +75,5 @@ seaborn.pairplot(data, vars=['WAGE', 'AGE', 'EDUCATION'],
                       kind='reg', hue='UNION')
 plt.suptitle('Effect of union: 1=Union member, 0=Not union member')
 
-seaborn.pairplot(data, vars=['WAGE', 'AGE', 'EDUCATION'],
-                      kind='reg', hue='OCCUPATION')
-plt.suptitle('Effect of occupation: 1=Management, 2=Sales, 3=Clerical, '
-             '4=Service, 5=Professional, 6=Other')
-
-import matplotlib.pyplot as plt
 plt.show()
 
