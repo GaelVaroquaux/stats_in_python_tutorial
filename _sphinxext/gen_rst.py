@@ -805,6 +805,11 @@ def generate_file_rst(fname, target_dir, src_dir, root_dir, plot_gallery):
                 os.chdir(cwd)
                 sys.stdout = orig_stdout
                 plt.rcdefaults()
+                # Horrible code to 'unload' seaborn, so that it resets
+                # its default when is load
+                for module in sys.modules.keys():
+                    if 'seaborn.' in module:
+                        del sys.modules[module]
 
             print " - time elapsed : %.2g sec" % time_elapsed
         else:
