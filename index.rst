@@ -199,7 +199,14 @@ operations on the resulting group of dataframes::
     Female       19.65  111.9  109.45  110.45  137.200000  65.765000   862654.6
     Male         21.35  115.0  115.25  111.60  166.444444  71.431579   954855.4
 
-(use tab-completion on `groupby_gender` to find more).
+.. tip::
+
+    Use tab-completion on `groupby_gender` to find more.  Other common
+    grouping functions are median, count (useful for checking to see the
+    amount of missing values in different subsets) or sum.  Groupby
+    evaluation is lazy, no work is done until an aggregation function is
+    applied.
+
 
 |
 
@@ -628,6 +635,10 @@ Is this difference significant?
 
 |
 
+______
+
+|
+
 .. topic:: **Exercice**
    :class: green
 
@@ -635,7 +646,19 @@ Is this difference significant?
    female are different after removing the effect of brain size, height
    and weight.
 
+|
 
+.. topic:: **Take home messages so far**
+
+   * Hypothesis testing and p-value give you the **significance** of an
+     effect / difference
+
+   * **Formulas** (with categorical variables) enable you to express rich
+     links in your data
+
+   * **Conditionning** (adding factors that can explain all or part of
+     the variation) is important modeling aspect that changes the
+     interpretation.
 
 |
 
