@@ -28,8 +28,8 @@ Also shows how to make 3d plots.
   Dep. Variable:                      z   R-squared:                       0.594
   Model:                            OLS   Adj. R-squared:                  0.592
   Method:                 Least Squares   F-statistic:                     320.4
-  Date:                Tue, 25 Aug 2015   Prob (F-statistic):           1.89e-86
-  Time:                        13:39:44   Log-Likelihood:                -1537.7
+  Date:                Wed, 26 Aug 2015   Prob (F-statistic):           1.89e-86
+  Time:                        10:15:30   Log-Likelihood:                -1537.7
   No. Observations:                 441   AIC:                             3081.
   Df Residuals:                     438   BIC:                             3094.
   Df Model:                           2                                         
@@ -62,6 +62,6 @@ Also shows how to make 3d plots.
 .. literalinclude:: plot_regression_3d.py
     :lines: 10-
 
-**Total running time of the example:**  0.12 seconds
-( 0 minutes  0.12 seconds)
+**Total running time of the example:**  0.27 seconds
+( 0 minutes  0.27 seconds)
     

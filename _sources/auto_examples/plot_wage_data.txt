@@ -39,10 +39,6 @@ plt.rcdefaults().
 
       .. image:: images/plot_wage_data_4.png
 
-    *
-
-      .. image:: images/plot_wage_data_5.png
-
 
 
 
@@ -51,6 +47,6 @@ plt.rcdefaults().
 .. literalinclude:: plot_wage_data.py
     :lines: 17-
 
-**Total running time of the example:**  6.72 seconds
-( 0 minutes  6.72 seconds)
+**Total running time of the example:**  8.37 seconds
+( 0 minutes  8.37 seconds)
     

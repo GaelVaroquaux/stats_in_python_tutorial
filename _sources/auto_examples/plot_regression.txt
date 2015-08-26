@@ -26,8 +26,8 @@ p-values.
   Dep. Variable:                      y   R-squared:                       0.804
   Model:                            OLS   Adj. R-squared:                  0.794
   Method:                 Least Squares   F-statistic:                     74.03
-  Date:                Tue, 25 Aug 2015   Prob (F-statistic):           8.56e-08
-  Time:                        13:39:44   Log-Likelihood:                -57.988
+  Date:                Wed, 26 Aug 2015   Prob (F-statistic):           8.56e-08
+  Time:                        10:15:04   Log-Likelihood:                -57.988
   No. Observations:                  20   AIC:                             120.0
   Df Residuals:                      18   BIC:                             122.0
   Df Model:                           1                                         
@@ -55,6 +55,6 @@ p-values.
 .. literalinclude:: plot_regression.py
     :lines: 8-
 
-**Total running time of the example:**  0.15 seconds
-( 0 minutes  0.15 seconds)
+**Total running time of the example:**  0.14 seconds
+( 0 minutes  0.14 seconds)
     

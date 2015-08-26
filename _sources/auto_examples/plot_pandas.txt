@@ -30,14 +30,6 @@ See http://pandas.pydata.org/pandas-docs/stable/visualization.html
 
       .. image:: images/plot_pandas_3.png
 
-    *
-
-      .. image:: images/plot_pandas_4.png
-
-    *
-
-      .. image:: images/plot_pandas_5.png
-
 
 
 
@@ -46,6 +38,6 @@ See http://pandas.pydata.org/pandas-docs/stable/visualization.html
 .. literalinclude:: plot_pandas.py
     :lines: 12-
 
-**Total running time of the example:**  0.91 seconds
-( 0 minutes  0.91 seconds)
+**Total running time of the example:**  0.89 seconds
+( 0 minutes  0.89 seconds)
     
