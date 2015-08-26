@@ -31,6 +31,7 @@ help:
 
 clean:
 	-rm -rf _build/*
+	-rm -rf auto_examples/*
 
 test:
 	nosetests -v --with-doctest --doctest-tests --doctest-extension=rst $(shell find . -name \*.rst -print)
