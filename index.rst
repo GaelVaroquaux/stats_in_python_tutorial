@@ -390,13 +390,13 @@ Linear models, multiple factors, and analysis of variance
 "formulas" to speficy statistical models in Python
 --------------------------------------------------
 
+A simple linear regression
+...........................
+
 .. image:: auto_examples/images/plot_regression_1.png
    :target: auto_examples/plot_regression.html
    :scale: 60
    :align: right
-
-A simple linear regression
-...........................
 
 Given two set of observations, `x` and `y`, we want to test the
 hypothesis that `y` is a linear function of `x`. In other terms:
