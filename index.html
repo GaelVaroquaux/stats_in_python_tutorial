@@ -318,7 +318,14 @@ operations on the resulting group of dataframes:</p>
 <div class="newline"></div><span class="go">Male         21.35  115.0  115.25  111.60  166.444444  71.431579   954855.4</span>
 <div class="newline"></div></pre></div>
 </div>
-<p>(use tab-completion on <cite>groupby_gender</cite> to find more).</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Use tab-completion on <cite>groupby_gender</cite> to find more.  Other common
+grouping functions are median, count (useful for checking to see the
+amount of missing values in different subsets) or sum.  Groupby
+evaluation is lazy, no work is done until an aggregation function is
+applied.</p>
+</div>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -708,11 +715,30 @@ write a <strong>vector of &#8216;contrast&#8217;</strong> on the parameters esti
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
+<hr class="docutils" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <div class="green topic">
 <p class="topic-title first"><strong>Exercice</strong></p>
 <p>Going back to the brain size + IQ data, test if the VIQ of male and
 female are different after removing the effect of brain size, height
 and weight.</p>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="topic">
+<p class="topic-title first"><strong>Take home messages so far</strong></p>
+<ul class="simple">
+<li>Hypothesis testing and p-value give you the <strong>significance</strong> of an
+effect / difference</li>
+<li><strong>Formulas</strong> (with categorical variables) enable you to express rich
+links in your data</li>
+<li><strong>Conditionning</strong> (adding factors that can explain all or part of
+the variation) is important modeling aspect that changes the
+interpretation.</li>
+</ul>
 </div>
 <div class="line-block">
 <div class="line"><br /></div>
