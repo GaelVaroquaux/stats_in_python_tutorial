@@ -680,10 +680,43 @@ More visualization: seaborn for statistical exploration
 `Seaborn <http://stanford.edu/~mwaskom/software/seaborn/>`_ combines
 simple statistical fits with plotting on pandas dataframes.
 
+Let us consider a data giving wages and many other personal information
+on 500 individuals (`Berndt, ER. The Practice of Econometrics. 1991. NY:
+Addison-Wesley <http://lib.stat.cmu.edu/datasets/CPS_85_Wages>`_).
+
+::
+
+   >>> print data  # doctest: +SKIP
+        EDUCATION  SOUTH  SEX  EXPERIENCE  UNION      WAGE  AGE  RACE  \
+   0            8      0    1          21      0  0.707570   35     2   
+   1            9      0    1          42      0  0.694605   57     3   
+   2           12      0    0           1      0  0.824126   19     3   
+   3           12      0    0           4      0  0.602060   22     3 
+   ...
+
+We can easily have an intuition on the interactions between continuous
+variables using seaborn.pairplot to display a scatter matrix::
+
+   >>> import seaborn
+   >>> seaborn.pairplot(data, vars=['WAGE', 'AGE', 'EDUCATION'],
+   ...                  kind='reg')  # doctest: +SKIP
+
+
 .. image:: auto_examples/images/plot_wage_data_1.png
    :target: auto_examples/plot_wage_data.html
    :align: center
-   :scale: 80
+   :scale: 60
+
+Categorical variables can be plotted as the hue::
+
+   >>> seaborn.pairplot(data, vars=['WAGE', 'AGE', 'EDUCATION'],
+   ...                  kind='reg', hue='SEX')  # doctest: +SKIP
+
+
+.. image:: auto_examples/images/plot_wage_data_2.png
+   :target: auto_examples/plot_wage_data.html
+   :align: center
+   :scale: 60
 
 |
 
