@@ -26,7 +26,7 @@
     <script type="text/javascript" src="../../_static/copybutton.js"></script>
     <link rel="top" title="Statistics in Python" href="../../index.html" />
     <link rel="up" title="2. Examples" href="../index.html" />
-    <link rel="prev" title="2.1.7. Air fares before and after 9/11" href="../plot_airfare.html" /> 
+    <link rel="prev" title="2.1.8. Air fares before and after 9/11" href="../plot_airfare.html" /> 
   </head>
   <body>
    <!-- Use the header to add javascript -->
@@ -94,7 +94,7 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../plot_airfare.html" title="2.1.7. Air fares before and after 9/11"
+          <a href="../plot_airfare.html" title="2.1.8. Air fares before and after 9/11"
              accesskey="P">previous</a></li>
         <li><a href="../../index.html">Statistics in Python</a> &raquo;</li>
           <li><a href="../index.html" accesskey="U">2. Examples</a> &raquo;</li>
@@ -124,6 +124,8 @@
 <p>Going back to the brain size + IQ data, test if the VIQ of male and
 female are different after removing the effect of brain size, height and
 weight.</p>
+<p>Notice that here &#8216;Gender&#8217; is a categorical value. As it is a non-float
+data type, statsmodels is able to automatically infer this.</p>
 <img alt="../../_images/plot_brain_size_1.png" class="align-center" src="../../_images/plot_brain_size_1.png" />
 <p><strong>Script output</strong>:</p>
 <div class="max-height highlight-python"><div class="highlight"><pre>  OLS Regression Results
@@ -131,8 +133,8 @@ weight.</p>
 <div class="newline"></div>Dep. Variable:                    VIQ   R-squared:                       0.246
 <div class="newline"></div>Model:                            OLS   Adj. R-squared:                  0.181
 <div class="newline"></div>Method:                 Least Squares   F-statistic:                     3.809
-<div class="newline"></div>Date:                Tue, 25 Aug 2015   Prob (F-statistic):             0.0184
-<div class="newline"></div>Time:                        13:39:44   Log-Likelihood:                -172.34
+<div class="newline"></div>Date:                Wed, 26 Aug 2015   Prob (F-statistic):             0.0184
+<div class="newline"></div>Time:                        10:02:00   Log-Likelihood:                -172.34
 <div class="newline"></div>No. Observations:                  39   AIC:                             352.7
 <div class="newline"></div>Df Residuals:                      35   BIC:                             359.3
 <div class="newline"></div>Df Model:                           3
@@ -198,8 +200,8 @@ weight.</p>
 <div class="newline"></div><a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.show"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 <div class="newline"></div></pre></div>
 </div>
-<p><strong>Total running time of the example:</strong>  0.45 seconds
-( 0 minutes  0.45 seconds)</p>
+<p><strong>Total running time of the example:</strong>  0.42 seconds
+( 0 minutes  0.42 seconds)</p>
 <p><div style="clear: both"></div></p>
 </div>
 
@@ -212,7 +214,7 @@ weight.</p>
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../plot_airfare.html" title="2.1.7. Air fares before and after 9/11"
+          <a href="../plot_airfare.html" title="2.1.8. Air fares before and after 9/11"
              >previous</a></li>
         <li><a href="../../index.html">Statistics in Python</a> &raquo;</li>
           <li><a href="../index.html" >2. Examples</a> &raquo;</li>

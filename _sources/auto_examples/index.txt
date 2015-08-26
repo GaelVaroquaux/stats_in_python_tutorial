@@ -129,6 +129,30 @@ Code examples for the statistics in Python tutorial.
 .. raw:: html
 
 
+    <div class="thumbnailContainer" tooltip="Wages depend mostly on education. Here we investigate how this dependence is related to gender:...">
+
+.. figure:: ./images/thumb/plot_wage_education_gender.png
+   :target: ./plot_wage_education_gender.html
+
+   :ref:`example_plot_wage_education_gender.py`
+
+
+.. raw:: html
+
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   ./plot_wage_education_gender
+
+
+
+.. raw:: html
+
+
     <div class="thumbnailContainer" tooltip="This example uses seaborn to quickly plot various factors relating wages, experience and educti...">
 
 .. figure:: ./images/thumb/plot_wage_data.png

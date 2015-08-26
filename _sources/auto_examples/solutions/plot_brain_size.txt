@@ -10,6 +10,10 @@ Going back to the brain size + IQ data, test if the VIQ of male and
 female are different after removing the effect of brain size, height and
 weight.
 
+Notice that here 'Gender' is a categorical value. As it is a non-float
+data type, statsmodels is able to automatically infer this.
+
+
 
 
 .. image:: images/plot_brain_size_1.png
@@ -27,8 +31,8 @@ weight.
   Dep. Variable:                    VIQ   R-squared:                       0.246
   Model:                            OLS   Adj. R-squared:                  0.181
   Method:                 Least Squares   F-statistic:                     3.809
-  Date:                Tue, 25 Aug 2015   Prob (F-statistic):             0.0184
-  Time:                        13:39:44   Log-Likelihood:                -172.34
+  Date:                Wed, 26 Aug 2015   Prob (F-statistic):             0.0184
+  Time:                        10:02:00   Log-Likelihood:                -172.34
   No. Observations:                  39   AIC:                             352.7
   Df Residuals:                      35   BIC:                             359.3
   Df Model:                           3                                         
@@ -56,8 +60,8 @@ weight.
 **Python source code:** :download:`plot_brain_size.py <plot_brain_size.py>`
 
 .. literalinclude:: plot_brain_size.py
-    :lines: 9-
+    :lines: 13-
 
-**Total running time of the example:**  0.45 seconds
-( 0 minutes  0.45 seconds)
+**Total running time of the example:**  0.42 seconds
+( 0 minutes  0.42 seconds)
     

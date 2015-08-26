@@ -5,6 +5,10 @@ Relating Gender and IQ
 Going back to the brain size + IQ data, test if the VIQ of male and
 female are different after removing the effect of brain size, height and
 weight.
+
+Notice that here 'Gender' is a categorical value. As it is a non-float
+data type, statsmodels is able to automatically infer this.
+
 """
 import pandas
 from statsmodels.formula.api import ols
