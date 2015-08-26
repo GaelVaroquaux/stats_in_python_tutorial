@@ -21,6 +21,19 @@
 
 **Materials for the "Statistics in Python" euroscipy 2015 tutorial.**
 
+.. topic:: **Requirements**
+
+   * Standard scientific Python environment (numpy, scipy, matplotlib)
+
+   * `Pandas <http://pandas.pydata.org/>`_
+
+   * `Statsmodels <http://statsmodels.sourceforge.net/>`_
+
+   * `Seaborn <http://stanford.edu/~mwaskom/software/seaborn/>`_
+
+   To install Python and these dependencies, we recommend that you
+   download `Anaconda Python <http://continuum.io/downloads>`_, or use
+   Ubuntu's package manager.
 
 |
 
@@ -35,10 +48,6 @@
     e.g. image analysis, text mining, or control of a physical
     experiment, the richness of Python is an invaluable asset.
 
-.. note:: 
-
-   To install Python, we recommend that you download `Anaconda Python
-   <http://continuum.io/downloads>`_
 
 _____
 
@@ -379,7 +388,9 @@ Linear models, multiple factors, and analysis of variance
    :scale: 60
    :align: right
 
-**A simple linear regression**:
+A simple linear regression
+...........................
+
 Given two set of observations, `x` and `y`, we want to test the
 hypothesis that `y` is a linear function of `x`. In other terms:
 
@@ -413,10 +424,13 @@ First, we generate simulated data according to the model::
 
 |
 
-Specify an OLS model and fit it::
+Then we specify an OLS model and fit it::
 
     >>> from statsmodels.formula.api import ols
     >>> model = ols("y ~ x", data).fit()
+
+We can inspect the various statistics derived from the fit::
+
     >>> print(model.summary())  # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE 
                                 OLS Regression Results                            
     ==============================================================================
@@ -446,9 +460,98 @@ Specify an OLS model and fit it::
    Retrieve the estimated parameters from the model above. **Hint**:
    use tab-completion to find the relevent attribute.
 
+|
 
-Multiple Regression
---------------------
+Categorical variables
+.......................
+
+Let us go back the data on brain size::
+
+    >>> data = pandas.read_csv('examples/brain_size.csv', sep=';', na_values=".")
+
+We can write a comparison between IQ of male and female using a linear
+model::
+     
+     >>> model = ols("VIQ ~ Gender + 1", data).fit()
+     >>> print(model.summary())  # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE +REPORT_UDIFF
+                                 OLS Regression Results                            
+     ==============================================================================
+     Dep. Variable:                    VIQ   R-squared:                       0.015
+     Model:                            OLS   Adj. R-squared:                 -0.010
+     Method:                 Least Squares   F-statistic:                    0.5969
+     Date:                ...                Prob (F-statistic):              0.445
+     Time:                        ...        Log-Likelihood:                -182.42
+     No. Observations:                  40   AIC:                             368.8
+     Df Residuals:                      38   BIC:                             372.2
+     Df Model:                           1                                      
+     =======================================================================...
+                       coef    std err        t      P>|t|      [95.0% Conf. Int.]
+     -----------------------------------------------------------------------...
+     Intercept        109.4500     5.308     20.619     0.000      98.704   120.196
+     Gender[T.Male]     5.8000     7.507      0.773     0.445      -9.397    20.997
+     =======================================================================...
+     Omnibus:                       26.188   Durbin-Watson:                   1.709
+     Prob(Omnibus):                  0.000   Jarque-Bera (JB):                3.703
+     Skew:                           0.010   Prob(JB):                        0.157
+     Kurtosis:                       1.510   Cond. No.                         2.62
+     =======================================================================...
+
+.. note:: Tips on specifying model
+ 
+   **Forcing categorical** the 'Gender' is automatical detected as a
+   categorical variable, and thus each of its different values are
+   treated as different entities.
+
+   An integer column can be forced to be treated as categorical using::
+
+    >>> model = ols('VIQ ~ C(Gender)', data).fit()
+
+   **Intercept** We can remove the intercept using `- 1` in the formula,
+   or force the use of an intercept using `+ 1`.
+
+|
+
+.. topic:: **Link to t-tests between different FSIQ and PIQ**
+
+    To compare different type of IQ, we need to create a "long-form"
+    table, listing IQs, where the type of IQ is indicated by a
+    categorical variable::
+
+     >>> data_fisq = pandas.DataFrame({'iq': data['FSIQ'], 'type': 'fsiq'})
+     >>> data_piq = pandas.DataFrame({'iq': data['PIQ'], 'type': 'piq'})
+     >>> data_long = pandas.concat((data_fisq, data_piq))
+     >>> print(data_long)  # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE 
+              iq  type
+         0   133  fsiq
+         1   140  fsiq
+         2   139  fsiq
+         ...
+         31  137   piq
+         32  110   piq
+         33   86   piq
+         ...
+    
+     >>> model = ols("iq ~ type", data_long).fit()
+     >>> print(model.summary())  # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE +REPORT_UDIFF
+                                 OLS Regression Results  
+     ...
+     =======================================================================...
+                      coef    std err          t      P>|t|      [95.0% Conf. Int.]
+     -----------------------------------------------------------------------...
+     Intercept     113.4500      3.683     30.807      0.000       106.119   120.781
+     type[T.piq]    -2.4250      5.208     -0.466      0.643       -12.793     7.943
+     ...
+
+    We can see that we retrieve the same values for t-test and
+    corresponding p-values for the effect of the type of iq than the
+    previous t-test::
+
+     >>> stats.ttest_ind(data['FSIQ'], data['PIQ'])   # doctest: +ELLIPSIS
+     (array(0.46563759638...), 0.64277250...)
+
+
+Multiple Regression: including multiple factors
+-------------------------------------------------
 
 .. image:: auto_examples/images/plot_regression_3d_1.png
    :target: auto_examples/plot_regression_3d.html
@@ -505,19 +608,9 @@ Such a model can be seen in 3D as fitting a plane to a cloud of (`x`,
     Kurtosis:                       3.659   Cond. No.                         54.0
     ==============================================================================
 
-.. topic:: **Categorical variables**
-
-   In the model that we have specified above, the 'name' of the Iris is a
-   categorical variable, and thus each of its different values are
-   treated as different entities.
-
-   An integer columns can be forced to be treated as categorical using::
-
-    >>> model = ols('sepal_width ~ C(name) + petal_length', data).fit()
-
 |
 
-Post-hoc analysis of variance: ANOVA and contrast vectors
+Post-hoc hypothesis testing: analysis of variance (ANOVA)
 ----------------------------------------------------------
 
 In the above iris example, we wish to test if the petal length is
@@ -525,7 +618,7 @@ different between versicolor and virginica, after removing the effect of
 sepal width. This can be formulated as testing the difference between the
 coefficient associated to versicolor and virginica in the linear model
 estimated above (it is an Analysis of Variance, ANOVA). For this, we
-write a vector of 'contrast' on the parameters estimated: we want to test
+write a **vector of 'contrast'** on the parameters estimated: we want to test
 "name[T.versicolor] - name[T.virginica]", with an 'F-test'::
 
     >>> print(model.f_test([0, 1, -1, 0]))
