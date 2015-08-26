@@ -528,6 +528,16 @@ model::
    **Intercept** We can remove the intercept using `- 1` in the formula,
    or force the use of an intercept using `+ 1`.
 
+   .. tip::
+
+     By default, statsmodel treats a categorical variable with K possible
+     values as K-1 'dummy' boolean variables (the last level being
+     absorbed into the intercept term).  This is almost always a good
+     default choice - however, it is possible to specify different
+     encodings for categorical variables
+     (http://statsmodels.sourceforge.net/devel/contrasts.html).
+
+
 |
 
 .. topic:: **Link to t-tests between different FSIQ and PIQ**
@@ -674,6 +684,8 @@ simple statistical fits with plotting on pandas dataframes.
    :target: auto_examples/plot_wage_data.html
    :align: center
    :scale: 80
+
+|
 
 .. topic:: **Take home messages**
 
