@@ -371,14 +371,15 @@ this assumption::
 Linear models, multiple factors, and analysis of variance
 ==========================================================
 
-A simple linear regression
----------------------------
+"formulas" to speficy statistical models in Python
+--------------------------------------------------
 
 .. image:: auto_examples/images/plot_regression_1.png
    :target: auto_examples/plot_regression.html
    :scale: 60
    :align: right
 
+**A simple linear regression**:
 Given two set of observations, `x` and `y`, we want to test the
 hypothesis that `y` is a linear function of `x`. In other terms:
 
@@ -404,9 +405,16 @@ First, we generate simulated data according to the model::
     >>> # Create a data frame containing all the relevant variables
     >>> data = pandas.DataFrame({'x': x, 'y': y})
 
+
+.. sidebar:: **"formulas" for statistics in Python**
+
+   `See the statsmodels documentation
+   <http://statsmodels.sourceforge.net/stable/example_formulas.html>`_
+
+|
+
 Specify an OLS model and fit it::
 
-    >>> # The following will work only with a recent version of statsmodels
     >>> from statsmodels.formula.api import ols
     >>> model = ols("y ~ x", data).fit()
     >>> print(model.summary())  # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE 
@@ -496,6 +504,18 @@ Such a model can be seen in 3D as fitting a plane to a cloud of (`x`,
     Skew:                          -0.082   Prob(JB):                        0.236
     Kurtosis:                       3.659   Cond. No.                         54.0
     ==============================================================================
+
+.. topic:: **Categorical variables**
+
+   In the model that we have specified above, the 'name' of the Iris is a
+   categorical variable, and thus each of its different values are
+   treated as different entities.
+
+   An integer columns can be forced to be treated as categorical using::
+
+    >>> model = ols('sepal_width ~ C(name) + petal_length', data).fit()
+
+|
 
 Post-hoc analysis of variance: ANOVA and contrast vectors
 ----------------------------------------------------------
