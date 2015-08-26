@@ -39,6 +39,10 @@ plt.rcdefaults().
 
       .. image:: images/plot_wage_data_4.png
 
+    *
+
+      .. image:: images/plot_wage_data_5.png
+
 
 
 
