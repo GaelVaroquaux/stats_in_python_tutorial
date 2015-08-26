@@ -742,15 +742,17 @@ Do wages increase more with education for males than females?
     ...                 data=data).fit()    # doctest: +SKIP
     >>> print(result.summary())    # doctest: +SKIP
     ...
-                               coef    std err          t      P>|t|      [95.0% Conf. Int.]
-    --------------------------------------------------------------------------------------------
-    Intercept                    0.2998      0.072      4.173      0.000         0.159     0.441
-    gender[T.male]               0.2750      0.093      2.972      0.003         0.093     0.457
-    education                    0.0415      0.005      7.647      0.000         0.031     0.052
-    education:gender[T.male]    -0.0134      0.007     -1.919      0.056        -0.027     0.000
+                                coef    std err    t     P>|t|  [95.0% Conf. Int.]
+    ------------------------------------------------------------------------------
+    Intercept                   0.2998   0.072    4.173   0.000     0.159   0.441
+    gender[T.male]              0.2750   0.093    2.972   0.003     0.093   0.457
+    education                   0.0415   0.005    7.647   0.000     0.031   0.052
+    education:gender[T.male]   -0.0134   0.007   -1.919   0.056    -0.027   0.000
     ==============================================================================
     ...
-    
+
+Can we conclude that education benefits males more than females?
+
 |
 
 .. topic:: **Take home messages**
