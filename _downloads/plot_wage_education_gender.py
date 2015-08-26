@@ -50,6 +50,7 @@ import seaborn
 # Plot 2 linear fits for male and female.
 seaborn.lmplot(y='wage', x='education', hue='gender', data=data)
 
+
 ##############################################################################
 # statistical analysis
 import statsmodels.formula.api as sm
@@ -67,6 +68,11 @@ print(result.summary())
 result = sm.ols(formula='wage ~ 1 + education + gender + education * gender',
                 data=data).fit()
 print(result.summary())
+
+
+# Looking at the p-value of the interaction of gender and education, the
+# data does not support the hypothesis that education benefits males
+# more than female (p-value > 0.05).
 
 
 import matplotlib.pyplot as plt

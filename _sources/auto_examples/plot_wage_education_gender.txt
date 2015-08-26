@@ -34,7 +34,7 @@ statsmodels' formulas
   Model:                            OLS   Adj. R-squared:                  0.190
   Method:                 Least Squares   F-statistic:                     63.42
   Date:                Wed, 26 Aug 2015   Prob (F-statistic):           2.01e-25
-  Time:                        10:15:04   Log-Likelihood:                 86.654
+  Time:                        10:27:23   Log-Likelihood:                 86.654
   No. Observations:                 534   AIC:                            -167.3
   Df Residuals:                     531   BIC:                            -154.5
   Df Model:                           2                                         
@@ -56,7 +56,7 @@ statsmodels' formulas
   Model:                            OLS   Adj. R-squared:                  0.194
   Method:                 Least Squares   F-statistic:                     43.72
   Date:                Wed, 26 Aug 2015   Prob (F-statistic):           2.94e-25
-  Time:                        10:15:04   Log-Likelihood:                 88.503
+  Time:                        10:27:23   Log-Likelihood:                 88.503
   No. Observations:                 534   AIC:                            -169.0
   Df Residuals:                     530   BIC:                            -151.9
   Df Model:                           3                                         
@@ -81,6 +81,6 @@ statsmodels' formulas
 .. literalinclude:: plot_wage_education_gender.py
     :lines: 15-
 
-**Total running time of the example:**  0.31 seconds
-( 0 minutes  0.31 seconds)
+**Total running time of the example:**  2.45 seconds
+( 0 minutes  2.45 seconds)
     

@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>2.1.5. Test for an education/gender interaction in wages &mdash; Statistics in Python</title>
+    <title>2.1.6. Test for an education/gender interaction in wages &mdash; Statistics in Python</title>
     
     <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -26,8 +26,8 @@
     <script type="text/javascript" src="../_static/copybutton.js"></script>
     <link rel="top" title="Statistics in Python" href="../index.html" />
     <link rel="up" title="2. Examples" href="index.html" />
-    <link rel="next" title="2.1.6. Visualizing factors influencing wages" href="plot_wage_data.html" />
-    <link rel="prev" title="2.1.4. Simple Regression" href="plot_regression.html" /> 
+    <link rel="next" title="2.1.7. Multiple Regression" href="plot_regression_3d.html" />
+    <link rel="prev" title="2.1.5. Visualizing factors influencing wages" href="plot_wage_data.html" /> 
   </head>
   <body>
    <!-- Use the header to add javascript -->
@@ -95,10 +95,10 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="plot_wage_data.html" title="2.1.6. Visualizing factors influencing wages"
+          <a href="plot_regression_3d.html" title="2.1.7. Multiple Regression"
              accesskey="N">next</a></li>
         <li class="right" >
-          <a href="plot_regression.html" title="2.1.4. Simple Regression"
+          <a href="plot_wage_data.html" title="2.1.5. Visualizing factors influencing wages"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">Statistics in Python</a> &raquo;</li>
           <li><a href="index.html" accesskey="U">2. Examples</a> &raquo;</li>
@@ -124,7 +124,7 @@
           <div class="body">
             
   <div class="section" id="test-for-an-education-gender-interaction-in-wages">
-<span id="example-plot-wage-education-gender-py"></span><h1>2.1.5. Test for an education/gender interaction in wages<a class="headerlink" href="#test-for-an-education-gender-interaction-in-wages" title="Permalink to this headline">¶</a></h1>
+<span id="example-plot-wage-education-gender-py"></span><h1>2.1.6. Test for an education/gender interaction in wages<a class="headerlink" href="#test-for-an-education-gender-interaction-in-wages" title="Permalink to this headline">¶</a></h1>
 <p>Wages depend mostly on education. Here we investigate how this dependence
 is related to gender: not only does gender create an offset in wages, it
 also seems that wages increase more with education for males than
@@ -140,7 +140,7 @@ statsmodels&#8217; formulas
 <div class="newline"></div>Model:                            OLS   Adj. R-squared:                  0.190
 <div class="newline"></div>Method:                 Least Squares   F-statistic:                     63.42
 <div class="newline"></div>Date:                Wed, 26 Aug 2015   Prob (F-statistic):           2.01e-25
-<div class="newline"></div>Time:                        10:15:04   Log-Likelihood:                 86.654
+<div class="newline"></div>Time:                        10:27:23   Log-Likelihood:                 86.654
 <div class="newline"></div>No. Observations:                 534   AIC:                            -167.3
 <div class="newline"></div>Df Residuals:                     531   BIC:                            -154.5
 <div class="newline"></div>Df Model:                           2
@@ -162,7 +162,7 @@ statsmodels&#8217; formulas
 <div class="newline"></div>Model:                            OLS   Adj. R-squared:                  0.194
 <div class="newline"></div>Method:                 Least Squares   F-statistic:                     43.72
 <div class="newline"></div>Date:                Wed, 26 Aug 2015   Prob (F-statistic):           2.94e-25
-<div class="newline"></div>Time:                        10:15:04   Log-Likelihood:                 88.503
+<div class="newline"></div>Time:                        10:27:23   Log-Likelihood:                 88.503
 <div class="newline"></div>No. Observations:                 534   AIC:                            -169.0
 <div class="newline"></div>Df Residuals:                     530   BIC:                            -151.9
 <div class="newline"></div>Df Model:                           3
@@ -219,6 +219,7 @@ statsmodels&#8217; formulas
 <div class="newline"></div><span class="c"># Plot 2 linear fits for male and female.</span>
 <div class="newline"></div><span class="n">seaborn</span><span class="o">.</span><span class="n">lmplot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s">&#39;wage&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s">&#39;education&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s">&#39;gender&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 <div class="newline"></div>
+<div class="newline"></div>
 <div class="newline"></div><span class="c">##############################################################################</span>
 <div class="newline"></div><span class="c"># statistical analysis</span>
 <div class="newline"></div><span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="kn">as</span> <span class="nn">sm</span>
@@ -238,12 +239,17 @@ statsmodels&#8217; formulas
 <div class="newline"></div><span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
 <div class="newline"></div>
 <div class="newline"></div>
+<div class="newline"></div><span class="c"># Looking at the p-value of the interaction of gender and education, the</span>
+<div class="newline"></div><span class="c"># data does not support the hypothesis that education benefits males</span>
+<div class="newline"></div><span class="c"># more than female (p-value &gt; 0.05).</span>
+<div class="newline"></div>
+<div class="newline"></div>
 <div class="newline"></div><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 <div class="newline"></div><a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.show"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 <div class="newline"></div></pre></div>
 </div>
-<p><strong>Total running time of the example:</strong>  0.31 seconds
-( 0 minutes  0.31 seconds)</p>
+<p><strong>Total running time of the example:</strong>  2.45 seconds
+( 0 minutes  2.45 seconds)</p>
 <p><div style="clear: both"></div></p>
 </div>
 
@@ -256,10 +262,10 @@ statsmodels&#8217; formulas
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="plot_wage_data.html" title="2.1.6. Visualizing factors influencing wages"
+          <a href="plot_regression_3d.html" title="2.1.7. Multiple Regression"
              >next</a></li>
         <li class="right" >
-          <a href="plot_regression.html" title="2.1.4. Simple Regression"
+          <a href="plot_wage_data.html" title="2.1.5. Visualizing factors influencing wages"
              >previous</a> |</li>
         <li><a href="../index.html">Statistics in Python</a> &raquo;</li>
           <li><a href="index.html" >2. Examples</a> &raquo;</li>
