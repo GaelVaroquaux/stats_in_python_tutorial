@@ -75,5 +75,6 @@ seaborn.pairplot(data, vars=['WAGE', 'AGE', 'EDUCATION'],
                       kind='reg', hue='UNION')
 plt.suptitle('Effect of union: 1=Union member, 0=Not union member')
 
+
 plt.show()
 
