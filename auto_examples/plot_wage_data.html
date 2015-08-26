@@ -183,6 +183,10 @@ plt.rcdefaults().</p>
 <div class="newline"></div>                       <span class="n">header</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
 <div class="newline"></div><span class="n">data</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">short_names</span>
 <div class="newline"></div>
+<div class="newline"></div><span class="c"># Log-transform the wages, because they typically are increased with</span>
+<div class="newline"></div><span class="c"># multiplicative factors</span>
+<div class="newline"></div><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<div class="newline"></div><span class="n">data</span><span class="p">[</span><span class="s">&#39;WAGE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">&#39;WAGE&#39;</span><span class="p">])</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="c">##############################################################################</span>
 <div class="newline"></div><span class="c"># Plot scatter matrices highlighting different aspects</span>
@@ -203,17 +207,11 @@ plt.rcdefaults().</p>
 <div class="newline"></div>                      <span class="n">kind</span><span class="o">=</span><span class="s">&#39;reg&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s">&#39;UNION&#39;</span><span class="p">)</span>
 <div class="newline"></div><a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.suptitle"><span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span></a><span class="p">(</span><span class="s">&#39;Effect of union: 1=Union member, 0=Not union member&#39;</span><span class="p">)</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="n">seaborn</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">vars</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;WAGE&#39;</span><span class="p">,</span> <span class="s">&#39;AGE&#39;</span><span class="p">,</span> <span class="s">&#39;EDUCATION&#39;</span><span class="p">],</span>
-<div class="newline"></div>                      <span class="n">kind</span><span class="o">=</span><span class="s">&#39;reg&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s">&#39;OCCUPATION&#39;</span><span class="p">)</span>
-<div class="newline"></div><a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.suptitle"><span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span></a><span class="p">(</span><span class="s">&#39;Effect of occupation: 1=Management, 2=Sales, 3=Clerical, &#39;</span>
-<div class="newline"></div>             <span class="s">&#39;4=Service, 5=Professional, 6=Other&#39;</span><span class="p">)</span>
-<div class="newline"></div>
-<div class="newline"></div><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 <div class="newline"></div><a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.show"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 <div class="newline"></div></pre></div>
 </div>
-<p><strong>Total running time of the example:</strong>  14.30 seconds
-( 0 minutes  14.30 seconds)</p>
+<p><strong>Total running time of the example:</strong>  10.18 seconds
+( 0 minutes  10.18 seconds)</p>
 <p><div style="clear: both"></div></p>
 </div>
 

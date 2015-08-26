@@ -51,6 +51,6 @@ plt.rcdefaults().
 .. literalinclude:: plot_wage_data.py
     :lines: 17-
 
-**Total running time of the example:**  14.30 seconds
-( 0 minutes  14.30 seconds)
+**Total running time of the example:**  10.18 seconds
+( 0 minutes  10.18 seconds)
     

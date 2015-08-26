@@ -129,6 +129,10 @@
 <p>What is interesting here is that we may want to study fares as a function
 of the year, paired accordingly to the trips, or forgetting the year,
 only as a function of the trip endpoints.</p>
+<p>Using statsmodels&#8217; linear models, we find that both with an OLS (ordinary
+least square) and a robust fit, the intercept and the slope are
+significantly non-zero: the air fares have decreased between 2000 and
+2001, and their dependence on distance travelled has also decreased</p>
 <ul class="horizontal">
 <li><img alt="../_images/plot_airfare_1.png" class="first" src="../_images/plot_airfare_1.png" />
 </li>
@@ -138,7 +142,86 @@ only as a function of the trip endpoints.</p>
 </li>
 <li><img alt="../_images/plot_airfare_4.png" class="first" src="../_images/plot_airfare_4.png" />
 </li>
+<li><img alt="../_images/plot_airfare_5.png" class="first" src="../_images/plot_airfare_5.png" />
+</li>
+<li><img alt="../_images/plot_airfare_6.png" class="first" src="../_images/plot_airfare_6.png" />
+</li>
 </ul>
+<p><strong>Script output</strong>:</p>
+<div class="max-height highlight-python"><div class="highlight"><pre>  OLS Regression Results
+<div class="newline"></div>==============================================================================
+<div class="newline"></div>Dep. Variable:                   fare   R-squared:                       0.275
+<div class="newline"></div>Model:                            OLS   Adj. R-squared:                  0.275
+<div class="newline"></div>Method:                 Least Squares   F-statistic:                     1585.
+<div class="newline"></div>Date:                Wed, 26 Aug 2015   Prob (F-statistic):               0.00
+<div class="newline"></div>Time:                        07:19:30   Log-Likelihood:                -45532.
+<div class="newline"></div>No. Observations:                8352   AIC:                         9.107e+04
+<div class="newline"></div>Df Residuals:                    8349   BIC:                         9.109e+04
+<div class="newline"></div>Df Model:                           2
+<div class="newline"></div>=================================================================================
+<div class="newline"></div>                    coef    std err          t      P&gt;|t|      [95.0% Conf. Int.]
+<div class="newline"></div>---------------------------------------------------------------------------------
+<div class="newline"></div>Intercept       211.2428      2.466     85.669      0.000       206.409   216.076
+<div class="newline"></div>dist              0.0484      0.001     48.149      0.000         0.046     0.050
+<div class="newline"></div>nb_passengers   -32.8925      1.127    -29.191      0.000       -35.101   -30.684
+<div class="newline"></div>==============================================================================
+<div class="newline"></div>Omnibus:                      604.051   Durbin-Watson:                   1.446
+<div class="newline"></div>Prob(Omnibus):                  0.000   Jarque-Bera (JB):              740.733
+<div class="newline"></div>Skew:                           0.710   Prob(JB):                    1.42e-161
+<div class="newline"></div>Kurtosis:                       3.338   Cond. No.                     5.23e+03
+<div class="newline"></div>==============================================================================
+<div class="newline"></div>
+<div class="newline"></div>Warnings:
+<div class="newline"></div>[1] The condition number is large, 5.23e+03. This might indicate that there are
+<div class="newline"></div>strong multicollinearity or other numerical problems.
+<div class="newline"></div>                    Robust linear Model Regression Results
+<div class="newline"></div>==============================================================================
+<div class="newline"></div>Dep. Variable:                   fare   No. Observations:                 8352
+<div class="newline"></div>Model:                            RLM   Df Residuals:                     8349
+<div class="newline"></div>Method:                          IRLS   Df Model:                            2
+<div class="newline"></div>Norm:                          HuberT
+<div class="newline"></div>Scale Est.:                       mad
+<div class="newline"></div>Cov Type:                          H1
+<div class="newline"></div>Date:                Wed, 26 Aug 2015
+<div class="newline"></div>Time:                        07:19:30
+<div class="newline"></div>No. Iterations:                    12
+<div class="newline"></div>=================================================================================
+<div class="newline"></div>                    coef    std err          z      P&gt;|z|      [95.0% Conf. Int.]
+<div class="newline"></div>---------------------------------------------------------------------------------
+<div class="newline"></div>Intercept       215.0848      2.448     87.856      0.000       210.287   219.883
+<div class="newline"></div>dist              0.0460      0.001     46.166      0.000         0.044     0.048
+<div class="newline"></div>nb_passengers   -35.2686      1.119    -31.526      0.000       -37.461   -33.076
+<div class="newline"></div>=================================================================================
+<div class="newline"></div>
+<div class="newline"></div>If the model instance has been used for another fit with different fit
+<div class="newline"></div>parameters, then the fit options might not be the correct ones anymore .
+<div class="newline"></div>                            OLS Regression Results
+<div class="newline"></div>==============================================================================
+<div class="newline"></div>Dep. Variable:              fare_2001   R-squared:                       0.159
+<div class="newline"></div>Model:                            OLS   Adj. R-squared:                  0.159
+<div class="newline"></div>Method:                 Least Squares   F-statistic:                     791.7
+<div class="newline"></div>Date:                Wed, 26 Aug 2015   Prob (F-statistic):          1.20e-159
+<div class="newline"></div>Time:                        07:19:30   Log-Likelihood:                -22640.
+<div class="newline"></div>No. Observations:                4176   AIC:                         4.528e+04
+<div class="newline"></div>Df Residuals:                    4174   BIC:                         4.530e+04
+<div class="newline"></div>Df Model:                           1
+<div class="newline"></div>==============================================================================
+<div class="newline"></div>                 coef    std err          t      P&gt;|t|      [95.0% Conf. Int.]
+<div class="newline"></div>------------------------------------------------------------------------------
+<div class="newline"></div>Intercept    148.0279      1.673     88.480      0.000       144.748   151.308
+<div class="newline"></div>dist           0.0388      0.001     28.136      0.000         0.036     0.041
+<div class="newline"></div>==============================================================================
+<div class="newline"></div>Omnibus:                      136.558   Durbin-Watson:                   1.544
+<div class="newline"></div>Prob(Omnibus):                  0.000   Jarque-Bera (JB):              149.624
+<div class="newline"></div>Skew:                           0.462   Prob(JB):                     3.23e-33
+<div class="newline"></div>Kurtosis:                       2.920   Cond. No.                     2.40e+03
+<div class="newline"></div>==============================================================================
+<div class="newline"></div>
+<div class="newline"></div>Warnings:
+<div class="newline"></div>[1] The condition number is large, 2.4e+03. This might indicate that there are
+<div class="newline"></div>strong multicollinearity or other numerical problems.
+<div class="newline"></div></pre></div>
+</div>
 <p><strong>Python source code:</strong> <a class="reference download internal" href="../_downloads/plot_airfare.py"><tt class="xref download docutils literal"><span class="pre">plot_airfare.py</span></tt></a></p>
 <div class="highlight-python"><div class="highlight"><pre><span class="c"># Standard library imports</span>
 <div class="newline"></div><span class="kn">import</span> <span class="nn">urllib</span>
@@ -214,16 +297,42 @@ only as a function of the trip endpoints.</p>
 <div class="newline"></div><a href="http://matplotlib.org/api/figure_api.html#matplotlib.figure"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span></a><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 <div class="newline"></div><span class="n">seaborn</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">fare_2001</span> <span class="o">-</span> <span class="n">data</span><span class="o">.</span><span class="n">fare_2000</span><span class="p">)</span>
 <div class="newline"></div><a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.title"><span class="n">plt</span><span class="o">.</span><span class="n">title</span></a><span class="p">(</span><span class="s">&#39;Fare: 2001 - 2000&#39;</span><span class="p">)</span>
+<div class="newline"></div><a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.subplots_adjust"><span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span></a><span class="p">()</span>
 <div class="newline"></div>
 <div class="newline"></div><a href="http://matplotlib.org/api/figure_api.html#matplotlib.figure"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span></a><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 <div class="newline"></div><span class="n">seaborn</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">nb_passengers_2001</span> <span class="o">-</span> <span class="n">data</span><span class="o">.</span><span class="n">nb_passengers_2000</span><span class="p">)</span>
 <div class="newline"></div><a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.title"><span class="n">plt</span><span class="o">.</span><span class="n">title</span></a><span class="p">(</span><span class="s">&#39;NB passengers: 2001 - 2000&#39;</span><span class="p">)</span>
+<div class="newline"></div><a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.subplots_adjust"><span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span></a><span class="p">()</span>
+<div class="newline"></div>
+<div class="newline"></div>
+<div class="newline"></div><span class="c">##############################################################################</span>
+<div class="newline"></div><span class="c"># Statistical testing: dependence of fare on distance and number of</span>
+<div class="newline"></div><span class="c"># passengers</span>
+<div class="newline"></div><span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="kn">as</span> <span class="nn">sm</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="n">result</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="s">&#39;fare ~ 1 + dist + nb_passengers&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data_flat</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<div class="newline"></div><span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="c"># Using a robust fit</span>
+<div class="newline"></div><span class="n">result</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">rlm</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="s">&#39;fare ~ 1 + dist + nb_passengers&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data_flat</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<div class="newline"></div><span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+<div class="newline"></div>
+<div class="newline"></div>
+<div class="newline"></div><span class="c">##############################################################################</span>
+<div class="newline"></div><span class="c"># Statistical testing: regression of fare on distance: 2001/2000 difference</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="n">result</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="s">&#39;fare_2001 - fare_2000 ~ 1 + dist&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<div class="newline"></div><span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="c"># Plot the corresponding regression</span>
+<div class="newline"></div><span class="n">data</span><span class="p">[</span><span class="s">&#39;fare_difference&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;fare_2001&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;fare_2000&#39;</span><span class="p">]</span>
+<div class="newline"></div><span class="n">seaborn</span><span class="o">.</span><span class="n">lmplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s">&#39;dist&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s">&#39;fare_difference&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 <div class="newline"></div>
 <div class="newline"></div><a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.show"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 <div class="newline"></div></pre></div>
 </div>
-<p><strong>Total running time of the example:</strong>  11.97 seconds
-( 0 minutes  11.97 seconds)</p>
+<p><strong>Total running time of the example:</strong>  11.70 seconds
+( 0 minutes  11.70 seconds)</p>
 <p><div style="clear: both"></div></p>
 </div>
 
