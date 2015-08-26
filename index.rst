@@ -733,7 +733,7 @@ Do wages increase more with education for males than females?
     The plot above is made of two different fits. We need to formulate a
     single model that tests for a variance of slope across the to
     population. This is done via an `"interaction"
-    <http://statsmodels.sourceforge.net/devel/example_formulas.html#multiplicative-interactions>`_
+    <http://statsmodels.sourceforge.net/devel/example_formulas.html#multiplicative-interactions>`_.
 
 
 ::
