@@ -718,6 +718,39 @@ Categorical variables can be plotted as the hue::
    :align: center
    :scale: 60
 
+Testing for interactions
+=========================
+
+.. image:: auto_examples/images/plot_wage_education_gender_1.png
+   :target: auto_examples/plot_education_gender.html
+   :align: center
+   :scale: 60
+
+Do wages increase more with education for males than females?
+
+.. tip::
+
+    The plot above is made of two different fits. We need to formulate a
+    single model that tests for a variance of slope across the to
+    population. This is done via an `"interaction"
+    <http://statsmodels.sourceforge.net/devel/example_formulas.html#multiplicative-interactions>`_
+
+
+::
+
+    >>> result = sm.ols(formula='wage ~ education + gender + education * gender',
+    ...                 data=data).fit()    # doctest: +SKIP
+    >>> print(result.summary())    # doctest: +SKIP
+    ...
+                               coef    std err          t      P>|t|      [95.0% Conf. Int.]
+    --------------------------------------------------------------------------------------------
+    Intercept                    0.2998      0.072      4.173      0.000         0.159     0.441
+    gender[T.male]               0.2750      0.093      2.972      0.003         0.093     0.457
+    education                    0.0415      0.005      7.647      0.000         0.031     0.052
+    education:gender[T.male]    -0.0134      0.007     -1.919      0.056        -0.027     0.000
+    ==============================================================================
+    ...
+    
 |
 
 .. topic:: **Take home messages**
