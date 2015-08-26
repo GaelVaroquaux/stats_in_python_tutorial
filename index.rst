@@ -580,6 +580,10 @@ Such a model can be seen in 3D as fitting a plane to a cloud of (`x`,
 
 **Example: the iris data**
 
+.. tip::
+
+    Sepal and petal size tend to be related: bigger flowers are bigger!
+    But is there in addition a systematic effect of species?
 
 .. image:: auto_examples/images/plot_iris_analysis_1.png
    :target: auto_examples/plot_iris_analysis_1.html
