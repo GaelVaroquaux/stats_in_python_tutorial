@@ -390,13 +390,13 @@ Linear models, multiple factors, and analysis of variance
 "formulas" to speficy statistical models in Python
 --------------------------------------------------
 
+A simple linear regression
+...........................
+
 .. image:: auto_examples/images/plot_regression_1.png
    :target: auto_examples/plot_regression.html
    :scale: 60
    :align: right
-
-A simple linear regression
-...........................
 
 Given two set of observations, `x` and `y`, we want to test the
 hypothesis that `y` is a linear function of `x`. In other terms:
@@ -461,6 +461,18 @@ We can inspect the various statistics derived from the fit::
     Kurtosis:                       2.390   Cond. No.                         3.03
     ==============================================================================
 
+.. topic:: Terminology:
+
+    Statsmodel uses a statistical terminology: the `y` variable in
+    statsmodel is called 'endogenous' while the `x` variable is called
+    exogenous.  This is discussed in more detail here:
+    http://statsmodels.sourceforge.net/devel/endog_exog.html
+
+    To simplify, `y` (endogenous) is the value you are trying to predict,
+    while `x` (exogenous) represents the features you are using to make
+    the prediction.
+
+ 
 .. topic:: **Exercise**
    :class: green
 
@@ -515,6 +527,16 @@ model::
 
    **Intercept** We can remove the intercept using `- 1` in the formula,
    or force the use of an intercept using `+ 1`.
+
+   .. tip::
+
+     By default, statsmodel treats a categorical variable with K possible
+     values as K-1 'dummy' boolean variables (the last level being
+     absorbed into the intercept term).  This is almost always a good
+     default choice - however, it is possible to specify different
+     encodings for categorical variables
+     (http://statsmodels.sourceforge.net/devel/contrasts.html).
+
 
 |
 
@@ -580,6 +602,10 @@ Such a model can be seen in 3D as fitting a plane to a cloud of (`x`,
 
 **Example: the iris data**
 
+.. tip::
+
+    Sepal and petal size tend to be related: bigger flowers are bigger!
+    But is there in addition a systematic effect of species?
 
 .. image:: auto_examples/images/plot_iris_analysis_1.png
    :target: auto_examples/plot_iris_analysis_1.html
@@ -600,10 +626,10 @@ Such a model can be seen in 3D as fitting a plane to a cloud of (`x`,
     Time:                        ...        Log-Likelihood:                -38.185
     No. Observations:                 150   AIC:                             84.37
     Df Residuals:                     146   BIC:                             96.41
-    Df Model:                           3                                       
-    ===============================================================================...
+    Df Model:                           3                                     
+    ===========================================================================...
                              coef    std err          t     P>|t|  [95.0% Conf. Int.]
-    -------------------------------------------------------------------------------...
+    ---------------------------------------------------------------------------...
     Intercept              2.9813      0.099     29.989     0.000      2.785     3.178
     name[T.versicolor]    -1.4821      0.181     -8.190     0.000     -1.840    -1.124
     name[T.virginica]     -1.6635      0.256     -6.502     0.000     -2.169    -1.158
@@ -648,13 +674,96 @@ ______
 
 |
 
-.. topic:: **Take home messages so far**
+More visualization: seaborn for statistical exploration
+=======================================================
+
+`Seaborn <http://stanford.edu/~mwaskom/software/seaborn/>`_ combines
+simple statistical fits with plotting on pandas dataframes.
+
+Let us consider a data giving wages and many other personal information
+on 500 individuals (`Berndt, ER. The Practice of Econometrics. 1991. NY:
+Addison-Wesley <http://lib.stat.cmu.edu/datasets/CPS_85_Wages>`_).
+
+::
+
+   >>> print data  # doctest: +SKIP
+        EDUCATION  SOUTH  SEX  EXPERIENCE  UNION      WAGE  AGE  RACE  \
+   0            8      0    1          21      0  0.707570   35     2   
+   1            9      0    1          42      0  0.694605   57     3   
+   2           12      0    0           1      0  0.824126   19     3   
+   3           12      0    0           4      0  0.602060   22     3 
+   ...
+
+We can easily have an intuition on the interactions between continuous
+variables using seaborn.pairplot to display a scatter matrix::
+
+   >>> import seaborn
+   >>> seaborn.pairplot(data, vars=['WAGE', 'AGE', 'EDUCATION'],
+   ...                  kind='reg')  # doctest: +SKIP
+
+
+.. image:: auto_examples/images/plot_wage_data_1.png
+   :target: auto_examples/plot_wage_data.html
+   :align: center
+   :scale: 60
+
+Categorical variables can be plotted as the hue::
+
+   >>> seaborn.pairplot(data, vars=['WAGE', 'AGE', 'EDUCATION'],
+   ...                  kind='reg', hue='SEX')  # doctest: +SKIP
+
+
+.. image:: auto_examples/images/plot_wage_data_2.png
+   :target: auto_examples/plot_wage_data.html
+   :align: center
+   :scale: 60
+
+Testing for interactions
+=========================
+
+.. image:: auto_examples/images/plot_wage_education_gender_1.png
+   :target: auto_examples/plot_education_gender.html
+   :align: center
+   :scale: 60
+
+Do wages increase more with education for males than females?
+
+.. tip::
+
+    The plot above is made of two different fits. We need to formulate a
+    single model that tests for a variance of slope across the to
+    population. This is done via an `"interaction"
+    <http://statsmodels.sourceforge.net/devel/example_formulas.html#multiplicative-interactions>`_.
+
+
+::
+
+    >>> result = sm.ols(formula='wage ~ education + gender + education * gender',
+    ...                 data=data).fit()    # doctest: +SKIP
+    >>> print(result.summary())    # doctest: +SKIP
+    ...
+                                coef    std err    t     P>|t|  [95.0% Conf. Int.]
+    ------------------------------------------------------------------------------
+    Intercept                   0.2998   0.072    4.173   0.000     0.159   0.441
+    gender[T.male]              0.2750   0.093    2.972   0.003     0.093   0.457
+    education                   0.0415   0.005    7.647   0.000     0.031   0.052
+    education:gender[T.male]   -0.0134   0.007   -1.919   0.056    -0.027   0.000
+    ==============================================================================
+    ...
+
+Can we conclude that education benefits males more than females?
+
+|
+
+.. topic:: **Take home messages**
 
    * Hypothesis testing and p-value give you the **significance** of an
      effect / difference
 
    * **Formulas** (with categorical variables) enable you to express rich
      links in your data
+
+   * **Visualizing** your data and simple model fits matters!
 
    * **Conditionning** (adding factors that can explain all or part of
      the variation) is important modeling aspect that changes the

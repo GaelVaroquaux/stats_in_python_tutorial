@@ -154,23 +154,25 @@ experiment, the richness of Python is an invaluable asset.</p>
 <div class="contents local topic" id="contents">
 <p class="topic-title first">Contents</p>
 <ul class="auto-toc simple">
-<li><a class="reference internal" href="#data-representation-and-interaction" id="id3">1&nbsp;&nbsp;&nbsp;Data representation and interaction</a><ul class="auto-toc">
-<li><a class="reference internal" href="#data-as-a-table" id="id4">1.1&nbsp;&nbsp;&nbsp;Data as a table</a></li>
-<li><a class="reference internal" href="#the-panda-data-frame" id="id5">1.2&nbsp;&nbsp;&nbsp;The panda data-frame</a></li>
+<li><a class="reference internal" href="#data-representation-and-interaction" id="id4">1&nbsp;&nbsp;&nbsp;Data representation and interaction</a><ul class="auto-toc">
+<li><a class="reference internal" href="#data-as-a-table" id="id5">1.1&nbsp;&nbsp;&nbsp;Data as a table</a></li>
+<li><a class="reference internal" href="#the-panda-data-frame" id="id6">1.2&nbsp;&nbsp;&nbsp;The panda data-frame</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#hypothesis-testing-comparing-two-groups" id="id6">2&nbsp;&nbsp;&nbsp;Hypothesis testing: comparing two groups</a><ul class="auto-toc">
-<li><a class="reference internal" href="#student-s-t-test" id="id7">2.1&nbsp;&nbsp;&nbsp;Student&#8217;s t-test</a></li>
-<li><a class="reference internal" href="#paired-tests-repeated-measurements-on-the-same-indivuals" id="id8">2.2&nbsp;&nbsp;&nbsp;Paired tests: repeated measurements on the same indivuals</a></li>
+<li><a class="reference internal" href="#hypothesis-testing-comparing-two-groups" id="id7">2&nbsp;&nbsp;&nbsp;Hypothesis testing: comparing two groups</a><ul class="auto-toc">
+<li><a class="reference internal" href="#student-s-t-test" id="id8">2.1&nbsp;&nbsp;&nbsp;Student&#8217;s t-test</a></li>
+<li><a class="reference internal" href="#paired-tests-repeated-measurements-on-the-same-indivuals" id="id9">2.2&nbsp;&nbsp;&nbsp;Paired tests: repeated measurements on the same indivuals</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#linear-models-multiple-factors-and-analysis-of-variance" id="id9">3&nbsp;&nbsp;&nbsp;Linear models, multiple factors, and analysis of variance</a><ul class="auto-toc">
-<li><a class="reference internal" href="#formulas-to-speficy-statistical-models-in-python" id="id10">3.1&nbsp;&nbsp;&nbsp;&#8220;formulas&#8221; to speficy statistical models in Python</a></li>
-<li><a class="reference internal" href="#multiple-regression-including-multiple-factors" id="id11">3.2&nbsp;&nbsp;&nbsp;Multiple Regression: including multiple factors</a></li>
-<li><a class="reference internal" href="#post-hoc-hypothesis-testing-analysis-of-variance-anova" id="id12">3.3&nbsp;&nbsp;&nbsp;Post-hoc hypothesis testing: analysis of variance (ANOVA)</a></li>
+<li><a class="reference internal" href="#linear-models-multiple-factors-and-analysis-of-variance" id="id10">3&nbsp;&nbsp;&nbsp;Linear models, multiple factors, and analysis of variance</a><ul class="auto-toc">
+<li><a class="reference internal" href="#formulas-to-speficy-statistical-models-in-python" id="id11">3.1&nbsp;&nbsp;&nbsp;&#8220;formulas&#8221; to speficy statistical models in Python</a></li>
+<li><a class="reference internal" href="#multiple-regression-including-multiple-factors" id="id12">3.2&nbsp;&nbsp;&nbsp;Multiple Regression: including multiple factors</a></li>
+<li><a class="reference internal" href="#post-hoc-hypothesis-testing-analysis-of-variance-anova" id="id13">3.3&nbsp;&nbsp;&nbsp;Post-hoc hypothesis testing: analysis of variance (ANOVA)</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#full-examples" id="id13">4&nbsp;&nbsp;&nbsp;Full examples</a></li>
+<li><a class="reference internal" href="#more-visualization-seaborn-for-statistical-exploration" id="id14">4&nbsp;&nbsp;&nbsp;More visualization: seaborn for statistical exploration</a></li>
+<li><a class="reference internal" href="#testing-for-interactions" id="id15">5&nbsp;&nbsp;&nbsp;Testing for interactions</a></li>
+<li><a class="reference internal" href="#full-examples" id="id16">6&nbsp;&nbsp;&nbsp;Full examples</a></li>
 </ul>
 </div>
 <div class="admonition tip">
@@ -183,9 +185,9 @@ blocks, to hide the prompts and the outputs.</p>
 <div class="line"><br /></div>
 </div>
 <div class="section" id="data-representation-and-interaction">
-<h1><a class="toc-backref" href="#id3">1&nbsp;&nbsp;&nbsp;Data representation and interaction</a><a class="headerlink" href="#data-representation-and-interaction" title="Permalink to this headline">¶</a></h1>
+<h1><a class="toc-backref" href="#id4">1&nbsp;&nbsp;&nbsp;Data representation and interaction</a><a class="headerlink" href="#data-representation-and-interaction" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="data-as-a-table">
-<h2><a class="toc-backref" href="#id4">1.1&nbsp;&nbsp;&nbsp;Data as a table</a><a class="headerlink" href="#data-as-a-table" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id5">1.1&nbsp;&nbsp;&nbsp;Data as a table</a><a class="headerlink" href="#data-as-a-table" title="Permalink to this headline">¶</a></h2>
 <p>The setting that we consider for statistical analysis is that of multiple
 <em>observations</em> or <em>samples</em> described by a set of different <em>attributes</em>
 or <em>features</em>. The data can than be seen as a 2D table, or matrix, with
@@ -202,7 +204,7 @@ observations. For instance, the data contained in
 </div>
 </div>
 <div class="section" id="the-panda-data-frame">
-<h2><a class="toc-backref" href="#id5">1.2&nbsp;&nbsp;&nbsp;The panda data-frame</a><a class="headerlink" href="#the-panda-data-frame" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id6">1.2&nbsp;&nbsp;&nbsp;The panda data-frame</a><a class="headerlink" href="#the-panda-data-frame" title="Permalink to this headline">¶</a></h2>
 <div class="admonition tip">
 <p class="first admonition-title">Tip</p>
 <p class="last">We will store and manipulate this data in a
@@ -383,7 +385,7 @@ think that the 2 sub-populations correspond to gender?</p>
 </div>
 </div>
 <div class="section" id="hypothesis-testing-comparing-two-groups">
-<h1><a class="toc-backref" href="#id6">2&nbsp;&nbsp;&nbsp;Hypothesis testing: comparing two groups</a><a class="headerlink" href="#hypothesis-testing-comparing-two-groups" title="Permalink to this headline">¶</a></h1>
+<h1><a class="toc-backref" href="#id7">2&nbsp;&nbsp;&nbsp;Hypothesis testing: comparing two groups</a><a class="headerlink" href="#hypothesis-testing-comparing-two-groups" title="Permalink to this headline">¶</a></h1>
 <p>For simple statistical tests, we will use the <cite>stats</cite> sub-module of
 <a class="reference external" href="http://docs.scipy.org/doc/">scipy</a>:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
@@ -395,7 +397,7 @@ think that the 2 sub-populations correspond to gender?</p>
 scipy, see <a class="reference external" href="http://scipy-lectures.github.io/">http://scipy-lectures.github.io/</a></p>
 </div>
 <div class="section" id="student-s-t-test">
-<h2><a class="toc-backref" href="#id7">2.1&nbsp;&nbsp;&nbsp;Student&#8217;s t-test</a><a class="headerlink" href="#student-s-t-test" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id8">2.1&nbsp;&nbsp;&nbsp;Student&#8217;s t-test</a><a class="headerlink" href="#student-s-t-test" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="sample-t-test">
 <h3>2.1.1&nbsp;&nbsp;&nbsp;1-sample t-test<a class="headerlink" href="#sample-t-test" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.ttest_1samp.html#scipy.stats.ttest_1samp" title="(in SciPy v0.16.0)"><tt class="xref py py-func docutils literal"><span class="pre">scipy.stats.ttest_1samp()</span></tt></a> tests if observations are drawn from a
@@ -431,7 +433,7 @@ with <a class="reference external" href="http://docs.scipy.org/doc/scipy/referen
 </div>
 </div>
 <div class="section" id="paired-tests-repeated-measurements-on-the-same-indivuals">
-<h2><a class="toc-backref" href="#id8">2.2&nbsp;&nbsp;&nbsp;Paired tests: repeated measurements on the same indivuals</a><a class="headerlink" href="#paired-tests-repeated-measurements-on-the-same-indivuals" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id9">2.2&nbsp;&nbsp;&nbsp;Paired tests: repeated measurements on the same indivuals</a><a class="headerlink" href="#paired-tests-repeated-measurements-on-the-same-indivuals" title="Permalink to this headline">¶</a></h2>
 <a class="reference external image-reference" href="auto_examples/plot_pandas.html"><img alt="_images/plot_paired_boxplots_1.png" class="align-right" src="_images/plot_paired_boxplots_1.png" style="width: 280.0px; height: 210.0px;" /></a>
 <p>PIQ, VIQ, and FSIQ give 3 measures of IQ. Let us test if FISQ and PIQ are
 significantly different. We need to use a 2 sample test:</p>
@@ -483,12 +485,12 @@ males and females.</li>
 </div>
 </div>
 <div class="section" id="linear-models-multiple-factors-and-analysis-of-variance">
-<h1><a class="toc-backref" href="#id9">3&nbsp;&nbsp;&nbsp;Linear models, multiple factors, and analysis of variance</a><a class="headerlink" href="#linear-models-multiple-factors-and-analysis-of-variance" title="Permalink to this headline">¶</a></h1>
+<h1><a class="toc-backref" href="#id10">3&nbsp;&nbsp;&nbsp;Linear models, multiple factors, and analysis of variance</a><a class="headerlink" href="#linear-models-multiple-factors-and-analysis-of-variance" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="formulas-to-speficy-statistical-models-in-python">
-<h2><a class="toc-backref" href="#id10">3.1&nbsp;&nbsp;&nbsp;&#8220;formulas&#8221; to speficy statistical models in Python</a><a class="headerlink" href="#formulas-to-speficy-statistical-models-in-python" title="Permalink to this headline">¶</a></h2>
-<a class="reference external image-reference" href="auto_examples/plot_regression.html"><img alt="_images/plot_regression_1.png" class="align-right" src="_images/plot_regression_1.png" style="width: 300.0px; height: 240.0px;" /></a>
+<h2><a class="toc-backref" href="#id11">3.1&nbsp;&nbsp;&nbsp;&#8220;formulas&#8221; to speficy statistical models in Python</a><a class="headerlink" href="#formulas-to-speficy-statistical-models-in-python" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="a-simple-linear-regression">
 <h3>3.1.1&nbsp;&nbsp;&nbsp;A simple linear regression<a class="headerlink" href="#a-simple-linear-regression" title="Permalink to this headline">¶</a></h3>
+<a class="reference external image-reference" href="auto_examples/plot_regression.html"><img alt="_images/plot_regression_1.png" class="align-right" src="_images/plot_regression_1.png" style="width: 300.0px; height: 240.0px;" /></a>
 <p>Given two set of observations, <cite>x</cite> and <cite>y</cite>, we want to test the
 hypothesis that <cite>y</cite> is a linear function of <cite>x</cite>. In other terms:</p>
 <blockquote>
@@ -549,6 +551,16 @@ squares</a> (OLS).</li>
 <div class="newline"></div><span class="go">==============================================================================</span>
 <div class="newline"></div></pre></div>
 </div>
+<div class="topic">
+<p class="topic-title first">Terminology:</p>
+<p>Statsmodel uses a statistical terminology: the <cite>y</cite> variable in
+statsmodel is called &#8216;endogenous&#8217; while the <cite>x</cite> variable is called
+exogenous.  This is discussed in more detail here:
+<a class="reference external" href="http://statsmodels.sourceforge.net/devel/endog_exog.html">http://statsmodels.sourceforge.net/devel/endog_exog.html</a></p>
+<p>To simplify, <cite>y</cite> (endogenous) is the value you are trying to predict,
+while <cite>x</cite> (exogenous) represents the features you are using to make
+the prediction.</p>
+</div>
 <div class="green topic">
 <p class="topic-title first"><strong>Exercise</strong></p>
 <p>Retrieve the estimated parameters from the model above. <strong>Hint</strong>:
@@ -601,8 +613,17 @@ treated as different entities.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">ols</span><span class="p">(</span><span class="s">&#39;VIQ ~ C(Gender)&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 <div class="newline"></div></pre></div>
 </div>
-<p class="last"><strong>Intercept</strong> We can remove the intercept using <cite>- 1</cite> in the formula,
+<p><strong>Intercept</strong> We can remove the intercept using <cite>- 1</cite> in the formula,
 or force the use of an intercept using <cite>+ 1</cite>.</p>
+<div class="last admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">By default, statsmodel treats a categorical variable with K possible
+values as K-1 &#8216;dummy&#8217; boolean variables (the last level being
+absorbed into the intercept term).  This is almost always a good
+default choice - however, it is possible to specify different
+encodings for categorical variables
+(<a class="reference external" href="http://statsmodels.sourceforge.net/devel/contrasts.html">http://statsmodels.sourceforge.net/devel/contrasts.html</a>).</p>
+</div>
 </div>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -649,7 +670,7 @@ previous t-test:</p>
 </div>
 </div>
 <div class="section" id="multiple-regression-including-multiple-factors">
-<h2><a class="toc-backref" href="#id11">3.2&nbsp;&nbsp;&nbsp;Multiple Regression: including multiple factors</a><a class="headerlink" href="#multiple-regression-including-multiple-factors" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id12">3.2&nbsp;&nbsp;&nbsp;Multiple Regression: including multiple factors</a><a class="headerlink" href="#multiple-regression-including-multiple-factors" title="Permalink to this headline">¶</a></h2>
 <a class="reference external image-reference" href="auto_examples/plot_regression_3d.html"><img alt="_images/plot_regression_3d_1.png" class="align-right" src="_images/plot_regression_3d_1.png" style="width: 360.0px; height: 270.0px;" /></a>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -665,6 +686,11 @@ variable) with 2 variables <cite>x</cite> and <cite>y</cite>:</p>
 <div class="line"><br /></div>
 </div>
 <p><strong>Example: the iris data</strong></p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Sepal and petal size tend to be related: bigger flowers are bigger!
+But is there in addition a systematic effect of species?</p>
+</div>
 <a class="reference external image-reference" href="auto_examples/plot_iris_analysis_1.html"><img alt="_images/plot_iris_analysis_1.png" class="align-center" src="_images/plot_iris_analysis_1.png" style="width: 640.0px; height: 480.0px;" /></a>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">&#39;examples/iris.csv&#39;</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">ols</span><span class="p">(</span><span class="s">&#39;sepal_width ~ name + petal_length&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
@@ -679,9 +705,9 @@ variable) with 2 variables <cite>x</cite> and <cite>y</cite>:</p>
 <div class="newline"></div><span class="go">No. Observations:                 150   AIC:                             84.37</span>
 <div class="newline"></div><span class="go">Df Residuals:                     146   BIC:                             96.41</span>
 <div class="newline"></div><span class="go">Df Model:                           3</span>
-<div class="newline"></div><span class="go">===============================================================================...</span>
+<div class="newline"></div><span class="go">===========================================================================...</span>
 <div class="newline"></div><span class="go">                         coef    std err          t     P&gt;|t|  [95.0% Conf. Int.]</span>
-<div class="newline"></div><span class="go">-------------------------------------------------------------------------------...</span>
+<div class="newline"></div><span class="go">---------------------------------------------------------------------------...</span>
 <div class="newline"></div><span class="go">Intercept              2.9813      0.099     29.989     0.000      2.785     3.178</span>
 <div class="newline"></div><span class="go">name[T.versicolor]    -1.4821      0.181     -8.190     0.000     -1.840    -1.124</span>
 <div class="newline"></div><span class="go">name[T.virginica]     -1.6635      0.256     -6.502     0.000     -2.169    -1.158</span>
@@ -699,7 +725,7 @@ variable) with 2 variables <cite>x</cite> and <cite>y</cite>:</p>
 </div>
 </div>
 <div class="section" id="post-hoc-hypothesis-testing-analysis-of-variance-anova">
-<h2><a class="toc-backref" href="#id12">3.3&nbsp;&nbsp;&nbsp;Post-hoc hypothesis testing: analysis of variance (ANOVA)</a><a class="headerlink" href="#post-hoc-hypothesis-testing-analysis-of-variance-anova" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id13">3.3&nbsp;&nbsp;&nbsp;Post-hoc hypothesis testing: analysis of variance (ANOVA)</a><a class="headerlink" href="#post-hoc-hypothesis-testing-analysis-of-variance-anova" title="Permalink to this headline">¶</a></h2>
 <p>In the above iris example, we wish to test if the petal length is
 different between versicolor and virginica, after removing the effect of
 sepal width. This can be formulated as testing the difference between the
@@ -728,13 +754,75 @@ and weight.</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
+</div>
+</div>
+<div class="section" id="more-visualization-seaborn-for-statistical-exploration">
+<h1><a class="toc-backref" href="#id14">4&nbsp;&nbsp;&nbsp;More visualization: seaborn for statistical exploration</a><a class="headerlink" href="#more-visualization-seaborn-for-statistical-exploration" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="http://stanford.edu/~mwaskom/software/seaborn/">Seaborn</a> combines
+simple statistical fits with plotting on pandas dataframes.</p>
+<p>Let us consider a data giving wages and many other personal information
+on 500 individuals (<a class="reference external" href="http://lib.stat.cmu.edu/datasets/CPS_85_Wages">Berndt, ER. The Practice of Econometrics. 1991. NY:
+Addison-Wesley</a>).</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">data</span>  
+<div class="newline"></div><span class="go">     EDUCATION  SOUTH  SEX  EXPERIENCE  UNION      WAGE  AGE  RACE  \</span>
+<div class="newline"></div><span class="go">0            8      0    1          21      0  0.707570   35     2</span>
+<div class="newline"></div><span class="go">1            9      0    1          42      0  0.694605   57     3</span>
+<div class="newline"></div><span class="go">2           12      0    0           1      0  0.824126   19     3</span>
+<div class="newline"></div><span class="go">3           12      0    0           4      0  0.602060   22     3</span>
+<div class="newline"></div><span class="gp">...</span>
+<div class="newline"></div></pre></div>
+</div>
+<p>We can easily have an intuition on the interactions between continuous
+variables using seaborn.pairplot to display a scatter matrix:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">seaborn</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">seaborn</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">vars</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;WAGE&#39;</span><span class="p">,</span> <span class="s">&#39;AGE&#39;</span><span class="p">,</span> <span class="s">&#39;EDUCATION&#39;</span><span class="p">],</span>
+<div class="newline"></div><span class="gp">... </span>                 <span class="n">kind</span><span class="o">=</span><span class="s">&#39;reg&#39;</span><span class="p">)</span>  
+<div class="newline"></div></pre></div>
+</div>
+<a class="reference external image-reference" href="auto_examples/plot_wage_data.html"><img alt="_images/plot_wage_data_1.png" class="align-center" src="_images/plot_wage_data_1.png" style="width: 450.0px; height: 450.0px;" /></a>
+<p>Categorical variables can be plotted as the hue:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">seaborn</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">vars</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;WAGE&#39;</span><span class="p">,</span> <span class="s">&#39;AGE&#39;</span><span class="p">,</span> <span class="s">&#39;EDUCATION&#39;</span><span class="p">],</span>
+<div class="newline"></div><span class="gp">... </span>                 <span class="n">kind</span><span class="o">=</span><span class="s">&#39;reg&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s">&#39;SEX&#39;</span><span class="p">)</span>  
+<div class="newline"></div></pre></div>
+</div>
+<a class="reference external image-reference" href="auto_examples/plot_wage_data.html"><img alt="_images/plot_wage_data_2.png" class="align-center" src="_images/plot_wage_data_2.png" style="width: 483.6px; height: 450.0px;" /></a>
+</div>
+<div class="section" id="testing-for-interactions">
+<h1><a class="toc-backref" href="#id15">5&nbsp;&nbsp;&nbsp;Testing for interactions</a><a class="headerlink" href="#testing-for-interactions" title="Permalink to this headline">¶</a></h1>
+<a class="reference external image-reference" href="auto_examples/plot_education_gender.html"><img alt="_images/plot_wage_education_gender_1.png" class="align-center" src="_images/plot_wage_education_gender_1.png" style="width: 354.0px; height: 300.0px;" /></a>
+<p>Do wages increase more with education for males than females?</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">The plot above is made of two different fits. We need to formulate a
+single model that tests for a variance of slope across the to
+population. This is done via an <a class="reference external" href="http://statsmodels.sourceforge.net/devel/example_formulas.html#multiplicative-interactions">&#8220;interaction&#8221;</a>.</p>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="s">&#39;wage ~ education + gender + education * gender&#39;</span><span class="p">,</span>
+<div class="newline"></div><span class="gp">... </span>                <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>    
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>    
+<div class="newline"></div><span class="gp">...</span>
+<div class="newline"></div><span class="go">                            coef    std err    t     P&gt;|t|  [95.0% Conf. Int.]</span>
+<div class="newline"></div><span class="go">------------------------------------------------------------------------------</span>
+<div class="newline"></div><span class="go">Intercept                   0.2998   0.072    4.173   0.000     0.159   0.441</span>
+<div class="newline"></div><span class="go">gender[T.male]              0.2750   0.093    2.972   0.003     0.093   0.457</span>
+<div class="newline"></div><span class="go">education                   0.0415   0.005    7.647   0.000     0.031   0.052</span>
+<div class="newline"></div><span class="go">education:gender[T.male]   -0.0134   0.007   -1.919   0.056    -0.027   0.000</span>
+<div class="newline"></div><span class="go">==============================================================================</span>
+<div class="newline"></div><span class="gp">...</span>
+<div class="newline"></div></pre></div>
+</div>
+<p>Can we conclude that education benefits males more than females?</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <div class="topic">
-<p class="topic-title first"><strong>Take home messages so far</strong></p>
+<p class="topic-title first"><strong>Take home messages</strong></p>
 <ul class="simple">
 <li>Hypothesis testing and p-value give you the <strong>significance</strong> of an
 effect / difference</li>
 <li><strong>Formulas</strong> (with categorical variables) enable you to express rich
 links in your data</li>
+<li><strong>Visualizing</strong> your data and simple model fits matters!</li>
 <li><strong>Conditionning</strong> (adding factors that can explain all or part of
 the variation) is important modeling aspect that changes the
 interpretation.</li>
@@ -744,9 +832,8 @@ interpretation.</li>
 <div class="line"><br /></div>
 </div>
 </div>
-</div>
 <div class="section" id="full-examples">
-<h1><a class="toc-backref" href="#id13">4&nbsp;&nbsp;&nbsp;Full examples</a><a class="headerlink" href="#full-examples" title="Permalink to this headline">¶</a></h1>
+<h1><a class="toc-backref" href="#id16">6&nbsp;&nbsp;&nbsp;Full examples</a><a class="headerlink" href="#full-examples" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="auto_examples/index.html">Examples</a><ul>

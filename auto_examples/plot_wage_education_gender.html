@@ -140,7 +140,7 @@ statsmodels&#8217; formulas
 <div class="newline"></div>Model:                            OLS   Adj. R-squared:                  0.190
 <div class="newline"></div>Method:                 Least Squares   F-statistic:                     63.42
 <div class="newline"></div>Date:                Wed, 26 Aug 2015   Prob (F-statistic):           2.01e-25
-<div class="newline"></div>Time:                        10:27:23   Log-Likelihood:                 86.654
+<div class="newline"></div>Time:                        15:24:06   Log-Likelihood:                 86.654
 <div class="newline"></div>No. Observations:                 534   AIC:                            -167.3
 <div class="newline"></div>Df Residuals:                     531   BIC:                            -154.5
 <div class="newline"></div>Df Model:                           2
@@ -162,7 +162,7 @@ statsmodels&#8217; formulas
 <div class="newline"></div>Model:                            OLS   Adj. R-squared:                  0.194
 <div class="newline"></div>Method:                 Least Squares   F-statistic:                     43.72
 <div class="newline"></div>Date:                Wed, 26 Aug 2015   Prob (F-statistic):           2.94e-25
-<div class="newline"></div>Time:                        10:27:23   Log-Likelihood:                 88.503
+<div class="newline"></div>Time:                        15:24:06   Log-Likelihood:                 88.503
 <div class="newline"></div>No. Observations:                 534   AIC:                            -169.0
 <div class="newline"></div>Df Residuals:                     530   BIC:                            -151.9
 <div class="newline"></div>Df Model:                           3
@@ -227,14 +227,14 @@ statsmodels&#8217; formulas
 <div class="newline"></div><span class="c"># Note that this model is not the plot displayed above: it is one</span>
 <div class="newline"></div><span class="c"># joined model for male and female, not separate models for male and</span>
 <div class="newline"></div><span class="c"># female. The reason is that a single model enables statistical testing</span>
-<div class="newline"></div><span class="n">result</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="s">&#39;wage ~ 1 + education + gender&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<div class="newline"></div><span class="n">result</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="s">&#39;wage ~ education + gender&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 <div class="newline"></div><span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="c"># The plots above highlight that there is not only a different offset in</span>
 <div class="newline"></div><span class="c"># wage but also a different slope</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="c"># We need to model this using an interaction</span>
-<div class="newline"></div><span class="n">result</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="s">&#39;wage ~ 1 + education + gender + education * gender&#39;</span><span class="p">,</span>
+<div class="newline"></div><span class="n">result</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="s">&#39;wage ~ education + gender + education * gender&#39;</span><span class="p">,</span>
 <div class="newline"></div>                <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 <div class="newline"></div><span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
 <div class="newline"></div>
@@ -248,8 +248,8 @@ statsmodels&#8217; formulas
 <div class="newline"></div><a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.show"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 <div class="newline"></div></pre></div>
 </div>
-<p><strong>Total running time of the example:</strong>  2.45 seconds
-( 0 minutes  2.45 seconds)</p>
+<p><strong>Total running time of the example:</strong>  2.46 seconds
+( 0 minutes  2.46 seconds)</p>
 <p><div style="clear: both"></div></p>
 </div>
 

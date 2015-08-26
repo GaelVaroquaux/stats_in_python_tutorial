@@ -58,14 +58,14 @@ import statsmodels.formula.api as sm
 # Note that this model is not the plot displayed above: it is one
 # joined model for male and female, not separate models for male and
 # female. The reason is that a single model enables statistical testing
-result = sm.ols(formula='wage ~ 1 + education + gender', data=data).fit()
+result = sm.ols(formula='wage ~ education + gender', data=data).fit()
 print(result.summary())
 
 # The plots above highlight that there is not only a different offset in
 # wage but also a different slope
 
 # We need to model this using an interaction
-result = sm.ols(formula='wage ~ 1 + education + gender + education * gender',
+result = sm.ols(formula='wage ~ education + gender + education * gender',
                 data=data).fit()
 print(result.summary())
 
