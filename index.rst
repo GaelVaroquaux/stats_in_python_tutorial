@@ -461,6 +461,18 @@ We can inspect the various statistics derived from the fit::
     Kurtosis:                       2.390   Cond. No.                         3.03
     ==============================================================================
 
+.. topic:: Terminology:
+
+    Statsmodel uses a statistical terminology: the `y` variable in
+    statsmodel is called 'endogenous' while the `x` variable is called
+    exogenous.  This is discussed in more detail here:
+    http://statsmodels.sourceforge.net/devel/endog_exog.html
+
+    To simplify, `y` (endogenous) is the value you are trying to predict,
+    while `x` (exogenous) represents the features you are using to make
+    the prediction.
+
+ 
 .. topic:: **Exercise**
    :class: green
 
@@ -652,13 +664,26 @@ ______
 
 |
 
-.. topic:: **Take home messages so far**
+More visualization: seaborn for statistical exploration
+=======================================================
+
+`Seaborn <http://stanford.edu/~mwaskom/software/seaborn/>`_ combines
+simple statistical fits with plotting on pandas dataframes.
+
+.. image:: auto_examples/images/plot_wage_data_1.png
+   :target: auto_examples/plot_wage_data.html
+   :align: center
+   :scale: 80
+
+.. topic:: **Take home messages**
 
    * Hypothesis testing and p-value give you the **significance** of an
      effect / difference
 
    * **Formulas** (with categorical variables) enable you to express rich
      links in your data
+
+   * **Visualizing** your data and simple model fits matters!
 
    * **Conditionning** (adding factors that can explain all or part of
      the variation) is important modeling aspect that changes the
