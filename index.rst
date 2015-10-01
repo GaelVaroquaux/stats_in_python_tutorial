@@ -12,6 +12,13 @@
 
 :authors: Gaël Varoquaux
 
+.. warning:: **Superseeded materials**
+
+   The materials in this tutorial is superseeded and the reader should
+   refer to the `corresponding chapter
+   <http://www.scipy-lectures.org/packages/statistics/index.html>`_ in
+   the `scipy lecture notes <http://www.scipy-lectures.org/>`_.
+
 .. sidebar:: Download 
     
 
